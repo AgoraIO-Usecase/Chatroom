@@ -446,12 +446,6 @@ public class RoomActivity extends Activity {
     private void showAudience() {
         //设为观众
         mRtcEngine.setClientRole(Constants.CLIENT_ROLE_AUDIENCE);
-
-     /*   mChangeVolumnIndex = -1;
-        VoiceChanger.changeVoice(mRtcEngine, mChangeVolumnIndex + 1);
-        mCheckBoxAudioAccents.setBackgroundColor(getResources().getColor(R.color.gray));
-          mCheckBoxAudioAccents.setText(getString(R.string.str_audio_accents));*/
-
         if (mCheckBoxAudioMixing.isChecked()) {
             mCheckBoxAudioMixing.setChecked(false);
         }
