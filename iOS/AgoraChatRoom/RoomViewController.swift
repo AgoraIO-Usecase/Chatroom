@@ -47,9 +47,6 @@ class RoomViewController: UIViewController {
                 // 如果在播放伴奏，伴奏需要停止（在 audioMixingIsPlaying 中的 didSet 判断是否在播放伴奏）
                 audioMixingIsPlaying = false
                 
-                // 如果有设置变声角色，需要将变声置回默认
-                setDefaultVoiceEffect()
-                
                 // 将自己从用户列表中删除
                 users.removeUser(uid: uid)
             }
@@ -207,6 +204,7 @@ private extension RoomViewController {
         
         selectedCharater = nil
         voiceChangerButton.isSelected = false
+        voiceChangerButton.setTitle("变声", for: .normal)
         
         if roomType == .gamingHighQuality {
             // 特殊情况：如果是 FM 超高音质房间，默认会有特定的声音效果
@@ -291,6 +289,11 @@ private extension RoomViewController {
         muteLocalButton.isEnabled = isEnabled
         audioMixingButton.isEnabled = isEnabled
         voiceChangerButton.isEnabled = isEnabled
+        
+        if voiceChangerButton.isSelected, !voiceChangerButton.isEnabled {
+            let title = voiceChangerButton.titleLabel?.text
+            voiceChangerButton.setTitle(title, for: .normal)
+        }
     }
     
     func setPopoverDelegate(of vc: UIViewController, sender: UIButton) {
