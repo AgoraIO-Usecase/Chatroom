@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/room_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="10dp"
+        android:textSize="24sp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:onClick="finishRoom"
+        android:layout_margin="10dp"
+        android:text="@string/str_leavechannel" />
+
+    <LinearLayout
+        android:id="@+id/room_bottom_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/room_to_broadcast"
+            style="@style/CheckboxButtonStyle"
+            android:text="@string/str_to_broadcast"
+          />
+
+        <CheckBox
+            android:id="@+id/room_speak_out"
+            style="@style/CheckboxButtonStyle"
+            android:text="@string/str_speak_out" />
+
+        <CheckBox
+            android:id="@+id/room_mute_self"
+            style="@style/CheckboxButtonStyle"
+            android:text="@string/str_mute_local" />
+
+        <CheckBox
+            android:id="@+id/room_mute_other"
+            style="@style/CheckboxButtonStyle"
+            android:text="@string/str_mute_remote" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/room_layout_audio_change"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/room_bottom_layout"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="5dp"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="5dp"/>
+
+        <CheckBox
+            android:id="@+id/room_audio_mixing"
+            style="@style/CheckboxButtonStyle"
+            android:text="@string/str_audio_mixinge" />
+
+        <CheckBox
+            android:id="@+id/room_audio_accents"
+            style="@style/CheckboxButtonStyle"
+            android:text="@string/str_audio_accents" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/room_listview"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/room_name"
+        android:layout_above="@+id/room_layout_audio_change"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="5dp"
+        android:cacheColorHint="#00000000" />
+
+
+</RelativeLayout>
