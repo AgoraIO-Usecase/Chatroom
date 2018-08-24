@@ -255,17 +255,17 @@ public class RoomActivity extends Activity {
                 /** 开黑聊天室 */
                 mRtcEngine.setAudioProfile(Constants.AUDIO_PROFILE_SPEECH_STANDARD, Constants.AUDIO_SCENARIO_CHATROOM_GAMING);
                 break;
-            case Constant.ChatRoomGamingHighQuality:
+            case Constant.ChatRoomEntertainmentStandard:
                 /** 娱乐聊天室 */
-                mRtcEngine.setAudioProfile(Constants.AUDIO_PROFILE_MUSIC_HIGH_QUALITY, Constants.AUDIO_SCENARIO_CHATROOM_ENTERTAINMENT);
+                mRtcEngine.setAudioProfile(Constants.AUDIO_PROFILE_MUSIC_STANDARD, Constants.AUDIO_SCENARIO_CHATROOM_ENTERTAINMENT);
                 break;
             case Constant.ChatRoomEntertainmentHighQuality:
                 /** K 歌房 */
-                mRtcEngine.setAudioProfile(Constants.AUDIO_PROFILE_MUSIC_STANDARD, Constants.AUDIO_SCENARIO_CHATROOM_ENTERTAINMENT);
+                mRtcEngine.setAudioProfile(Constants.AUDIO_PROFILE_MUSIC_HIGH_QUALITY, Constants.AUDIO_SCENARIO_CHATROOM_ENTERTAINMENT);
                 break;
-            case Constant.ChatRoomEntertainmentStandard:
+            case Constant.ChatRoomGamingHighQuality:
                 /** FM 超高音质**/
-                mRtcEngine.setAudioProfile(Constants.AUDIO_PROFILE_MUSIC_HIGH_QUALITY, Constants.AUDIO_SCENARIO_GAME_STREAMING);
+                mRtcEngine.setAudioProfile(Constants.AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO, Constants.AUDIO_SCENARIO_SHOWROOM);
                 break;
         }
         // 设置直播模式
