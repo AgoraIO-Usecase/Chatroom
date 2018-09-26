@@ -113,7 +113,7 @@ Other Language: [English](README.md)
 
 ### 加入声网频道实现语音聊天
 
-首先申请 App ID，详见 :ref:`app_id_native`。
+首先申请 App ID，详见 [获取 App ID](https://docs.agora.io/cn/Agora%20Platform/token?platform=All%20Platforms#app-id) 。
 
 以下流程图描述了加入或离开频道以及客人上下麦的时序关系。
 
@@ -122,58 +122,58 @@ Other Language: [English](README.md)
 
 #### 房主端
 
-1. 创建 RtcEngine 对象，并填入 App ID，详见 :ref:`live_android_create`。
+1. 创建 RtcEngine 对象，并填入 App ID，详见 [create()](https://docs.agora.io/cn/Voice/API%20Reference/java/modules.html) 。
 
-2. 设置频道为 **直播模式**，详见 :ref:`live_android_setChannelProfile`。
+2. 设置频道为 **直播模式**，详见 [setChannelProfile()](https://docs.agora.io/cn/Voice/API%20Reference/java/modules.html) 。
 
-3. 把房主的用户角色设为 BROADCASTER，详见 :ref:`live_android_setClientRole`。
+3. 把房主的用户角色设为 BROADCASTER，详见 [setClientRole()](https://docs.agora.io/cn/Voice/API%20Reference/java/modules.html) 。
 
-4. 创建并加入频道, 详见 :ref:`live_android_joinchannel`。
+4. 创建并加入频道, 详见 [joinchannel()](https://docs.agora.io/cn/Voice/API%20Reference/java/modules.html) 。
 
 5. 通过信令或消息服务器通知所有用户替换背景图片。
 
 6. 当收到客人上麦申请时，同意或拒绝请求。
 
-7. 闭麦：把自己静音。详见 :ref:`live_android_muteLocalAudioStream`。
+7. 闭麦：把自己静音。详见 [muteLocalAudioStream()](https://docs.agora.io/cn/Voice/API%20Reference/java/modules.html) 。
 
-8. 开始播放伴奏，详见 :ref:`live_android_startAudioMixing`。
+8. 开始播放伴奏，详见 [startAudioMixing()](https://docs.agora.io/cn/Voice/API%20Reference/java/modules.html) 。
 
    **注意**: 伴奏音量应小于人声。
 
-9. 离开频道，详见 :ref:`live_android_leaveChannel`。
+9. 离开频道，详见 [leaveChannel()](https://docs.agora.io/cn/Voice/API%20Reference/java/modules.html) 。
 
 10. 通知频道内其他客人退出频道。
 
 #### 客人端
 
-1. 创建 RtcEngine 对象，并填入 App ID，详见 :ref:`live_android_create`。
+1. 创建 RtcEngine 对象，并填入 App ID，详见 [create()](https://docs.agora.io/cn/Voice/API%20Reference/java/modules.html) 。
 
-2. 设置频道为 **直播模式**，详见 :ref:`live_android_setChannelProfile`。
+2. 设置频道为 **直播模式**，详见 [setChannelProfile()](https://docs.agora.io/cn/Voice/API%20Reference/java/modules.html) 。
 
-3. 把客人的用户角色设为 AUDIENCE，详见 :ref:`live_android_setClientRole`。
+3. 把客人的用户角色设为 AUDIENCE，详见 [setClientRole()](https://docs.agora.io/cn/Voice/API%20Reference/java/modules.html) 。
 
-4. 创建并加入频道, 详见 :ref:`live_android_joinchannel`。
+4. 创建并加入频道, 详见 [joinchannel()](https://docs.agora.io/cn/Voice/API%20Reference/java/modules.html) 。
 
 5. 收到房主替换背景图片请求时，替换背景图片。
 
 6. 向房主申请上麦。
 
-7. 房主同意申请后，客人需要重新把用户角色设为 BROADCASTER 开始上麦，详见 :ref:`live_android_setClientRole`。
+7. 房主同意申请后，客人需要重新把用户角色设为 BROADCASTER 开始上麦，详见 [setClientRole()](https://docs.agora.io/cn/Voice/API%20Reference/java/modules.html) 。
 
-8. 上麦结束后，客人将自己的用户角色重新设回 AUDIENCE, 详见 :ref:`live_android_setClientRole`。
+8. 上麦结束后，客人将自己的用户角色重新设回 AUDIENCE, 详见 [setClientRole()](https://docs.agora.io/cn/Voice/API%20Reference/java/modules.html) 。
 
-9. 离开频道，详见 :ref:`live_android_leaveChannel`。
+9. 离开频道，详见 [leaveChannel()](https://docs.agora.io/cn/Voice/API%20Reference/java/modules.html) 。
 
 
 ## 进阶指南
 
 ### 调整伴奏音量：
 
-调整伴奏音量，详见 :ref:`live_android_adjustAudioMixingVolume`。
+调整伴奏音量，详见 [adjustAudioMixingVolume()](https://docs.agora.io/cn/Voice/API%20Reference/java/modules.html) 。
 
 ### 设置高音质
 
-设置音质，详见 :ref:`setAudioProfile_live_android`。
+设置音质，详见 [setAudioProfile()](https://docs.agora.io/cn/Voice/API%20Reference/java/modules.html) 。
 
 ## 联系我们
 
