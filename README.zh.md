@@ -6,7 +6,6 @@ Other Language: [English](README.md)
 
 * 场景描述
 * 实现方案
-* 运行示例程序
 * 集成方法
 * 进阶指南
 
@@ -17,48 +16,6 @@ Other Language: [English](README.md)
 * 房主切换背景图片
 * 客人可以向房主申请上麦、下麦
 * 房主采用高音质，上麦客人采用默认音质。
-
-## 运行示例程序
-
-## 注意事项
-1. 示例程序只演示了“语音聊天室”类场景中和语音聊天相关部分的逻辑，不是完整的产品。如要开发完整的产品，需要自行实现业务部分逻辑；
-2. “FM 超高音质房间” 需要使用 声网 Agora 提供的特殊优化版本SDK，官网SDK版本尚无法支持。如有需要请联系声网售前获取。其他
-
-## 运行示例程序
-在 [Agora.io 用户注册页](https://dashboard.agora.io/cn/signup/) 注册账号，并创建自己的测试项目，获取到 AppID。
-
-在 [Agora.io SDK 下载页](https://www.agora.io/cn/blog/download/) 下载对应平台的 **语音通话 + 直播 SDK**。如需体验“FM 超高音质房间”，请联系声网售前获取特殊优化版本SDK。
-
-#### iOS
-1. 将有效的 AppID 填写进 KeyCenter.swift
-
-	```
-	static func appId() -> String {
-	    return <#YOUR APPID#>
-	}
-	```
-
-2. 解压 SDK 压缩包，将文件 **AgoraAudioKit.framework** 复制到本项目的 iOS/ChatRoom 文件夹下。
-3. 使用 XCode 打开 iOS/ARD-Agora-Murder-Mystery-Game.xcodeproj，连接 iOS 测试设备，设置有效的开发者签名后即可运行。
-
-		运行环境:
-		* XCode 9.0 +
-		* iOS 8.0 +
-
-#### Android
-1. 将有效的 AppID 填写进 "app/src/main/res/values/strings_config.xml"
-
-	```
-	<string name="private_app_id"><#YOUR APP ID#></string>
-	```
-
-2. 解压 SDK 压缩包，将其中的 **libs** 文件夹下的 ***.jar** 复制到本项目的 **app/libs** 下，其中的 **libs** 文件夹下的 **arm64-v8a**/**x86**/**armeabi-v7a** 复制到本项目的 **app/src/main/jniLibs** 下。
-3. 使用 Android Studio 打开该项目，连接 Android 测试设备，编译并运行。
-
-		运行环境:
-		* Android Studio 2.0 +
-		* minSdkVersion 16
-		* 部分模拟器会存在功能缺失或者性能问题，所以推荐使用真机 Android 设备
 
 ## 实现方案
 
