@@ -22,8 +22,7 @@ Other Language: [English](README.md)
 
 下图为语音聊天室的实现架构图：
 
-.. image:: online_chatroom_architecture.jpg
-   :scale: 130%
+![在线语音聊天室](Image/online_chatroom_architecture.jpg)
 
 声网已在 GitHub 提供了 Android 和 iOS 平台的 [实现代码](https://github.com/AgoraIO-Community/Agora-Online-Chatroom/tree/master/Agora-Online-Chatroom)。
 
@@ -66,31 +65,28 @@ Other Language: [English](README.md)
 
 2. 请根据您项目的 *build.gradle* 文件里的设置，将上述库放入正确路径的 *libs* 文件夹下。例如:
 
-.. image:: android_library.png
-   :scale: 50%
+![android_library](Image/android_library.png)
 
 3. 请在 build.gradle 文件里指定 so 文件的目录，即上一步里面 libs 文件夹的路径。
 
-.. image:: android_so.png
-   :scale: 45%
+![android_so](Image/android_so.png)
+
 
 #### 步骤 3: 配置 NDK
 
 如果出现以下问题，请配置 NDK:
 
-.. image:: android6.png
-   :scale: 60%
+![android6](Image/android6.png)
 
 该错误表示没有安装 NDK。请从网站上下载，请将其放在与 Android SDK 平行的路径下:
 
-.. image:: android7.png
-   :scale: 40%
+![android7](Image/android7.png)
 
 #### 步骤 4: 添加权限
 
 为保证 SDK 正常运行，程序部署时需在 *AndroidManisfest.xml* 文件中加入以下许可：
 
-.. code-block:: python
+```
 
    <uses-permission android:name="android.permission.INTERNET" />
 
@@ -99,22 +95,21 @@ Other Language: [English](README.md)
    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
 
    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
+```
 
 #### 步骤 5：同步项目文件
 
 点击 **Sync Project With Gradle Files** ，直到同步完成。
 
-.. image:: android9.png
-   :scale: 60%
+![android9](Image/android9.png)
 
 
 #### 步骤 6：混淆代码
 
 当您在写混淆代码时，请添加以下代码:
 
-.. image:: mixed_code.png
-   :scale: 20%
+![mixed_code](Image/mixed_code.png)
+
 
 ### 加入声网频道实现语音聊天
 
@@ -122,8 +117,7 @@ Other Language: [English](README.md)
 
 以下流程图描述了加入或离开频道以及客人上下麦的时序关系。
 
-.. image:: online_chatroom_flowchart.jpg
-   :scale: 130%
+![flowchart](Image/online_chatroom_flowchart.jpg)
 
 
 #### 房主端
