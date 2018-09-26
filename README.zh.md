@@ -21,7 +21,7 @@ Other Language: [English](README.md)
 
 下图为语音聊天室的实现架构图：
 
-![在线语音聊天室](Image/online_chatroom_architecture.jpg)
+![在线语音聊天室](Image/online_chatroom_architecture.png)
 
 声网已在 GitHub 提供了 Android 和 iOS 平台的 [实现代码](https://github.com/AgoraIO-Community/Agora-Online-Chatroom/tree/master/Agora-Online-Chatroom)。
 
