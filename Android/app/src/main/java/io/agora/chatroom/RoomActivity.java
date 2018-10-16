@@ -34,7 +34,7 @@ import io.agora.rtc.Constants;
 import io.agora.rtc.IRtcEngineEventHandler;
 import io.agora.rtc.RtcEngine;
 import io.agora.utils.Constant;
-import io.agora.utils.VoiceChanger;
+import io.agora.utils.SoundEffectUtil;
 
 /**
  * Created by yt on 2018/8/15/015.
@@ -407,7 +407,8 @@ public class RoomActivity extends Activity {
                     mChangeVolumnIndex = position;
                     mCheckBoxAudioAccents.setBackgroundColor(getResources().getColor(R.color.agora_blue));
                 }
-                VoiceChanger.changeVoice(mRtcEngine, mChangeVolumnIndex + 1);
+
+                SoundEffectUtil.changeEffect(mRtcEngine, mChangeVolumnIndex + 1);
                 popAdapter.setSelectIndex(position);
                 popAdapter.notifyDataSetChanged();
                 ((CheckBox) parentView).setText(Constant.SOUNDARRAY[position]);
