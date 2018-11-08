@@ -11,14 +11,10 @@ import AgoraAudioKit
 
 class MainViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let identifier = segue.identifier, identifier.count != 0, let infos = sender as? [String : Any] else {
+        guard let identifier = segue.identifier, !identifier.isEmpty, let infos = sender as? [String : Any],
+            let role = infos["role"] as? AgoraClientRole, let type = infos["type"] as? RoomType else {
             return
         }
-        
-        let inboxRole = infos["role"]! as! NSNumber
-        let inboxType = infos["type"]! as! NSNumber
-        let role = AgoraClientRole(rawValue: inboxRole.intValue)
-        let type = RoomType(rawValue: inboxType.intValue)
         
         let roomVC = segue.destination as! RoomViewController
         roomVC.role = role
@@ -59,9 +55,7 @@ private extension MainViewController {
     }
     
     func enterRoom(withRole role: AgoraClientRole, type: RoomType) {
-        let inboxRole = NSNumber(value: role.rawValue)
-        let inboxType = NSNumber(value: type.rawValue)
-        let infos = ["role": inboxRole, "type": inboxType] as [String : NSNumber]
+        let infos: [String: Any] = ["role": role, "type": type]
         performSegue(withIdentifier: "mainToRoom", sender: infos)
     }
 }

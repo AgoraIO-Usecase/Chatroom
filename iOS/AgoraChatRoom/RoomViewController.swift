@@ -25,7 +25,7 @@ class RoomViewController: UIViewController {
     // 记录选中的变声角色
     var selectedCharater: EffectCharacters?
     
-    var roomType: RoomType!
+    var roomType: RoomType = .gamingStandard
     var agoraKit: AgoraRtcEngineKit!
     var role: AgoraClientRole! {
         didSet {
@@ -125,8 +125,6 @@ class RoomViewController: UIViewController {
             
             // 特殊情况：如果是 FM 超高音质房间，默认会有特定的声音效果
             setDefaultVoiceEffect()
-        default:
-            break
         }
         
         // 加入房间对应的频道
