@@ -121,7 +121,7 @@ class RoomViewController: UIViewController {
             agoraKit.setAudioProfile(.musicHighQuality, scenario: .chatRoomEntertainment)
         case .gamingHighQuality:
             // FM 超高音质
-            agoraKit.setAudioProfile(.musicHighQuality, scenario: .gameStreaming)
+            agoraKit.setAudioProfile(.musicHighQualityStereo, scenario: .gameStreaming)
             
             // 特殊情况：如果是 FM 超高音质房间，默认会有特定的声音效果
             setDefaultVoiceEffect()

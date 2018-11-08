@@ -280,7 +280,7 @@ public class RoomActivity extends Activity {
                 break;
             case Constant.ChatRoomGamingHighQuality:
                 /** FM 超高音质**/
-                mRtcEngine.setAudioProfile(Constants.AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO, Constants.AUDIO_SCENARIO_SHOWROOM);
+                mRtcEngine.setAudioProfile(Constants.AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO, Constants.AUDIO_SCENARIO_CHATROOM_ENTERTAINMENT);
                 break;
         }
         // 设置直播模式
