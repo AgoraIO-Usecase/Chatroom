@@ -60,18 +60,17 @@
 		* minSdkVersion 16
 		* 部分模拟器会存在功能缺失或者性能问题，所以推荐使用真机 Android 设备
 
-### 
-
-## 常见问题
-#### 1. 当 audioProfile 的 scenario 被设为 Default，ShowRoom，Education，GameStreaming 且为单主播时不开启降噪
-       如果在这种情况下，觉得噪声过大，可以通过私有接口 agoraKit.setParameters("{\"che.audio.enable.ns\":true}") 来开启降噪
-   
-#### 2. 当调用 disableAudio 或 leaveChannel 时，如果有其他应用在使用 AVAudioSession 时（进行录放音）会被打断
-可以通过调用 agoraKit.setAudioSessionOperationRestriction(.deactivateSession) 来使 audio session 在 disableAudio 或
-	leaveChannel 后依然保持活跃状态
-
 #### 网络
 请确保在使用 Agora 相关功能及服务前，已打开特定端口，详见 [防火墙说明](https://docs.agora.io/cn/Agora%20Platform/firewall?platform=All%20Platforms)。
+
+## 常见问题
+1. 当 audioProfile 的 scenario 被设为 Default，ShowRoom，Education，GameStreaming 且为单主播时不开启降噪
+
+		如果在这种情况下，觉得噪声过大，可以通过私有接口 agoraKit.setParameters("{\"che.audio.enable.ns\":true}") 来开启降噪
+   
+2. 当调用 disableAudio 或 leaveChannel 时，如果有其他应用在使用 AVAudioSession 时（进行录放音）会被打断
+
+		可以通过调用 agoraKit.setAudioSessionOperationRestriction(.deactivateSession) 来使 audio session 在 disableAudio 或 leaveChannel 后依然保持活跃状态
 
 ## 联系我们
 
