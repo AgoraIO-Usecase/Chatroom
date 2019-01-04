@@ -42,23 +42,23 @@
 3. 使用 XCode 打开 iOS/ARD-Agora-Murder-Mystery-Game.xcodeproj，连接 iOS 测试设备，设置有效的开发者签名后即可运行。
 
 		运行环境:
-		* XCode 9.0 +
-		* iOS 8.0 +
+	​	* XCode 9.0 +
+	​	* iOS 8.0 +
 
 #### Android
 1. 将有效的 AppID 填写进 "app/src/main/res/values/strings_config.xml"
 
-	```
-	<string name="private_app_id"><#YOUR APP ID#></string>
-	```
+  ```
+  <string name="private_app_id"><#YOUR APP ID#></string>
+  ```
 
 2. 解压 SDK 压缩包，将其中的 **libs** 文件夹下的 ***.jar** 复制到本项目的 **app/libs** 下，其中的 **libs** 文件夹下的 **arm64-v8a**/**x86**/**armeabi-v7a** 复制到本项目的 **app/src/main/jniLibs** 下。
 3. 使用 Android Studio 打开该项目，连接 Android 测试设备，编译并运行。
 
-		运行环境:
-		* Android Studio 2.0 +
-		* minSdkVersion 16
-		* 部分模拟器会存在功能缺失或者性能问题，所以推荐使用真机 Android 设备
+   运行环境:
+    * Android Studio 2.0 +
+    * minSdkVersion 16
+    * 部分模拟器会存在功能缺失或者性能问题，所以推荐使用真机 Android 设备
 
 #### 网络
 请确保在使用 Agora 相关功能及服务前，已打开特定端口，详见 [防火墙说明](https://docs.agora.io/cn/Agora%20Platform/firewall?platform=All%20Platforms)。
