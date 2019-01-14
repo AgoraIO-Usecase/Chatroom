@@ -28,7 +28,9 @@ public class Constant {
     public static final String ACTION_KEY_ROOM_NAME = "ecHANEL";
     public static final String ACTION_KEY_TITLE_NAME = "eTITLE";
 
-    public static String[] SOUNDARRAY = new String[]{"大叔","正太","猪八戒","空灵","浩克","萝莉","电台KTV","演唱会","录音棚"};
-
-
+    public static String[] SOUNDARRAY = new String[] {
+            "大叔","正太","猪八戒","空灵",
+            "浩克","萝莉","电台KTV","演唱会",
+            "录音棚", "流行", "R&B", "嘻哈", "摇滚"
+    };
 }
