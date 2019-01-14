@@ -13,6 +13,10 @@ public class SoundEffectUtil {
     public static final int EFFECT_RADIO = 7;
     public static final int EFFECT_LIVE = 8;
     public static final int EFFECT_STUDIO = 9;
+    public static final int EFFECT_POP = 10;
+    public static final int EFFECT_R_B = 11;
+    public static final int EFFECT_HIP_HOP = 12;
+    public static final int EFFECT_ROCK_ROLL = 13;
 
     public static void changeEffect(RtcEngine engine, int toEffectType) {
         final Effect effect = Effect.getEffect(toEffectType);
@@ -42,7 +46,7 @@ public class SoundEffectUtil {
 
     private static class Effect {
         private static final double[] EFFECT_PITCH_SETTINGS = {
-                1, 0.8, 1.23, 0.6, 1, 0.5, 1.45, 1, 1, 1
+                1, 0.8, 1.23, 0.6, 1, 0.5, 1.45, 1, 1, 1, 1, 1, 1, 1
         };
 
         private static final int[][] EFFECT_OTHER_SETTINGS = {
@@ -50,12 +54,18 @@ public class SoundEffectUtil {
                 { -15, 0, 6, 1, -4, 1, -10, -5, 3, 3, -12, -12, 0, 90, 43 },
                 { 15, 11, -3, -5, -7, -7, -9, -15, -15, -15, 4, 2, 0, 91, 44 },
                 { 12, -9, -9, 3, -3, 11, 1, -8, -8, -9, -14, -8, 34, 0, 39 },
-                { -8, -8, 5, 13, 2, 12, -3, 7, -2, -10, -17, -13, 72, 9, 69 },
+                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100, 26, 82, 3, -1 },
+
                 { -15, 3, -9, -8, -6, -4, -3, -2, -1, 1, 10, -9, 76, 124, 78 },
                 { 10, 6, 1, 1, -6, 13, 7, -14, 13, -13, -11, -7, 0, 31, 44 },
                 { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 30, 0, 100 },
                 { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 50, 45, 100 },
                 { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 10, 0, 50 },
+
+                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 20, 1, 1 },
+                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, 0, 59, -1, -12 },
+                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 66, 100, 0, 5, -4 },
+                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 95, 170, 58, -7, -7 },
         };
 
         private double pitch = 1;
@@ -122,7 +132,7 @@ public class SoundEffectUtil {
 
         private static Effect getEffect(int effectType) {
             int type = effectType;
-            if (effectType < EFFECT_DEFAULT || effectType > EFFECT_STUDIO) {
+            if (effectType < EFFECT_DEFAULT || effectType > EFFECT_ROCK_ROLL) {
                 type = EFFECT_DEFAULT;
             }
 
