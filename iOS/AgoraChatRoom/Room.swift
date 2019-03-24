@@ -24,8 +24,6 @@ enum RoomType: Int {
             return "ChatRoomGamingHighQuality"
         }
     }
-    
-    
 }
 
 struct Room {

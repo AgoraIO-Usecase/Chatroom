@@ -23,7 +23,7 @@ class RoomViewController: UIViewController {
     var uid: UInt!
    
     // 记录选中的变声角色
-    var selectedCharater: EffectCharacters?
+    var selectedCharacter: EffectCharacters?
     
     var roomType: RoomType = .gamingStandard
     var agoraKit: AgoraRtcEngineKit!
@@ -93,7 +93,7 @@ class RoomViewController: UIViewController {
         }
         
         let charactersVC = segue.destination as! CharactersViewController
-        charactersVC.selectedCharacter = selectedCharater
+        charactersVC.selectedCharacter = selectedCharacter
         charactersVC.delegate = self
         setPopoverDelegate(of: charactersVC, sender: voiceChangerButton)
     }
@@ -186,8 +186,8 @@ private extension RoomViewController {
     // 根据选中的角色进行声音效果的改变 或者取消声音效果的改变, 设回默认的声音效果
 
     // 设为选中角色的声音效果
-    func setCharactorVoiceEffect(withCharacter character: EffectCharacters) {
-        selectedCharater = character
+    func setCharacterVoiceEffect(withCharacter character: EffectCharacters) {
+        selectedCharacter = character
         voiceChangerButton.isSelected = true
         voiceChangerButton.setTitle(character.description(), for: .selected)
         
@@ -196,11 +196,11 @@ private extension RoomViewController {
     
     // 将声音效果设回默认
     func setDefaultVoiceEffect() {
-        guard let _ = selectedCharater else {
+        guard let _ = selectedCharacter else {
             return
         }
         
-        selectedCharater = nil
+        selectedCharacter = nil
         voiceChangerButton.isSelected = false
         voiceChangerButton.setTitle("变声", for: .normal)
         
@@ -318,12 +318,12 @@ extension RoomViewController: UITableViewDataSource {
 
 extension RoomViewController: CharactersVCDelegate {
     func charactersVC(vc: CharactersViewController, didSelectedCharacter character: EffectCharacters) {
-        // 当 charatorsVC 选中的角色时，将声音效果设置为该角色
-        setCharactorVoiceEffect(withCharacter: character)
+        // 当 charactersVC 选中的角色时，将声音效果设置为该角色
+        setCharacterVoiceEffect(withCharacter: character)
     }
     
     func charactersVCDidCancelSelectedRole(vc: CharactersViewController) {
-        // 当 charatorsVC 取消选中的角色时，将声音效果置回默认
+        // 当 charactersVC 取消选中的角色时，将声音效果置回默认
         setDefaultVoiceEffect()
     }
 }
