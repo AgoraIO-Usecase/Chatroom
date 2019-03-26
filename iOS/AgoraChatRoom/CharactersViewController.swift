@@ -14,7 +14,7 @@ protocol CharactersVCDelegate: NSObjectProtocol {
 }
 
 class CharactersViewController: UITableViewController {
-    let CharactersList = EffectCharacters.list()
+    let CharactersList = EffectCharacters.allCases
     var selectedCharacter: EffectCharacters?
     weak var delegate: CharactersVCDelegate?
     
