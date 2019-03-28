@@ -1,5 +1,6 @@
 package io.agora.utils;
 
+import io.agora.rtc.Constants;
 import io.agora.rtc.RtcEngine;
 
 public class SoundEffectUtil {
@@ -20,7 +21,29 @@ public class SoundEffectUtil {
 
     public static void changeEffect(RtcEngine engine, int toEffectType) {
         final Effect effect = Effect.getEffect(toEffectType);
-        changeEffect(engine,  effect);
+
+        // Voice changer done by RTC SDK
+        if (toEffectType == EFFECT_OLD_MAN) {
+            engine.setLocalVoiceChanger(Constants.VOICE_CHANGER_OLDMAN);
+            return;
+        } else if (toEffectType == EFFECT_BABY_BOY) {
+            engine.setLocalVoiceChanger(Constants.VOICE_CHANGER_BABYBOY);
+            return;
+        } else if (toEffectType == EFFECT_BABY_GIRL) {
+            engine.setLocalVoiceChanger(Constants.VOICE_CHANGER_BABYGIRL);
+            return;
+        } else if (toEffectType == EFFECT_ZHU_BA_JIE) {
+            engine.setLocalVoiceChanger(Constants.VOICE_CHANGER_ZHUBAJIE);
+            return;
+        } else if (toEffectType == EFFECT_ETHEREAL) {
+            engine.setLocalVoiceChanger(Constants.VOICE_CHANGER_ETHEREAL);
+            return;
+        } else if (toEffectType == EFFECT_HULK) {
+            engine.setLocalVoiceChanger(Constants.VOICE_CHANGER_HULK);
+            return;
+        }
+
+        changeEffect(engine, effect);
     }
 
     private static void changeEffect(RtcEngine engine, Effect effect) {
