@@ -184,7 +184,6 @@ public class RoomActivity extends Activity {
 
     @Override
     protected void onStop(){
-        RtcEngine.destroy();
         super.onStop();
     }
 
