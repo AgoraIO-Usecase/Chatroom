@@ -1,18 +1,14 @@
 package io.agora.chatroom.manager;
 
-import io.agora.chatroom.bean.Member;
+public interface ChatRoomEventListener {
 
-public interface ChannelEventListener {
-
-    void onSeatStatusUpdated(int position);
+    void onSeatUpdated(int position);
 
     void onUserGivingGift(String userId);
 
     void onMessageAdded(int position);
 
-    void onMemberAdded(int position, Member member);
-
-    void onMemberRemoved(int position, String userId);
+    void onMemberListUpdated(String userId);
 
     void onUserStatusChanged(String userId, Boolean muted);
 

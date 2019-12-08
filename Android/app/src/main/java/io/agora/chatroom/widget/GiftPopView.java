@@ -13,8 +13,8 @@ import androidx.annotation.Nullable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.agora.chatroom.R;
-import io.agora.chatroom.bean.ChannelData;
-import io.agora.chatroom.bean.Member;
+import io.agora.chatroom.model.ChannelData;
+import io.agora.chatroom.model.Member;
 import io.agora.chatroom.manager.ChatRoomManager;
 
 public class GiftPopView extends FrameLayout {

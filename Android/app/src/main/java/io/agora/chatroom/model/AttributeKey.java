@@ -1,4 +1,4 @@
-package io.agora.chatroom.bean;
+package io.agora.chatroom.model;
 
 import android.text.TextUtils;
 
@@ -12,7 +12,7 @@ public class AttributeKey {
     private static String[] initSeatKeys() {
         String[] strings = new String[ChannelData.MAX_SEAT_NUM];
         for (int i = 0; i < strings.length; i++) {
-            strings[i] = String.format(Locale.getDefault(), "seat %d", i);
+            strings[i] = String.format(Locale.getDefault(), "seat%d", i);
         }
         return strings;
     }

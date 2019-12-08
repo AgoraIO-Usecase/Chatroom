@@ -8,12 +8,6 @@
     <string name="audio_mixing">伴奏</string>
     <string name="member_num">0</string>
     <string name="channel_member_list">房间成员列表（%1$d人）</string>
-    <string name="old_man">老人</string>
-    <string name="baby_boy">正太</string>
-    <string name="baby_girl">萝莉</string>
-    <string name="zhu_ba_jie">猪八戒</string>
-    <string name="ethereal">空灵</string>
-    <string name="hulk">浩克</string>
     <string name="turn_off_mic">禁麦</string>
     <string name="turn_on_mic">解麦</string>
     <string name="close_seat">封麦</string>

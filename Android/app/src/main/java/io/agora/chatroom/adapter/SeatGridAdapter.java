@@ -15,8 +15,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 import io.agora.chatroom.R;
-import io.agora.chatroom.bean.ChannelData;
-import io.agora.chatroom.bean.Seat;
+import io.agora.chatroom.model.ChannelData;
+import io.agora.chatroom.model.Seat;
 import io.agora.chatroom.manager.ChatRoomManager;
 import io.agora.chatroom.widget.SpreadView;
 

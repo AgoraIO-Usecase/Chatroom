@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".ChatRoomActivity">
+    tools:context=".activity.ChatRoomActivity">
 
     <RelativeLayout
         android:id="@+id/rl_title"
@@ -50,7 +50,7 @@
 
     </RelativeLayout>
 
-    <io.agora.chatroom.widget.SeatGridRecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_seat_grid"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -60,7 +60,7 @@
         app:layout_constraintBottom_toTopOf="@id/rv_message_list"
         app:layout_constraintTop_toBottomOf="@+id/rl_title" />
 
-    <io.agora.chatroom.widget.MessageListRecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_message_list"
         android:layout_width="match_parent"
         android:layout_height="0dp"

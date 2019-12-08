@@ -1,4 +1,4 @@
-package io.agora.chatroom.bean;
+package io.agora.chatroom.model;
 
 import android.text.TextUtils;
 
@@ -42,6 +42,11 @@ public class Member {
 
     public void setAvatarIndex(int avatarIndex) {
         this.avatarIndex = avatarIndex;
+    }
+
+    public void update(Member member) {
+        this.name = member.name;
+        this.avatarIndex = member.avatarIndex;
     }
 
     @Override

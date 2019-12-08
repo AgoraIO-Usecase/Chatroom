@@ -75,7 +75,7 @@ public final class RtcManager {
             mRtcEngine.setClientRole(role);
     }
 
-    void muteAllRemoteAudioStreams(boolean muted) {
+    public void muteAllRemoteAudioStreams(boolean muted) {
         if (mRtcEngine != null)
             mRtcEngine.muteAllRemoteAudioStreams(muted);
     }
@@ -87,24 +87,24 @@ public final class RtcManager {
             mListener.onUserMuteAudio(mUserId, muted);
     }
 
-    void startAudioMixing(String filePath) {
+    public void startAudioMixing(String filePath) {
         if (mRtcEngine != null) {
             mRtcEngine.startAudioMixing(filePath, false, false, 1);
             mRtcEngine.adjustAudioMixingVolume(15);
         }
     }
 
-    void stopAudioMixing() {
+    public void stopAudioMixing() {
         if (mRtcEngine != null)
             mRtcEngine.stopAudioMixing();
     }
 
-    void setVoiceChanger(int type) {
+    public void setVoiceChanger(int type) {
         if (mRtcEngine != null)
             mRtcEngine.setParameters(String.format(Locale.getDefault(), "{\"che.audio.morph.voice_changer\": %d}", type));
     }
 
-    void setReverbPreset(int type) {
+    public void setReverbPreset(int type) {
         if (mRtcEngine != null)
             mRtcEngine.setParameters(String.format(Locale.getDefault(), "{\"che.audio.morph.reverb_preset\": %d}", type));
     }

@@ -18,7 +18,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.agora.chatroom.R;
-import io.agora.chatroom.bean.Channel;
+import io.agora.chatroom.model.Channel;
 
 public class ChannelGridAdapter extends RecyclerView.Adapter<ChannelGridAdapter.ViewHolder> {
 

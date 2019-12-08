@@ -1,7 +1,8 @@
-package io.agora.chatroom;
+package io.agora.chatroom.activity;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -18,31 +19,34 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SimpleItemAnimator;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import butterknife.OnEditorAction;
+import io.agora.chatroom.R;
+import io.agora.chatroom.adapter.MessageListAdapter;
 import io.agora.chatroom.adapter.SeatGridAdapter;
-import io.agora.chatroom.bean.ChannelData;
-import io.agora.chatroom.bean.Member;
-import io.agora.chatroom.bean.Seat;
-import io.agora.chatroom.manager.ChannelEventListener;
+import io.agora.chatroom.manager.ChatRoomEventListener;
 import io.agora.chatroom.manager.ChatRoomManager;
-import io.agora.chatroom.utils.AlertUtils;
-import io.agora.chatroom.utils.Constant;
+import io.agora.chatroom.model.ChannelData;
+import io.agora.chatroom.model.Constant;
+import io.agora.chatroom.model.Seat;
+import io.agora.chatroom.util.AlertUtil;
 import io.agora.chatroom.widget.GiftPopView;
 import io.agora.chatroom.widget.MemberListDialog;
-import io.agora.chatroom.widget.MessageListRecyclerView;
-import io.agora.chatroom.widget.SeatGridRecyclerView;
 import io.agora.chatroom.widget.VoiceEffectDialog;
 
 import static android.Manifest.permission.RECORD_AUDIO;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 import static androidx.core.content.PermissionChecker.PERMISSION_GRANTED;
 
-public class ChatRoomActivity extends AppCompatActivity implements ChannelEventListener, SeatGridAdapter.OnItemClickListener {
+public class ChatRoomActivity extends AppCompatActivity implements ChatRoomEventListener, SeatGridAdapter.OnItemClickListener {
 
     public static final String BUNDLE_KEY_CHANNEL_ID = "channelId";
     public static final String BUNDLE_KEY_BACKGROUND_RES = "backgroundRes";
@@ -56,6 +60,8 @@ public class ChatRoomActivity extends AppCompatActivity implements ChannelEventL
 
     private MemberListDialog mMemberDialog = new MemberListDialog();
     private VoiceEffectDialog mEffectDialog = new VoiceEffectDialog();
+    private SeatGridAdapter mSeatAdapter;
+    private MessageListAdapter mMessageAdapter;
     private String mChannelId;
     private boolean mMuteRemote;
 
@@ -66,9 +72,9 @@ public class ChatRoomActivity extends AppCompatActivity implements ChannelEventL
     @BindView(R.id.btn_num)
     TextView btn_num;
     @BindView(R.id.rv_seat_grid)
-    SeatGridRecyclerView rv_seat_grid;
+    RecyclerView rv_seat_grid;
     @BindView(R.id.rv_message_list)
-    MessageListRecyclerView rv_message_list;
+    RecyclerView rv_message_list;
     @BindView(R.id.cb_mixing)
     CheckBox cb_mixing;
     @BindView(R.id.btn_mic)
@@ -84,7 +90,6 @@ public class ChatRoomActivity extends AppCompatActivity implements ChannelEventL
 
         initView();
         initManager();
-        refreshNum();
     }
 
     @Override
@@ -100,7 +105,7 @@ public class ChatRoomActivity extends AppCompatActivity implements ChannelEventL
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
                 mManager.joinChannel(mChannelId);
             else
-                AlertUtils.showAlertDialog(this, "No permission", "finish", (dialog, which) -> finish());
+                AlertUtil.showAlertDialog(this, "No permission", "finish", (dialog, which) -> finish());
         }
     }
 
@@ -109,11 +114,51 @@ public class ChatRoomActivity extends AppCompatActivity implements ChannelEventL
         container.setBackgroundResource(intent.getIntExtra(BUNDLE_KEY_BACKGROUND_RES, 0));
         mChannelId = intent.getStringExtra(BUNDLE_KEY_CHANNEL_ID);
         tv_title.setText(mChannelId);
-        rv_seat_grid.setOnItemClickListener(this);
+        initSeatRecyclerView();
+        initMessageRecyclerView();
+    }
+
+    private void initSeatRecyclerView() {
+        rv_seat_grid.setHasFixedSize(true);
+
+        RecyclerView.ItemAnimator animator = rv_seat_grid.getItemAnimator();
+        if (animator instanceof SimpleItemAnimator)
+            ((SimpleItemAnimator) animator).setSupportsChangeAnimations(false);
+
+        mSeatAdapter = new SeatGridAdapter(this);
+        mSeatAdapter.setOnItemClickListener(this);
+        rv_seat_grid.setAdapter(mSeatAdapter);
+
+        rv_seat_grid.setLayoutManager(new GridLayoutManager(this, 5));
+
+        int spacing = getResources().getDimensionPixelSize(R.dimen.item_seat_spacing);
+        rv_seat_grid.addItemDecoration(new RecyclerView.ItemDecoration() {
+            @Override
+            public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
+                super.getItemOffsets(outRect, view, parent, state);
+                outRect.set(spacing, spacing, spacing, spacing);
+            }
+        });
+    }
+
+    private void initMessageRecyclerView() {
+        mMessageAdapter = new MessageListAdapter(this);
+        rv_message_list.setAdapter(mMessageAdapter);
+
+        rv_message_list.setLayoutManager(new LinearLayoutManager(this));
+
+        int spacing = getResources().getDimensionPixelSize(R.dimen.item_message_spacing);
+        rv_message_list.addItemDecoration(new RecyclerView.ItemDecoration() {
+            @Override
+            public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
+                super.getItemOffsets(outRect, view, parent, state);
+                outRect.set(spacing, 0, spacing, spacing);
+            }
+        });
     }
 
     private void refreshNum() {
-        btn_num.setText(String.valueOf(mManager.getMemberCount()));
+        btn_num.setText(String.valueOf(mManager.getChannelData().getMemberList().size()));
     }
 
     private void initManager() {
@@ -140,7 +185,11 @@ public class ChatRoomActivity extends AppCompatActivity implements ChannelEventL
     public void onCheckedChanged(CompoundButton view, boolean isChecked) {
         switch (view.getId()) {
             case R.id.cb_mixing:
-                mManager.startMixing(isChecked);
+                if (isChecked) {
+                    mManager.getRtcManager().startAudioMixing("/assets/mixing.mp3");
+                } else {
+                    mManager.getRtcManager().stopAudioMixing();
+                }
                 break;
         }
     }
@@ -164,7 +213,7 @@ public class ChatRoomActivity extends AppCompatActivity implements ChannelEventL
             case R.id.btn_speaker:
                 mMuteRemote = !mMuteRemote;
                 ((ImageButton) view).setImageResource(mMuteRemote ? R.mipmap.ic_speaker_off : R.mipmap.ic_speaker_on);
-                mManager.muteAllRemoteAudioStreams(mMuteRemote);
+                mManager.getRtcManager().muteAllRemoteAudioStreams(mMuteRemote);
                 break;
         }
     }
@@ -216,13 +265,13 @@ public class ChatRoomActivity extends AppCompatActivity implements ChannelEventL
     }
 
     private void showSeatPop(View view, int[] ids, String userId, int position) {
-        AlertUtils.showPop(this, view, ids, (index, menu) -> {
+        AlertUtil.showPop(this, view, ids, (index, menu) -> {
             switch (menu.getId()) {
                 case R.id.to_broadcast:
                     mManager.toBroadcaster(String.valueOf(Constant.sUserId), position);
                     break;
                 case R.id.to_audience:
-                    mManager.toAudience(userId);
+                    mManager.toAudience(userId, null);
                     break;
                 case R.id.turn_off_mic:
                     mManager.muteMic(userId, true);
@@ -242,8 +291,8 @@ public class ChatRoomActivity extends AppCompatActivity implements ChannelEventL
     }
 
     @Override
-    public void onSeatStatusUpdated(int position) {
-        runOnUiThread(() -> rv_seat_grid.notifyItemChanged(position));
+    public void onSeatUpdated(int position) {
+        runOnUiThread(() -> mSeatAdapter.notifyItemChanged(position));
     }
 
     @Override
@@ -253,24 +302,15 @@ public class ChatRoomActivity extends AppCompatActivity implements ChannelEventL
 
     @Override
     public void onMessageAdded(int position) {
-        runOnUiThread(() -> rv_message_list.notifyItemInserted(position));
+        runOnUiThread(() -> mMessageAdapter.notifyItemInserted(position));
     }
 
     @Override
-    public void onMemberAdded(int position, Member member) {
+    public void onMemberListUpdated(String userId) {
         runOnUiThread(() -> {
             refreshNum();
-            rv_seat_grid.notifyItemChanged(member.getUserId(), false);
-            mMemberDialog.notifyItemInserted(position);
-        });
-    }
-
-    @Override
-    public void onMemberRemoved(int position, String userId) {
-        runOnUiThread(() -> {
-            refreshNum();
-            rv_seat_grid.notifyItemChanged(userId, false);
-            mMemberDialog.notifyItemRemoved(position);
+            mSeatAdapter.notifyItemChanged(userId, false);
+            mMemberDialog.notifyDataSetChanged();
         });
     }
 
@@ -283,8 +323,8 @@ public class ChatRoomActivity extends AppCompatActivity implements ChannelEventL
                 else
                     btn_mic.setImageResource(R.mipmap.ic_mic_on);
             }
-            rv_seat_grid.notifyItemChanged(userId, false);
-            mMemberDialog.notifyItemChangedByUserId(userId);
+            mSeatAdapter.notifyItemChanged(userId, false);
+            mMemberDialog.notifyDataSetChanged();
         });
     }
 
@@ -295,7 +335,10 @@ public class ChatRoomActivity extends AppCompatActivity implements ChannelEventL
 
     @Override
     public void onAudioVolumeIndication(String userId, int volume) {
-        runOnUiThread(() -> rv_seat_grid.notifyItemChanged(userId, true));
+        runOnUiThread(() -> {
+            mSeatAdapter.notifyItemChanged(userId, true);
+            mMemberDialog.notifyItemChangedByUserId(userId);
+        });
     }
 
 }

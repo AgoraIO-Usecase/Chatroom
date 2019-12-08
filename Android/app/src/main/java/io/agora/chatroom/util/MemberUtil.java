@@ -1,4 +1,4 @@
-package io.agora.chatroom.utils;
+package io.agora.chatroom.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -13,7 +13,7 @@ import java.util.UUID;
 import io.agora.chatroom.ChatRoomApplication;
 import io.agora.chatroom.R;
 
-public class MemberUtils {
+public class MemberUtil {
 
     private static SharedPreferences sp() {
         return ChatRoomApplication.instance.getSharedPreferences("member", Context.MODE_PRIVATE);

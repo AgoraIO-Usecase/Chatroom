@@ -1,6 +1,5 @@
 package io.agora.chatroom.widget;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -27,7 +26,7 @@ public class VoiceEffectDialog extends DialogFragment implements VoiceEffectGrid
     @BindView(R.id.rv_effect_grid)
     VoiceEffectGridRecyclerView rv_effect_grid;
 
-    private Activity mActivity;
+    private Context mContext;
 
     private int mEffectSelectedIndex;
     private int mBeautifySelectedIndex;
@@ -35,13 +34,13 @@ public class VoiceEffectDialog extends DialogFragment implements VoiceEffectGrid
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        mActivity = (Activity) context;
+        mContext = context;
     }
 
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        Dialog dialog = new Dialog(mActivity);
+        Dialog dialog = new Dialog(mContext);
         dialog.setContentView(R.layout.dialog_effect_grid);
 
         ButterKnife.bind(this, dialog);
@@ -92,14 +91,15 @@ public class VoiceEffectDialog extends DialogFragment implements VoiceEffectGrid
 
     @Override
     public void onItemClick(int position, int value) {
+        RtcManager manager = ChatRoomManager.instance(mContext).getRtcManager();
         switch (rg_title.getCheckedRadioButtonId()) {
             case R.id.rb_effect:
                 mEffectSelectedIndex = position;
-                ChatRoomManager.instance(mActivity).setReverbPreset(value);
+                manager.setReverbPreset(value);
                 break;
             case R.id.rb_beautify:
                 mBeautifySelectedIndex = position;
-                ChatRoomManager.instance(mActivity).setVoiceChanger(value);
+                manager.setVoiceChanger(value);
                 break;
         }
     }

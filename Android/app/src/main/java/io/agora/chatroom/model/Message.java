@@ -1,4 +1,4 @@
-package io.agora.chatroom.bean;
+package io.agora.chatroom.model;
 
 import com.google.gson.Gson;
 

@@ -1,4 +1,4 @@
-package io.agora.chatroom.bean;
+package io.agora.chatroom.model;
 
 import android.text.TextUtils;
 
@@ -9,8 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import io.agora.chatroom.R;
-import io.agora.chatroom.utils.Constant;
-import io.agora.chatroom.utils.MemberUtils;
+import io.agora.chatroom.util.MemberUtil;
 
 public class ChannelData {
 
@@ -102,16 +101,18 @@ public class ChannelData {
         return mMemberList;
     }
 
-    public int addMember(Member member) {
-        mMemberList.add(member);
-        return mMemberList.size() - 1;
+    public void addOrUpdateMember(Member member) {
+        int index = mMemberList.indexOf(member);
+        if (index >= 0) {
+            mMemberList.get(index).update(member);
+        } else {
+            mMemberList.add(member);
+        }
     }
 
-    public int removeMember(String userId) {
+    public void removeMember(String userId) {
         Member member = new Member(userId);
-        int index = mMemberList.indexOf(member);
         mMemberList.remove(member);
-        return index;
     }
 
     public Member getMember(String userId) {
@@ -128,7 +129,7 @@ public class ChannelData {
         if (member == null) {
             return R.mipmap.ic_unkown;
         }
-        return MemberUtils.getAvatarResId(member.getAvatarIndex());
+        return MemberUtil.getAvatarResId(member.getAvatarIndex());
     }
 
     public int indexOfMemberList(String userId) {

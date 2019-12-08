@@ -20,7 +20,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:allowBackup">
-        <activity android:name=".ChannelGridActivity">
+        <activity android:name=".activity.ChannelGridActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,7 +28,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ChatRoomActivity"
+            android:name=".activity.ChatRoomActivity"
             android:label="@string/title_activity_chat_room"
             android:launchMode="singleTop" />
     </application>

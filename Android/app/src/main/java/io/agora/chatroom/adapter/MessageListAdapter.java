@@ -13,9 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.agora.chatroom.R;
-import io.agora.chatroom.bean.ChannelData;
-import io.agora.chatroom.bean.Member;
-import io.agora.chatroom.bean.Message;
+import io.agora.chatroom.model.ChannelData;
+import io.agora.chatroom.model.Member;
+import io.agora.chatroom.model.Message;
 import io.agora.chatroom.manager.ChatRoomManager;
 
 public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.ViewHolder> {

@@ -28,6 +28,8 @@ public final class RtmManager {
 
         void onChannelAttributesUpdated(Map<String, String> attributes);
 
+        void onInitMembers(List<RtmChannelMember> members);
+
         void onMemberJoined(String userId, Map<String, String> attributes);
 
         void onMemberLeft(String userId);
@@ -171,6 +173,9 @@ public final class RtmManager {
             mRtmChannel.getMembers(new ResultCallback<List<RtmChannelMember>>() {
                 @Override
                 public void onSuccess(List<RtmChannelMember> rtmChannelMembers) {
+                    if (mListener != null)
+                        mListener.onInitMembers(rtmChannelMembers);
+
                     for (RtmChannelMember member : rtmChannelMembers) {
                         getUserAttributes(member.getUserId());
                     }

@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@mipmap/bg_channel_list"
     android:fitsSystemWindows="true"
-    tools:context=".ChannelGridActivity">
+    tools:context=".activity.ChannelGridActivity">
 
     <TextView
         android:id="@+id/tv_title"
@@ -17,7 +17,7 @@
         android:textSize="@dimen/activity_title_text_size"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <io.agora.chatroom.widget.ChannelGridRecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_channel_grid"
         android:layout_width="match_parent"
         android:layout_height="0dp"

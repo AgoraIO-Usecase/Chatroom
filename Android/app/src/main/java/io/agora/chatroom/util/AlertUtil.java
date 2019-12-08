@@ -1,6 +1,5 @@
-package io.agora.chatroom.utils;
+package io.agora.chatroom.util;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.view.View;
@@ -18,7 +17,7 @@ import me.kareluo.ui.OptionMenuView;
 import me.kareluo.ui.PopupMenuView;
 import me.kareluo.ui.PopupView;
 
-public class AlertUtils {
+public class AlertUtil {
 
     public static void showToast(Context context, String format, Object... args) {
         Toast.makeText(context, String.format(format, args), Toast.LENGTH_SHORT).show();
