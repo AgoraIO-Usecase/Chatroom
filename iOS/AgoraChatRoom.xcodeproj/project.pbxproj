@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		A7237F482125894600F2F397 /* Sound Horizon - 記憶の水底.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A7237F472125894600F2F397 /* Sound Horizon - 記憶の水底.mp3 */; };
-		A77F45EF2124264700EB578D /* VoiceEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77F45EE2124264700EB578D /* VoiceEffect.swift */; };
 		A77F45F3212426A600EB578D /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A77F45F2212426A500EB578D /* Accelerate.framework */; };
 		A77F45F5212426AD00EB578D /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A77F45F4212426AD00EB578D /* libc++.tbd */; };
 		A77F45F7212426B100EB578D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A77F45F6212426B100EB578D /* AVFoundation.framework */; };
@@ -17,22 +16,41 @@
 		A77F45FD212426CD00EB578D /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A77F45FC212426CD00EB578D /* CoreTelephony.framework */; };
 		A77F45FF212426D900EB578D /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A77F45FE212426D900EB578D /* libresolv.tbd */; };
 		A77F4601212426E400EB578D /* AgoraAudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A77F4600212426E400EB578D /* AgoraAudioKit.framework */; };
-		A77F4603212429B000EB578D /* AppId.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77F4602212429B000EB578D /* AppId.swift */; };
-		A77F46052124479F00EB578D /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77F46042124479F00EB578D /* UserCell.swift */; };
-		A77F46072124489900EB578D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77F46062124489900EB578D /* User.swift */; };
 		A7C50F0E212414F200774322 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C50F0D212414F200774322 /* AppDelegate.swift */; };
 		A7C50F13212414F200774322 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7C50F11212414F200774322 /* Main.storyboard */; };
 		A7C50F15212414F300774322 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7C50F14212414F300774322 /* Assets.xcassets */; };
 		A7C50F18212414F300774322 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7C50F16212414F300774322 /* LaunchScreen.storyboard */; };
-		A7C50F20212418B500774322 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C50F1F212418B500774322 /* MainViewController.swift */; };
-		A7C50F22212419E500774322 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C50F21212419E500774322 /* Room.swift */; };
-		A7C50F2421241C2A00774322 /* RoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C50F2321241C2A00774322 /* RoomViewController.swift */; };
-		A7C50F262124212E00774322 /* CharactersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C50F252124212E00774322 /* CharactersViewController.swift */; };
+		F512BD89238B73AA00B96E75 /* RtcManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F512BD88238B73AA00B96E75 /* RtcManager.swift */; };
+		F512BD8B238B7BB300B96E75 /* RtmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F512BD8A238B7BB300B96E75 /* RtmManager.swift */; };
+		F512BD8D238B7C2600B96E75 /* AgoraRtmKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F512BD8C238B7C2600B96E75 /* AgoraRtmKit.framework */; };
+		F512BD8F238B8A8D00B96E75 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = F512BD8E238B8A8D00B96E75 /* Member.swift */; };
+		F512BD91238B992A00B96E75 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = F512BD90238B992A00B96E75 /* Message.swift */; };
+		F512BD93238B9A2D00B96E75 /* BusinessManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F512BD92238B9A2D00B96E75 /* BusinessManager.swift */; };
+		F512BD95238CCA9100B96E75 /* MemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F512BD94238CCA9100B96E75 /* MemberCell.swift */; };
+		F512BD97238CCC0B00B96E75 /* MemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F512BD96238CCC0B00B96E75 /* MemberViewController.swift */; };
+		F512BD9D238CEE9400B96E75 /* AlertUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F512BD9C238CEE9400B96E75 /* AlertUtils.swift */; };
+		F512BD9F238E428800B96E75 /* VoiceChangerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F512BD9E238E428800B96E75 /* VoiceChangerTableViewController.swift */; };
+		F512BDA1238E462D00B96E75 /* VoiceChangerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F512BDA0238E462D00B96E75 /* VoiceChangerCell.swift */; };
+		F512BDA3238E533B00B96E75 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = F512BDA2238E533B00B96E75 /* Constant.swift */; };
+		F5616A5E2386594E003FEADA /* ChatRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5616A5D2386594E003FEADA /* ChatRoomViewController.swift */; };
+		F5616A60238780A6003FEADA /* SeatCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5616A5F238780A6003FEADA /* SeatCollectionViewController.swift */; };
+		F5616A62238786C7003FEADA /* SeatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5616A61238786C7003FEADA /* SeatCell.swift */; };
+		F5616A64238789E5003FEADA /* MessageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5616A63238789E5003FEADA /* MessageTableViewController.swift */; };
+		F5616A6623878BDB003FEADA /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5616A6523878BDB003FEADA /* MessageCell.swift */; };
+		F5616A682387B288003FEADA /* Seat.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5616A672387B288003FEADA /* Seat.swift */; };
+		F5616A6A2387B628003FEADA /* AudioStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5616A692387B628003FEADA /* AudioStatus.swift */; };
+		F5616A6D2387C09E003FEADA /* BaseUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5616A6C2387C09E003FEADA /* BaseUtils.swift */; };
+		F568921B2398DEAD0088A16B /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F568921A2398DEAD0088A16B /* NavigationController.swift */; };
+		F568921D2398E3AC0088A16B /* ChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F568921C2398E3AC0088A16B /* ChannelViewController.swift */; };
+		F568921F2398E57C0088A16B /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F568921E2398E57C0088A16B /* Channel.swift */; };
+		F56892212398E7F10088A16B /* ChannelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56892202398E7F10088A16B /* ChannelCell.swift */; };
+		F568922523993D4F0088A16B /* MemberUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F568922423993D4E0088A16B /* MemberUtils.swift */; };
+		F56892272399FC2C0088A16B /* AutoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56892262399FC2C0088A16B /* AutoButton.swift */; };
+		F5689229239A9D290088A16B /* TestVCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5689228239A9D290088A16B /* TestVCViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A7237F472125894600F2F397 /* Sound Horizon - 記憶の水底.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Sound Horizon - 記憶の水底.mp3"; sourceTree = "<group>"; };
-		A77F45EE2124264700EB578D /* VoiceEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoiceEffect.swift; sourceTree = "<group>"; };
 		A77F45F2212426A500EB578D /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		A77F45F4212426AD00EB578D /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		A77F45F6212426B100EB578D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -41,19 +59,39 @@
 		A77F45FC212426CD00EB578D /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		A77F45FE212426D900EB578D /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
 		A77F4600212426E400EB578D /* AgoraAudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraAudioKit.framework; path = AgoraChatRoom/AgoraAudioKit.framework; sourceTree = "<group>"; };
-		A77F4602212429B000EB578D /* AppId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppId.swift; sourceTree = "<group>"; };
-		A77F46042124479F00EB578D /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
-		A77F46062124489900EB578D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A7C50F0A212414F200774322 /* AgoraChatRoom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AgoraChatRoom.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7C50F0D212414F200774322 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A7C50F12212414F200774322 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A7C50F14212414F300774322 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A7C50F17212414F300774322 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A7C50F19212414F300774322 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A7C50F1F212418B500774322 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		A7C50F21212419E500774322 /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
-		A7C50F2321241C2A00774322 /* RoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomViewController.swift; sourceTree = "<group>"; };
-		A7C50F252124212E00774322 /* CharactersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersViewController.swift; sourceTree = "<group>"; };
+		F512BD88238B73AA00B96E75 /* RtcManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RtcManager.swift; sourceTree = "<group>"; };
+		F512BD8A238B7BB300B96E75 /* RtmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RtmManager.swift; sourceTree = "<group>"; };
+		F512BD8C238B7C2600B96E75 /* AgoraRtmKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraRtmKit.framework; path = AgoraChatRoom/AgoraRtmKit.framework; sourceTree = "<group>"; };
+		F512BD8E238B8A8D00B96E75 /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
+		F512BD90238B992A00B96E75 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		F512BD92238B9A2D00B96E75 /* BusinessManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessManager.swift; sourceTree = "<group>"; };
+		F512BD94238CCA9100B96E75 /* MemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberCell.swift; sourceTree = "<group>"; };
+		F512BD96238CCC0B00B96E75 /* MemberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberViewController.swift; sourceTree = "<group>"; };
+		F512BD9C238CEE9400B96E75 /* AlertUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertUtils.swift; sourceTree = "<group>"; };
+		F512BD9E238E428800B96E75 /* VoiceChangerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceChangerTableViewController.swift; sourceTree = "<group>"; };
+		F512BDA0238E462D00B96E75 /* VoiceChangerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceChangerCell.swift; sourceTree = "<group>"; };
+		F512BDA2238E533B00B96E75 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		F5616A5D2386594E003FEADA /* ChatRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomViewController.swift; sourceTree = "<group>"; };
+		F5616A5F238780A6003FEADA /* SeatCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatCollectionViewController.swift; sourceTree = "<group>"; };
+		F5616A61238786C7003FEADA /* SeatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatCell.swift; sourceTree = "<group>"; };
+		F5616A63238789E5003FEADA /* MessageTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewController.swift; sourceTree = "<group>"; };
+		F5616A6523878BDB003FEADA /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		F5616A672387B288003FEADA /* Seat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Seat.swift; sourceTree = "<group>"; };
+		F5616A692387B628003FEADA /* AudioStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioStatus.swift; sourceTree = "<group>"; };
+		F5616A6C2387C09E003FEADA /* BaseUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUtils.swift; sourceTree = "<group>"; };
+		F568921A2398DEAD0088A16B /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		F568921C2398E3AC0088A16B /* ChannelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelViewController.swift; sourceTree = "<group>"; };
+		F568921E2398E57C0088A16B /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
+		F56892202398E7F10088A16B /* ChannelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCell.swift; sourceTree = "<group>"; };
+		F568922423993D4E0088A16B /* MemberUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberUtils.swift; sourceTree = "<group>"; };
+		F56892262399FC2C0088A16B /* AutoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoButton.swift; sourceTree = "<group>"; };
+		F5689228239A9D290088A16B /* TestVCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestVCViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F512BD8D238B7C2600B96E75 /* AgoraRtmKit.framework in Frameworks */,
 				A77F4601212426E400EB578D /* AgoraAudioKit.framework in Frameworks */,
 				A77F45FF212426D900EB578D /* libresolv.tbd in Frameworks */,
 				A77F45FD212426CD00EB578D /* CoreTelephony.framework in Frameworks */,
@@ -78,9 +117,14 @@
 		A74A798A21257314001E3AA2 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				A7C50F1F212418B500774322 /* MainViewController.swift */,
-				A7C50F2321241C2A00774322 /* RoomViewController.swift */,
-				A7C50F252124212E00774322 /* CharactersViewController.swift */,
+				F5616A5D2386594E003FEADA /* ChatRoomViewController.swift */,
+				F5616A5F238780A6003FEADA /* SeatCollectionViewController.swift */,
+				F5616A63238789E5003FEADA /* MessageTableViewController.swift */,
+				F512BD96238CCC0B00B96E75 /* MemberViewController.swift */,
+				F512BD9E238E428800B96E75 /* VoiceChangerTableViewController.swift */,
+				F568921A2398DEAD0088A16B /* NavigationController.swift */,
+				F568921C2398E3AC0088A16B /* ChannelViewController.swift */,
+				F5689228239A9D290088A16B /* TestVCViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -88,6 +132,7 @@
 		A77F45F1212426A500EB578D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F512BD8C238B7C2600B96E75 /* AgoraRtmKit.framework */,
 				A77F4600212426E400EB578D /* AgoraAudioKit.framework */,
 				A77F45FE212426D900EB578D /* libresolv.tbd */,
 				A77F45FC212426CD00EB578D /* CoreTelephony.framework */,
@@ -120,9 +165,11 @@
 		A7C50F0C212414F200774322 /* AgoraChatRoom */ = {
 			isa = PBXGroup;
 			children = (
+				F512BD87238B739200B96E75 /* Manager */,
 				A74A798A21257314001E3AA2 /* Controllers */,
 				A7C50F2C2124218000774322 /* Views */,
 				A7C50F292124216000774322 /* Models */,
+				F5616A6B2387C087003FEADA /* Utils */,
 				A7C50F272124214A00774322 /* Supporting Files */,
 			);
 			path = AgoraChatRoom;
@@ -136,6 +183,7 @@
 				A7C50F16212414F300774322 /* LaunchScreen.storyboard */,
 				A7237F472125894600F2F397 /* Sound Horizon - 記憶の水底.mp3 */,
 				A7C50F19212414F300774322 /* Info.plist */,
+				F56892262399FC2C0088A16B /* AutoButton.swift */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -143,10 +191,11 @@
 		A7C50F292124216000774322 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				A77F4602212429B000EB578D /* AppId.swift */,
-				A7C50F21212419E500774322 /* Room.swift */,
-				A77F46062124489900EB578D /* User.swift */,
-				A77F45EE2124264700EB578D /* VoiceEffect.swift */,
+				F5616A672387B288003FEADA /* Seat.swift */,
+				F5616A692387B628003FEADA /* AudioStatus.swift */,
+				F512BD8E238B8A8D00B96E75 /* Member.swift */,
+				F512BD90238B992A00B96E75 /* Message.swift */,
+				F568921E2398E57C0088A16B /* Channel.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -155,9 +204,34 @@
 			isa = PBXGroup;
 			children = (
 				A7C50F11212414F200774322 /* Main.storyboard */,
-				A77F46042124479F00EB578D /* UserCell.swift */,
+				F5616A61238786C7003FEADA /* SeatCell.swift */,
+				F5616A6523878BDB003FEADA /* MessageCell.swift */,
+				F512BD94238CCA9100B96E75 /* MemberCell.swift */,
+				F512BDA0238E462D00B96E75 /* VoiceChangerCell.swift */,
+				F56892202398E7F10088A16B /* ChannelCell.swift */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		F512BD87238B739200B96E75 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				F512BD88238B73AA00B96E75 /* RtcManager.swift */,
+				F512BD8A238B7BB300B96E75 /* RtmManager.swift */,
+				F512BD92238B9A2D00B96E75 /* BusinessManager.swift */,
+			);
+			name = Manager;
+			sourceTree = "<group>";
+		};
+		F5616A6B2387C087003FEADA /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				F512BDA2238E533B00B96E75 /* Constant.swift */,
+				F5616A6C2387C09E003FEADA /* BaseUtils.swift */,
+				F512BD9C238CEE9400B96E75 /* AlertUtils.swift */,
+				F568922423993D4E0088A16B /* MemberUtils.swift */,
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -238,15 +312,33 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A77F46052124479F00EB578D /* UserCell.swift in Sources */,
-				A7C50F20212418B500774322 /* MainViewController.swift in Sources */,
+				F5616A6A2387B628003FEADA /* AudioStatus.swift in Sources */,
 				A7C50F0E212414F200774322 /* AppDelegate.swift in Sources */,
-				A77F45EF2124264700EB578D /* VoiceEffect.swift in Sources */,
-				A7C50F22212419E500774322 /* Room.swift in Sources */,
-				A77F46072124489900EB578D /* User.swift in Sources */,
-				A77F4603212429B000EB578D /* AppId.swift in Sources */,
-				A7C50F2421241C2A00774322 /* RoomViewController.swift in Sources */,
-				A7C50F262124212E00774322 /* CharactersViewController.swift in Sources */,
+				F56892272399FC2C0088A16B /* AutoButton.swift in Sources */,
+				F5616A6D2387C09E003FEADA /* BaseUtils.swift in Sources */,
+				F512BD95238CCA9100B96E75 /* MemberCell.swift in Sources */,
+				F512BD91238B992A00B96E75 /* Message.swift in Sources */,
+				F5616A64238789E5003FEADA /* MessageTableViewController.swift in Sources */,
+				F5616A682387B288003FEADA /* Seat.swift in Sources */,
+				F512BDA3238E533B00B96E75 /* Constant.swift in Sources */,
+				F512BD97238CCC0B00B96E75 /* MemberViewController.swift in Sources */,
+				F5616A5E2386594E003FEADA /* ChatRoomViewController.swift in Sources */,
+				F568922523993D4F0088A16B /* MemberUtils.swift in Sources */,
+				F568921D2398E3AC0088A16B /* ChannelViewController.swift in Sources */,
+				F5616A60238780A6003FEADA /* SeatCollectionViewController.swift in Sources */,
+				F5689229239A9D290088A16B /* TestVCViewController.swift in Sources */,
+				F512BD8B238B7BB300B96E75 /* RtmManager.swift in Sources */,
+				F56892212398E7F10088A16B /* ChannelCell.swift in Sources */,
+				F5616A62238786C7003FEADA /* SeatCell.swift in Sources */,
+				F512BD93238B9A2D00B96E75 /* BusinessManager.swift in Sources */,
+				F512BD9D238CEE9400B96E75 /* AlertUtils.swift in Sources */,
+				F512BD9F238E428800B96E75 /* VoiceChangerTableViewController.swift in Sources */,
+				F5616A6623878BDB003FEADA /* MessageCell.swift in Sources */,
+				F512BD89238B73AA00B96E75 /* RtcManager.swift in Sources */,
+				F568921F2398E57C0088A16B /* Channel.swift in Sources */,
+				F512BD8F238B8A8D00B96E75 /* Member.swift in Sources */,
+				F568921B2398DEAD0088A16B /* NavigationController.swift in Sources */,
+				F512BDA1238E462D00B96E75 /* VoiceChangerCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

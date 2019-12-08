@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="room_list_title">
+        <item>001</item>
+        <item>002</item>
+        <item>003</item>
+        <item>004</item>
+        <item>005</item>
+    </string-array>
+
+    <array name="room_list_drawable">
+        <item>@mipmap/img_channel_0</item>
+        <item>@mipmap/img_channel_1</item>
+        <item>@mipmap/img_channel_2</item>
+        <item>@mipmap/img_channel_3</item>
+        <item>@mipmap/img_channel_4</item>
+    </array>
+
+    <array name="room_list_background">
+        <item>@mipmap/bg_channel_0</item>
+        <item>@mipmap/bg_channel_1</item>
+        <item>@mipmap/bg_channel_2</item>
+        <item>@mipmap/bg_channel_3</item>
+        <item>@mipmap/bg_channel_4</item>
+    </array>
+
+    <string-array name="random_surnames">
+        <item>赵</item>
+        <item>钱</item>
+        <item>孙</item>
+        <item>李</item>
+        <item>周</item>
+        <item>吴</item>
+        <item>郑</item>
+        <item>王</item>
+        <item>冯</item>
+        <item>陈</item>
+        <item>褚</item>
+        <item>卫</item>
+    </string-array>
+
+    <string-array name="random_names">
+        <item>富强</item>
+        <item>民主</item>
+        <item>文明</item>
+        <item>和谐</item>
+        <item>自由</item>
+        <item>平等</item>
+        <item>公正</item>
+        <item>法治</item>
+        <item>爱国</item>
+        <item>敬业</item>
+        <item>诚信</item>
+        <item>友善</item>
+    </string-array>
+
+    <array name="random_avatar_images">
+        <item>@mipmap/img_header_0</item>
+        <item>@mipmap/img_header_1</item>
+        <item>@mipmap/img_header_2</item>
+        <item>@mipmap/img_header_3</item>
+        <item>@mipmap/img_header_4</item>
+        <item>@mipmap/img_header_5</item>
+        <item>@mipmap/img_header_6</item>
+        <item>@mipmap/img_header_7</item>
+        <item>@mipmap/img_header_8</item>
+        <item>@mipmap/img_header_9</item>
+        <item>@mipmap/img_header_10</item>
+        <item>@mipmap/img_header_11</item>
+    </array>
+
+    <string-array name="voice_beautify_keys">
+        <item>原声</item>
+        <item>浑厚</item>
+        <item>低沉</item>
+        <item>圆润</item>
+        <item>假音</item>
+        <item>饱满</item>
+        <item>清澈</item>
+        <item>高亢</item>
+        <item>嘹亮</item>
+        <item>空旷</item>
+    </string-array>
+    <integer-array name="voice_beautify_values">
+        <item>0</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+    </integer-array>
+
+    <string-array name="voice_effect_keys">
+        <item>原声</item>
+        <item>KTV</item>
+        <item>演唱会</item>
+        <item>大叔</item>
+        <item>小姐姐</item>
+        <item>录音棚</item>
+        <item>流行</item>
+        <item>R&amp;B</item>
+        <item>留声机</item>
+    </string-array>
+
+    <integer-array name="voice_effect_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+    </integer-array>
+
+</resources>
