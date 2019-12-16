@@ -7,6 +7,7 @@
 
     <color name="gray">#333333</color>
     <color name="black_alpha30">#4C9D9C98</color>
+    <color name="white_alpha10">#19FFFFFF</color>
     <color name="white_alpha30">#4CFFFFFF</color>
     <color name="white_alpha60">#99FFFFFF</color>
     <color name="seat_border">#09BDF4</color>

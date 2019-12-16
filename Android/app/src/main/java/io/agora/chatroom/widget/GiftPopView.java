@@ -20,7 +20,7 @@ import io.agora.chatroom.manager.ChatRoomManager;
 public class GiftPopView extends FrameLayout {
 
     @BindView(R.id.iv_avatar)
-    ImageView iv_header;
+    ImageView iv_avatar;
     @BindView(R.id.tv_name)
     TextView tv_name;
 
@@ -51,7 +51,7 @@ public class GiftPopView extends FrameLayout {
             tv_name.setText(member.getName());
         else
             tv_name.setText(userId);
-        iv_header.setImageResource(channelData.getMemberAvatar(userId));
+        iv_avatar.setImageResource(channelData.getMemberAvatar(userId));
         setVisibility(View.VISIBLE);
         postDelayed(() -> setVisibility(View.GONE), 2500);
     }

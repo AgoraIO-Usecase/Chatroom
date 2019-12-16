@@ -10,6 +10,6 @@ import UIKit
 
 struct Channel {
     var drawableRes: UIImage
-    var backgroudRes: UIImage
+    var backgroundRes: UIImage
     var name: String
 }

@@ -9,10 +9,31 @@
 import UIKit
 
 class MemberViewController: UIViewController {
+    @IBOutlet weak var num: UILabel!
     @IBOutlet weak var listMember: UITableView!
+
+    private var mChannelData = ChatRoomManager.shared.getChannelData()
     
-    private var mMemberMap = RtmManager.sharedInstance.mMemberMap
-    private var mAudioStatusMap = RtcManager.sharedInstance.mAudioStatusMap
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        refreshTitle()
+    }
+
+    func refreshTitle() {
+        num.text = "房间成员列表（\(mChannelData.getMemberArray().count)人）"
+    }
+    
+    func reloadData() {
+        refreshTitle()
+        listMember.reloadData()
+    }
+    
+    func reloadRowsByUserId(_ userId: String) {
+        let index = mChannelData.indexOfMemberArray(userId)
+        if index != NSNotFound {
+            listMember.reloadRows(at: [IndexPath(row: index, section: 0)], with: .none)
+        }
+    }
     
     @IBAction func onClick(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
@@ -20,48 +41,36 @@ class MemberViewController: UIViewController {
 }
 
 extension MemberViewController: UITableViewDataSource {
-    // MARK: UITableViewDataSource
-    
+    // MARK: - UITableViewDataSource
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return mMemberMap.count
+        mChannelData.getMemberArray().count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MemberCell", for: indexPath) as! MemberCell
 
-        let dic = getItem(indexPath.row)
-        
-        if let it = dic {
-            let userId = it.0
-            let member = it.1
-            cell.update(member) { (userId) -> AudioStatus? in
-                return mAudioStatusMap[userId]
-            }
-            
-            cell.changeRole.tag = indexPath.row
-            cell.changeRole.addTarget(self, action: #selector(changeRole(_:)), for: .touchUpInside)
-            
-            cell.muteSeat.tag = indexPath.row
-            cell.muteSeat.addTarget(self, action: #selector(muteSeat(_:)), for: .touchUpInside)
-        }
-        
+        cell.selectionStyle = .none
+        cell.update(mChannelData, indexPath.row)
+        cell.role.tag = indexPath.row
+        cell.role.addTarget(self, action: #selector(role(_:)), for: .touchUpInside)
+        cell.btnMute.tag = indexPath.row
+        cell.btnMute.addTarget(self, action: #selector(mute(_:)), for: .touchUpInside)
+
         return cell
     }
-    
-    private func getItem(_ position: Int) -> (String, Member)? {
-        for (index, map) in mMemberMap.enumerated() {
-            if index == position {
-                return map
-            }
+
+    @objc private func role(_ sender: UIButton) {
+        let userId = mChannelData.getMemberArray()[sender.tag].userId
+        if mChannelData.isUserOnline(userId) {
+            ChatRoomManager.shared.toAudience(userId, nil)
+        } else {
+            ChatRoomManager.shared.toBroadcaster(userId, mChannelData.firstIndexOfEmptySeat())
         }
-        return nil
     }
-    
-    @objc func changeRole(_ sender: UIButton) {
-//        BussinessManager.sharedInstance.autoRole(mMemberMap[sender.tag].userId)
-    }
-    
-    @objc func muteSeat(_ sender: UIButton) {
-//        BussinessManager.sharedInstance.muteAudio(mMemberMap[sender.tag].userId)
+
+    @objc private func mute(_ sender: UIButton) {
+        let userId = mChannelData.getMemberArray()[sender.tag].userId
+        ChatRoomManager.shared.muteMic(userId, !mChannelData.isUserMuted(userId))
     }
 }

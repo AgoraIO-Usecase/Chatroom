@@ -4,6 +4,8 @@ import android.text.TextUtils;
 
 import androidx.annotation.Nullable;
 
+import com.google.gson.Gson;
+
 public class Member {
 
     private String userId;
@@ -54,6 +56,14 @@ public class Member {
         if (obj instanceof Member)
             return TextUtils.equals(userId, ((Member) obj).userId);
         return super.equals(obj);
+    }
+
+    public String toJsonString() {
+        return new Gson().toJson(this);
+    }
+
+    public static Member fromJsonString(String str) {
+        return new Gson().fromJson(str, Member.class);
     }
 
 }

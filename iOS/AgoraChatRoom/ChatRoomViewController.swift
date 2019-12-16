@@ -12,41 +12,73 @@ import UIKit
 import AgoraRtmKit
 
 class ChatRoomViewController: UIViewController {
+    @IBOutlet weak var num: UIButton!
     @IBOutlet weak var background: UIImageView!
-    @IBOutlet weak var num: UIBarButtonItem!
-    @IBOutlet weak var inputMsg: UITextField!
-    @IBOutlet weak var accents: UIButton!
-    @IBOutlet weak var gift: UIImageView!
+    @IBOutlet weak var mixing: UIButton!
+    @IBOutlet weak var mic: UIButton!
+    @IBOutlet weak var gift: GiftPopView!
     
-    var mBusinessManager = BussinessManager.sharedInstance
-    var mRtmManager = RtmManager.sharedInstance
-    var mRtcManager = RtcManager.sharedInstance
-    
-    var mSeatVC: SeatCollectionViewController?
-    var mMessageVC: MessageTableViewController?
-    var mMemberVC: MemberViewController?
-    
+    private lazy var mManager: ChatRoomManager = {
+        let manager = ChatRoomManager.shared
+        manager.delegate = self
+        return manager
+    }()
+
+    private var mSeatVC: SeatCollectionViewController?
+    private var mMessageVC: MessageTableViewController?
+    private var mMemberVC: MemberViewController?
+
     var bgImg: UIImage?
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        background.image = bgImg
-        mBusinessManager.delegate = self
-        mRtmManager.addDelegate(self)
-        mRtcManager.addDelegate(self)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        mRtcManager.leave()
-        mRtmManager.leave()
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        mRtcManager.joinChannel(title!, Constant.sUserId)
+        background.image = bgImg
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        mManager.joinChannel(channelId: title!)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        mManager.leaveChannel()
+    }
+
+    @IBAction func onDidEndOnExit(_ sender: UITextField) {
+        if let text = sender.text {
+            mManager.sendMessage(text: text)
+            sender.text = nil
+        }
     }
     
+    @IBAction func onExit(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func onClick(_ sender: UIButton) {
+        switch sender.tag {
+        case 101:
+            sender.isSelected = !sender.isSelected
+            if sender.isSelected {
+                mManager.getRtcManager().startAudioMixing(Bundle.main.path(forResource: "Sound Horizon - 記憶の水底", ofType: ".mp3"))
+            } else {
+                mManager.getRtcManager().stopAudioMixing()
+            }
+        case 103:
+            let myUserId = String(Constant.sUserId)
+            mManager.muteMic(myUserId, !mManager.getChannelData().isUserMuted(myUserId))
+        case 104:
+            sender.isSelected = !sender.isSelected
+            mManager.getRtcManager().muteAllRemoteAudioStreams(!sender.isSelected)
+        case 105:
+            mManager.givingGift()
+        default:
+            break
+        }
+    }
+
+    // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "seat":
@@ -59,9 +91,8 @@ class ChatRoomViewController: UIViewController {
             mMemberVC = segue.destination as? MemberViewController
             mMemberVC?.popoverPresentationController?.delegate = self
             break
-        case "accents":
-            if let it = segue.destination as? VoiceChangerTableViewController {
-                it.delegate = self
+        case "effect":
+            if let it = segue.destination as? VoiceEffectViewController {
                 it.popoverPresentationController?.delegate = self
             }
             break
@@ -69,133 +100,54 @@ class ChatRoomViewController: UIViewController {
             break
         }
     }
-    
-    private func setButtonState(_ button: UIButton, _ isSelected: Bool) {
-        let image = button.image(for: .selected)
-        let title = button.attributedTitle(for: .selected)
-        if image == nil {
-            return
-        }
-        button.isSelected = isSelected
-        if title == nil {
-            return
-        }
-        button.tintColor = isSelected ? #colorLiteral(red: 0.07843137255, green: 0.5568627451, blue: 1, alpha: 1) : #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+}
+
+extension ChatRoomViewController: ChatRoomDelegate {
+    // MARK: - ChatRoomDelegate
+
+    func onSeatUpdated(position: Int) {
+        mSeatVC?.reloadItems(position)
     }
-    
-    @IBAction func onClick(_ sender: UIButton) {
-        setButtonState(sender, !sender.isSelected)
-        switch sender.tag {
-        case 100:
-            let text = inputMsg.text
-            if let it = text {
-                if it.isEmpty {
-                    return
-                }
-                mBusinessManager.sendMessage(it)
-            }
-            break
-        case 101:
-            if sender.isSelected {
-                mRtcManager.startAudioMixing()
+
+    func onUserGivingGift(userId: String) {
+        gift.show(userId)
+    }
+
+    func onMessageAdded(position: Int) {
+        mMessageVC?.insertRows(position)
+    }
+
+    func onMemberListUpdated(userId: String?) {
+        num.setTitle(String(mManager.getChannelData().getMemberArray().count), for: .normal)
+        mSeatVC?.reloadItems(userId)
+        mMemberVC?.reloadData()
+    }
+
+    func onUserStatusChanged(userId: String, muted: Bool?) {
+        if Constant.isMyself(userId) {
+            if let `muted` = muted {
+                mic.isSelected = !muted
             } else {
-                mRtcManager.stopAudioMixing()
+                mic.isSelected = true
             }
-            break
-        case 102:
-            if sender.isSelected {
-                self.performSegue(withIdentifier: "accents", sender: nil)
-            } else {
-//                mRtcManager.setLocalVoiceChanger(.off)
-            }
-            break
-        case 103:
-            mRtcManager.muteLocalAudioStream(!sender.isSelected)
-            break
-        case 104:
-            mRtcManager.muteAllRemoteAudioStreams(!sender.isSelected)
-            break
-        case 105:
-            mBusinessManager.givingGift()
-            break
-        default:
-            break
         }
+        mSeatVC?.reloadItems(userId)
+        mMemberVC?.reloadRowsByUserId(userId)
     }
-}
 
-extension ChatRoomViewController: BussinessDelegate {
-    // MARK: BussinessDelegate
-    
-    func onSeatsUpdated(start: Int, count: Int) {
-        
+    func onAudioMixingStateChanged(isPlaying: Bool) {
+        mixing.isSelected = isPlaying
     }
-    
-    func onGiftReceived(userId: String) {
-        gift.isHidden = false
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-            self.gift.isHidden = true
-        }
-    }
-}
 
-extension ChatRoomViewController: RtmDelegate {
-    // MARK: RtmDelegate
-    
-    func onAttributeArrayUpdated(isInit: Bool) {
-        if isInit {
-            mBusinessManager.checkAndBeAnchor()
-        }
-        mBusinessManager.updateSeatArray()
-        
-        if isInit {
-            mBusinessManager.beAnchor()
-        }
-    }
-    
-    func onMemberUpdated(userId: String, member: Member?) {
-//        num.title = "\(memberArray.count) 人"
-//        mMemberVC?.updateMemberArray(memberArray)
-    }
-    
-    func onMessageUpdated() {
-//        mMessageVC?.updateMessageArray(messageArray)
-    }
-    
-    func onOrderReceived(message: AgoraRtmMessage) {
-        mBusinessManager.processOrder(message)
-    }
-    
-    func onMessageReceived(message: AgoraRtmMessage) {
-        mBusinessManager.processMessage(message)
-    }
-}
+    func onAudioVolumeIndication(userId: String, volume: UInt) {
 
-extension ChatRoomViewController: RtcDelegate {
-    // MARK: RtcDelegate
-    
-    func onAudioMuteUpdated(userId: String, mute: Bool?) {
-//        mSeatVC?.updateAudioStatusMap(audioStatusMap)
-//        mMemberVC?.updateAudioStatusMap(audioStatusMap)
-    }
-    
-    func onAudioVolumeUpdated(userId: String, volume: Int?) {
-        
     }
 }
 
 extension ChatRoomViewController: UIPopoverPresentationControllerDelegate {
-    // MARK: UIPopoverPresentationControllerDelegate
+    // MARK: - UIPopoverPresentationControllerDelegate
 
     func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
-        return .none
-    }
-}
-
-extension ChatRoomViewController: VoiceChangerDelegate {
-    // MARK: VoiceChangerDelegate
-    
-    func onDismiss(isRowSelected: Bool) {
-        setButtonState(accents, isRowSelected)        
+        .overFullScreen
     }
 }

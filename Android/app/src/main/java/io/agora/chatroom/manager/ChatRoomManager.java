@@ -52,119 +52,9 @@ public final class ChatRoomManager extends SeatManager implements MessageManager
 
     private ChatRoomManager(Context context) {
         mRtcManager = RtcManager.instance(context);
-        mRtcManager.setListener(new RtcManager.RtcEventListener() {
-            @Override
-            public void onJoinChannelSuccess(String channelId) {
-                mRtmManager.joinChannel(channelId, null);
-            }
-
-            @Override
-            public void onUserOnlineStateChanged(int uid, boolean isOnline) {
-                if (isOnline) {
-                    mChannelData.addUser(uid, false);
-
-                    if (mListener != null)
-                        mListener.onUserStatusChanged(String.valueOf(uid), false);
-                } else {
-                    mChannelData.removeUser(uid);
-
-                    if (mListener != null)
-                        mListener.onUserStatusChanged(String.valueOf(uid), null);
-                }
-            }
-
-            @Override
-            public void onUserMuteAudio(int uid, boolean muted) {
-                mChannelData.addUser(uid, muted);
-
-                if (mListener != null)
-                    mListener.onUserStatusChanged(String.valueOf(uid), muted);
-            }
-
-            @Override
-            public void onAudioMixingStateChanged(boolean isPlaying) {
-                if (mListener != null)
-                    mListener.onAudioMixingStateChanged(isPlaying);
-            }
-
-            @Override
-            public void onAudioVolumeIndication(int uid, int volume) {
-                if (mListener != null)
-                    mListener.onAudioVolumeIndication(String.valueOf(uid), volume);
-            }
-        });
+        mRtcManager.setListener(mRtcListener);
         mRtmManager = RtmManager.instance(context);
-        mRtmManager.setListener(new RtmManager.RtmEventListener() {
-            @Override
-            public void onChannelAttributesLoaded() {
-                checkAndBeAnchor();
-            }
-
-            @Override
-            public void onChannelAttributesUpdated(Map<String, String> attributes) {
-                for (Map.Entry<String, String> entry : attributes.entrySet()) {
-                    String key = entry.getKey();
-                    switch (key) {
-                        case AttributeKey.KEY_ANCHOR_ID:
-                            String userId = entry.getValue();
-                            if (mChannelData.setAnchorId(userId))
-                                Log.i(TAG, String.format("onChannelAttributesUpdated %s %s", key, userId));
-                            break;
-                        default:
-                            int index = AttributeKey.indexOfSeatKey(key);
-                            if (index >= 0) {
-                                String value = entry.getValue();
-                                if (updateSeatArray(index, value)) {
-                                    Log.i(TAG, String.format("onChannelAttributesUpdated %s %s", key, value));
-
-                                    if (mListener != null)
-                                        mListener.onSeatUpdated(index);
-                                }
-                            }
-                            break;
-                    }
-                }
-            }
-
-            @Override
-            public void onInitMembers(List<RtmChannelMember> members) {
-                for (RtmChannelMember member : members) {
-                    mChannelData.addOrUpdateMember(new Member(member.getUserId()));
-                }
-
-                if (mListener != null) {
-                    mListener.onMemberListUpdated(null);
-                }
-            }
-
-            @Override
-            public void onMemberJoined(String userId, Map<String, String> attributes) {
-                for (Map.Entry<String, String> entry : attributes.entrySet()) {
-                    if (AttributeKey.KEY_USER_INFO.equals(entry.getKey())) {
-                        Member member = new Gson().fromJson(entry.getValue(), Member.class);
-
-                        mChannelData.addOrUpdateMember(member);
-
-                        if (mListener != null)
-                            mListener.onMemberListUpdated(userId);
-                        break;
-                    }
-                }
-            }
-
-            @Override
-            public void onMemberLeft(String userId) {
-                mChannelData.removeMember(userId);
-
-                if (mListener != null)
-                    mListener.onMemberListUpdated(userId);
-            }
-
-            @Override
-            public void onMessageReceived(RtmMessage message) {
-                processMessage(message);
-            }
-        });
+        mRtmManager.setListener(mRtmListener);
     }
 
     public static ChatRoomManager instance(Context context) {
@@ -186,7 +76,7 @@ public final class ChatRoomManager extends SeatManager implements MessageManager
             @Override
             public void onSuccess(Void aVoid) {
                 Member member = new Member(String.valueOf(Constant.sUserId), Constant.sName, Constant.sAvatarIndex);
-                mRtmManager.setLocalUserAttributes(AttributeKey.KEY_USER_INFO, new Gson().toJson(member));
+                mRtmManager.setLocalUserAttributes(AttributeKey.KEY_USER_INFO, member.toJsonString());
 
                 mRtcManager.joinChannel(channelId, Constant.sUserId);
             }
@@ -218,7 +108,11 @@ public final class ChatRoomManager extends SeatManager implements MessageManager
         String myUserId = String.valueOf(Constant.sUserId);
 
         if (mChannelData.isAnchorMyself()) {
-            toBroadcaster(myUserId, mChannelData.firstIndexOfEmptySeat());
+            int index = mChannelData.indexOfSeatArray(myUserId);
+            if (index == -1) {
+                index = mChannelData.firstIndexOfEmptySeat();
+            }
+            toBroadcaster(myUserId, index);
         } else {
             if (mChannelData.hasAnchor()) return;
             mRtmManager.addOrUpdateChannelAttributes(AttributeKey.KEY_ANCHOR_ID, myUserId, new ResultCallback<Void>() {
@@ -255,7 +149,7 @@ public final class ChatRoomManager extends SeatManager implements MessageManager
     public void sendOrder(String userId, String orderType, String content, ResultCallback<Void> callback) {
         if (!mChannelData.isAnchorMyself()) return;
         Message message = new Message(orderType, content, Constant.sUserId);
-        mRtmManager.sendMessageToPeer(userId, new Gson().toJson(message), callback);
+        mRtmManager.sendMessageToPeer(userId, message.toJsonString(), callback);
     }
 
     @Override
@@ -276,7 +170,7 @@ public final class ChatRoomManager extends SeatManager implements MessageManager
 
     @Override
     public void processMessage(RtmMessage rtmMessage) {
-        Message message = new Gson().fromJson(rtmMessage.getText(), Message.class);
+        Message message = Message.fromJsonString(rtmMessage.getText());
         switch (message.getMessageType()) {
             case Message.MESSAGE_TYPE_TEXT:
             case Message.MESSAGE_TYPE_IMAGE:
@@ -309,5 +203,118 @@ public final class ChatRoomManager extends SeatManager implements MessageManager
         if (mListener != null)
             mListener.onMessageAdded(position);
     }
+
+    private RtcManager.RtcEventListener mRtcListener = new RtcManager.RtcEventListener() {
+        @Override
+        public void onJoinChannelSuccess(String channelId) {
+            mRtmManager.joinChannel(channelId, null);
+        }
+
+        @Override
+        public void onUserOnlineStateChanged(int uid, boolean isOnline) {
+            if (isOnline) {
+                mChannelData.addUser(uid, false);
+
+                if (mListener != null)
+                    mListener.onUserStatusChanged(String.valueOf(uid), false);
+            } else {
+                mChannelData.removeUser(uid);
+
+                if (mListener != null)
+                    mListener.onUserStatusChanged(String.valueOf(uid), null);
+            }
+        }
+
+        @Override
+        public void onUserMuteAudio(int uid, boolean muted) {
+            mChannelData.addUser(uid, muted);
+
+            if (mListener != null)
+                mListener.onUserStatusChanged(String.valueOf(uid), muted);
+        }
+
+        @Override
+        public void onAudioMixingStateChanged(boolean isPlaying) {
+            if (mListener != null)
+                mListener.onAudioMixingStateChanged(isPlaying);
+        }
+
+        @Override
+        public void onAudioVolumeIndication(int uid, int volume) {
+            if (mListener != null)
+                mListener.onAudioVolumeIndication(String.valueOf(uid), volume);
+        }
+    };
+
+    private RtmManager.RtmEventListener mRtmListener = new RtmManager.RtmEventListener() {
+        @Override
+        public void onChannelAttributesLoaded() {
+            checkAndBeAnchor();
+        }
+
+        @Override
+        public void onChannelAttributesUpdated(Map<String, String> attributes) {
+            for (Map.Entry<String, String> entry : attributes.entrySet()) {
+                String key = entry.getKey();
+                switch (key) {
+                    case AttributeKey.KEY_ANCHOR_ID:
+                        String userId = entry.getValue();
+                        if (mChannelData.setAnchorId(userId))
+                            Log.i(TAG, String.format("onChannelAttributesUpdated %s %s", key, userId));
+                        break;
+                    default:
+                        int index = AttributeKey.indexOfSeatKey(key);
+                        if (index >= 0) {
+                            String value = entry.getValue();
+                            if (updateSeatArray(index, value)) {
+                                Log.i(TAG, String.format("onChannelAttributesUpdated %s %s", key, value));
+
+                                if (mListener != null)
+                                    mListener.onSeatUpdated(index);
+                            }
+                        }
+                        break;
+                }
+            }
+        }
+
+        @Override
+        public void onInitMembers(List<RtmChannelMember> members) {
+            for (RtmChannelMember member : members) {
+                mChannelData.addOrUpdateMember(new Member(member.getUserId()));
+            }
+
+            if (mListener != null) {
+                mListener.onMemberListUpdated(null);
+            }
+        }
+
+        @Override
+        public void onMemberJoined(String userId, Map<String, String> attributes) {
+            for (Map.Entry<String, String> entry : attributes.entrySet()) {
+                if (AttributeKey.KEY_USER_INFO.equals(entry.getKey())) {
+                    Member member = Member.fromJsonString(entry.getValue());
+                    mChannelData.addOrUpdateMember(member);
+
+                    if (mListener != null)
+                        mListener.onMemberListUpdated(userId);
+                    break;
+                }
+            }
+        }
+
+        @Override
+        public void onMemberLeft(String userId) {
+            mChannelData.removeMember(userId);
+
+            if (mListener != null)
+                mListener.onMemberListUpdated(userId);
+        }
+
+        @Override
+        public void onMessageReceived(RtmMessage message) {
+            processMessage(message);
+        }
+    };
 
 }

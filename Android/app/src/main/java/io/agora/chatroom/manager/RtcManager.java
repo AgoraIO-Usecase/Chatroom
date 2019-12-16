@@ -174,8 +174,6 @@ public final class RtcManager {
             for (AudioVolumeInfo info : speakers) {
                 if (info.volume > 0) {
                     int uid = info.uid == 0 ? mUserId : info.uid;
-                    Log.i(TAG, String.format("onAudioVolumeIndication %d %d", uid, info.volume));
-
                     if (mListener != null)
                         mListener.onAudioVolumeIndication(uid, info.volume);
                 }

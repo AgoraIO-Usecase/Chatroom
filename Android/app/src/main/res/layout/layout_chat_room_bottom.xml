@@ -11,7 +11,6 @@
         android:layout_height="wrap_content"
         android:background="@drawable/bg_radius_container"
         android:hint="@string/placeholder"
-        android:maxLength="20"
         android:maxLines="1"
         android:paddingStart="@dimen/bottom_spacing"
         android:paddingTop="@dimen/bottom_input_padding_vertical"

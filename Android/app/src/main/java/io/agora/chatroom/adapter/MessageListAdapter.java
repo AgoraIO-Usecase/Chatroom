@@ -47,7 +47,7 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
         Message message = mChannelData.getMessageList().get(position);
         String userId = message.getSendId();
 
-        holder.iv_header.setImageResource(mChannelData.getMemberAvatar(userId));
+        holder.iv_avatar.setImageResource(mChannelData.getMemberAvatar(userId));
 
         switch (message.getMessageType()) {
             case Message.MESSAGE_TYPE_TEXT:
@@ -63,7 +63,7 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
 
     class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.iv_avatar)
-        ImageView iv_header;
+        ImageView iv_avatar;
         @BindView(R.id.tv_message)
         TextView tv_message;
         @BindView(R.id.iv_image)

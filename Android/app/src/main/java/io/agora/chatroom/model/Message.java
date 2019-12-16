@@ -70,4 +70,8 @@ public class Message {
         return new Gson().toJson(this);
     }
 
+    public static Message fromJsonString(String str) {
+        return new Gson().fromJson(str, Message.class);
+    }
+
 }

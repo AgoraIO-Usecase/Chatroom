@@ -9,11 +9,28 @@
 import UIKit
 
 class MessageCell: UITableViewCell {
-    @IBOutlet weak var header: UIImageView!
+    @IBOutlet weak var avatar: UIImageView!
     @IBOutlet weak var message: UILabel!
-    
-    func update(_ value: Message) {
-        header.image = BaseUtils.isMyself(value.sendId) ? #imageLiteral(resourceName: "img_header_8") : #imageLiteral(resourceName: "img_header_2")
-        message.text = value.content
+
+    func update(_ channelData: ChannelData, _ position: Int) {
+        let message = channelData.getMessageArray()[position]
+        let userId = message.sendId
+
+        avatar.image = channelData.getMemberAvatar(userId)
+
+        switch message.messageType {
+        case Message.MESSAGE_TYPE_TEXT:
+            self.message.isHidden = false
+            if let member = channelData.getMember(userId), let name = member.name {
+                self.message.text = "\(name)：\(message.content!)"
+            } else {
+                self.message.text = "\(userId)：\(message.content!)"
+            }
+        case Message.MESSAGE_TYPE_IMAGE:
+            // TODO
+            break
+        default:
+            break
+        }
     }
 }

@@ -6,6 +6,7 @@
     <dimen name="divider_margin">10dp</dimen>
     <dimen name="divider_height">0.5dp</dimen>
     <dimen name="line_height">1dp</dimen>
+    <dimen name="large_radius">19dp</dimen>
 
     <!-- ChannelGridActivity -->
     <dimen name="item_channel_spacing">10dp</dimen>
@@ -26,8 +27,8 @@
     <dimen name="item_seat_btn_radius">25dp</dimen>
 
     <dimen name="item_message_spacing">15dp</dimen>
-    <dimen name="item_message_header_size">30dp</dimen>
-    <dimen name="item_message_header_margin_end">8dp</dimen>
+    <dimen name="item_message_avatar_size">30dp</dimen>
+    <dimen name="item_message_avatar_margin_end">8dp</dimen>
     <dimen name="item_message_text_padding_horizontal">15dp</dimen>
     <dimen name="item_message_text_padding_vertical">9dp</dimen>
     <dimen name="item_message_text_size">14sp</dimen>
@@ -68,7 +69,7 @@
     <dimen name="dialog_member_item_spacing">19dp</dimen>
 
     <dimen name="item_member_spacing">19dp</dimen>
-    <dimen name="item_member_header_size">36dp</dimen>
+    <dimen name="item_member_avatar_size">36dp</dimen>
     <dimen name="item_member_btn_width">46dp</dimen>
     <dimen name="item_member_btn_height">32dp</dimen>
     <dimen name="item_member_btn_text_size">12sp</dimen>

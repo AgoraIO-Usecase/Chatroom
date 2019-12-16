@@ -55,18 +55,18 @@
     </string-array>
 
     <array name="random_avatar_images">
-        <item>@mipmap/img_header_0</item>
-        <item>@mipmap/img_header_1</item>
-        <item>@mipmap/img_header_2</item>
-        <item>@mipmap/img_header_3</item>
-        <item>@mipmap/img_header_4</item>
-        <item>@mipmap/img_header_5</item>
-        <item>@mipmap/img_header_6</item>
-        <item>@mipmap/img_header_7</item>
-        <item>@mipmap/img_header_8</item>
-        <item>@mipmap/img_header_9</item>
-        <item>@mipmap/img_header_10</item>
-        <item>@mipmap/img_header_11</item>
+        <item>@mipmap/img_avatar_0</item>
+        <item>@mipmap/img_avatar_1</item>
+        <item>@mipmap/img_avatar_2</item>
+        <item>@mipmap/img_avatar_3</item>
+        <item>@mipmap/img_avatar_4</item>
+        <item>@mipmap/img_avatar_5</item>
+        <item>@mipmap/img_avatar_6</item>
+        <item>@mipmap/img_avatar_7</item>
+        <item>@mipmap/img_avatar_8</item>
+        <item>@mipmap/img_avatar_9</item>
+        <item>@mipmap/img_avatar_10</item>
+        <item>@mipmap/img_avatar_11</item>
     </array>
 
     <string-array name="voice_beautify_keys">

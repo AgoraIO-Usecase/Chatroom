@@ -9,25 +9,40 @@
 import UIKit
 
 class MemberCell: UITableViewCell {
-    @IBOutlet weak var header: UIImageView!
-    @IBOutlet weak var mute: UIImageView!
+    @IBOutlet weak var avatar: UIImageView!
+    @IBOutlet weak var ivMute: UIImageView!
     @IBOutlet weak var name: UILabel!
-    @IBOutlet weak var changeRole: UIButton!
-    @IBOutlet weak var muteSeat: UIButton!
+    @IBOutlet weak var role: UIButton!
+    @IBOutlet weak var btnMute: UIButton!
     
-    func update(_ member: Member, block: (_ userId: String) -> AudioStatus?) {
-//        let userId = member.userId
+    func update(_ channelData: ChannelData,_ position: Int) {
+        let member = channelData.getMemberArray()[position]
+        let userId = member.userId
         
-//        if let it = block(userId) {
-//            mute.isHidden = !(it.mute ?? false)
-//            changeRole.setTitle("下麦", for: .normal)
-//            muteSeat.isHidden = false
-//        } else {
-//            mute.isHidden = true
-//            changeRole.setTitle("上麦", for: .normal)
-//            muteSeat.isHidden = true
-//        }
-//        name.text = userId
-//        name.textColor = BaseUtils.isMyself(userId) ? UIColor.black : UIColor.gray
+        self.avatar.image = channelData.getMemberAvatar(userId)
+        
+        if channelData.isUserOnline(userId) {
+            let muted = channelData.isUserMuted(userId)
+            self.ivMute.isHidden = false
+            self.ivMute.image = muted ? #imageLiteral(resourceName: "ic_mic_off_little") : #imageLiteral(resourceName: "ic_mic_on_little")
+            self.role.setTitle("下麦", for: .normal)
+            self.btnMute.isHidden = false
+            self.btnMute.setTitle(muted ? "解麦" : "禁麦", for: .normal)
+        } else {
+            self.ivMute.isHidden = true
+            self.role.setTitle("上麦", for: .normal)
+            self.btnMute.isHidden = true
+        }
+        
+        if !channelData.isAnchorMyself() {
+            self.role.isHidden = true
+            self.btnMute.isHidden = true
+        }
+        
+        var name = member.name
+        if channelData.isAnchor(userId) {
+            name = "\(name ?? userId)（主播）"
+        }
+        self.name.text = name
     }
 }

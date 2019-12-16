@@ -9,24 +9,25 @@
 import UIKit
 
 class AlertUtils: NSObject {
-    static func showAlert(root: UIViewController, text: String) {
+    static func showAlert(_ root: UIViewController, _ text: String) {
         let vc = UIAlertController(title: nil, message: text, preferredStyle: .alert)
         vc.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
         root.present(vc, animated: true, completion: nil)
     }
     
-    static func showMenu(root: UIViewController, position: Int) {
-        let vc = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
-        vc.addAction(UIAlertAction(title: "下麦", style: .default, handler: { (action) in
-            BussinessManager.sharedInstance.toAudience(position)
-        }))
-        vc.addAction(UIAlertAction(title: "禁麦", style: .default, handler: { (action) in
-            BussinessManager.sharedInstance.switchMute(position)
-        }))
-        vc.addAction(UIAlertAction(title: "封麦", style: .default, handler: { (action) in
-            BussinessManager.sharedInstance.closeSeat(position)
-        }))
-        vc.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        root.present(vc, animated: true, completion: nil)
+    static func showMenu(_ root: UIView, _ selectors: [Selector]) {
+        root.becomeFirstResponder()
+        let menu = UIMenuController.shared
+        menu.menuItems = [
+            UIMenuItem(title: "上麦", action: selectors[0]),
+            UIMenuItem(title: "下麦", action: selectors[1]),
+            UIMenuItem(title: "禁麦", action: selectors[2]),
+            UIMenuItem(title: "解麦", action: selectors[3]),
+            UIMenuItem(title: "封麦", action: selectors[4]),
+            UIMenuItem(title: "解封", action: selectors[5])
+        ]
+        menu.arrowDirection = .up
+        menu.setTargetRect(root.frame, in: root.superview!)
+        menu.setMenuVisible(true, animated: true)
     }
 }

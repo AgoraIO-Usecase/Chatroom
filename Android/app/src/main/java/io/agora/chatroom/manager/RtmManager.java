@@ -240,7 +240,7 @@ public final class RtmManager {
 
                 @Override
                 public void onFailure(ErrorInfo errorInfo) {
-                    Log.e(TAG, String.format("addOrUpdateChannelAttributes %s %s %s", errorInfo.getErrorDescription(), key, value));
+                    Log.e(TAG, String.format("addOrUpdateChannelAttributes %s %s %s", key, value, errorInfo.getErrorDescription()));
 
                     if (callback != null)
                         callback.onFailure(errorInfo);

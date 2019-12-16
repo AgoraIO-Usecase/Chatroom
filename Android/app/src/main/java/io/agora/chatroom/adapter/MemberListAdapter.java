@@ -53,12 +53,12 @@ public class MemberListAdapter extends RecyclerView.Adapter<MemberListAdapter.Vi
         holder.iv_avatar.setImageResource(mChannelData.getMemberAvatar(userId));
 
         if (mChannelData.isUserOnline(userId)) {
-            boolean isMuted = mChannelData.isUserMuted(userId);
+            boolean muted = mChannelData.isUserMuted(userId);
             holder.iv_mute.setVisibility(View.VISIBLE);
-            holder.iv_mute.setImageResource(isMuted ? R.mipmap.ic_mic_off_little : R.mipmap.ic_mic_on_little);
+            holder.iv_mute.setImageResource(muted ? R.mipmap.ic_mic_off_little : R.mipmap.ic_mic_on_little);
             holder.btn_role.setText(R.string.to_audience);
             holder.btn_mute.setVisibility(View.VISIBLE);
-            holder.btn_mute.setText(isMuted ? R.string.turn_on_mic : R.string.turn_off_mic);
+            holder.btn_mute.setText(muted ? R.string.turn_on_mic : R.string.turn_off_mic);
         } else {
             holder.iv_mute.setVisibility(View.GONE);
             holder.btn_role.setText(R.string.to_broadcast);

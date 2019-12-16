@@ -5,9 +5,9 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/iv_avatar"
-        android:layout_width="@dimen/item_message_header_size"
-        android:layout_height="@dimen/item_message_header_size"
-        android:layout_marginEnd="@dimen/item_message_header_margin_end" />
+        android:layout_width="@dimen/item_message_avatar_size"
+        android:layout_height="@dimen/item_message_avatar_size"
+        android:layout_marginEnd="@dimen/item_message_avatar_margin_end" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_message"

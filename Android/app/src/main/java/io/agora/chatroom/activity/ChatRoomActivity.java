@@ -157,10 +157,6 @@ public class ChatRoomActivity extends AppCompatActivity implements ChatRoomEvent
         });
     }
 
-    private void refreshNum() {
-        btn_num.setText(String.valueOf(mManager.getChannelData().getMemberList().size()));
-    }
-
     private void initManager() {
         mManager = ChatRoomManager.instance(this);
         mManager.setListener(this);
@@ -239,8 +235,7 @@ public class ChatRoomActivity extends AppCompatActivity implements ChatRoomEvent
                 return;
             } else {
                 String userId = seat.getUserId();
-                boolean online = channelData.isUserOnline(userId);
-                if (online) {
+                if (channelData.isUserOnline(userId)) {
                     if (isAnchor) {
                         boolean muted = channelData.isUserMuted(userId);
                         showSeatPop(view, new int[]{
@@ -302,13 +297,16 @@ public class ChatRoomActivity extends AppCompatActivity implements ChatRoomEvent
 
     @Override
     public void onMessageAdded(int position) {
-        runOnUiThread(() -> mMessageAdapter.notifyItemInserted(position));
+        runOnUiThread(() -> {
+            mMessageAdapter.notifyItemInserted(position);
+            rv_message_list.scrollToPosition(position);
+        });
     }
 
     @Override
     public void onMemberListUpdated(String userId) {
         runOnUiThread(() -> {
-            refreshNum();
+            btn_num.setText(String.valueOf(mManager.getChannelData().getMemberList().size()));
             mSeatAdapter.notifyItemChanged(userId, false);
             mMemberDialog.notifyDataSetChanged();
         });
@@ -324,7 +322,7 @@ public class ChatRoomActivity extends AppCompatActivity implements ChatRoomEvent
                     btn_mic.setImageResource(R.mipmap.ic_mic_on);
             }
             mSeatAdapter.notifyItemChanged(userId, false);
-            mMemberDialog.notifyDataSetChanged();
+            mMemberDialog.notifyItemChangedByUserId(userId);
         });
     }
 
@@ -335,10 +333,7 @@ public class ChatRoomActivity extends AppCompatActivity implements ChatRoomEvent
 
     @Override
     public void onAudioVolumeIndication(String userId, int volume) {
-        runOnUiThread(() -> {
-            mSeatAdapter.notifyItemChanged(userId, true);
-            mMemberDialog.notifyItemChangedByUserId(userId);
-        });
+        runOnUiThread(() -> mSeatAdapter.notifyItemChanged(userId, true));
     }
 
 }

@@ -15,6 +15,14 @@ public class ChannelData {
 
     public static final int MAX_SEAT_NUM = 10;
 
+    public void release() {
+        mAnchorId = null;
+        Arrays.fill(mSeatArray, 0, mSeatArray.length, null);
+        mUserStatus.clear();
+        mMemberList.clear();
+        mMessageList.clear();
+    }
+
     // AnchorId
     private String mAnchorId;
 
@@ -146,14 +154,6 @@ public class ChannelData {
     public int addMessage(Message message) {
         mMessageList.add(message);
         return mMessageList.size() - 1;
-    }
-
-    public void release() {
-        mAnchorId = null;
-        Arrays.fill(mSeatArray, 0, mSeatArray.length, null);
-        mUserStatus.clear();
-        mMemberList.clear();
-        mMessageList.clear();
     }
 
 }

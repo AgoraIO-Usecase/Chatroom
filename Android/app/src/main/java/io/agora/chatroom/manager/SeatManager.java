@@ -1,5 +1,7 @@
 package io.agora.chatroom.manager;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 
 import io.agora.chatroom.model.AttributeKey;
@@ -13,6 +15,8 @@ import io.agora.rtm.ResultCallback;
 
 public abstract class SeatManager {
 
+    private final String TAG = SeatManager.class.getSimpleName();
+
     abstract ChannelData getChannelData();
 
     abstract MessageManager getMessageManager();
@@ -22,21 +26,27 @@ public abstract class SeatManager {
     abstract RtmManager getRtmManager();
 
     public final void toBroadcaster(String userId, int position) {
+        Log.d(TAG, String.format("toBroadcaster %s %d", userId, position));
+
         ChannelData channelData = getChannelData();
         if (Constant.isMyself(userId)) {
             int index = channelData.indexOfSeatArray(userId);
             if (index >= 0) {
-                changeSeat(userId, index, position, new ResultCallback<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        getRtcManager().setClientRole(Constants.CLIENT_ROLE_BROADCASTER);
-                    }
+                if (position == index) {
+                    getRtcManager().setClientRole(Constants.CLIENT_ROLE_BROADCASTER);
+                } else {
+                    changeSeat(userId, index, position, new ResultCallback<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            getRtcManager().setClientRole(Constants.CLIENT_ROLE_BROADCASTER);
+                        }
 
-                    @Override
-                    public void onFailure(ErrorInfo errorInfo) {
+                        @Override
+                        public void onFailure(ErrorInfo errorInfo) {
 
-                    }
-                });
+                        }
+                    });
+                }
             } else {
                 occupySeat(userId, position, new ResultCallback<Void>() {
                     @Override
@@ -56,6 +66,8 @@ public abstract class SeatManager {
     }
 
     public final void toAudience(String userId, ResultCallback<Void> callback) {
+        Log.d(TAG, String.format("toAudience %s", userId));
+
         ChannelData channelData = getChannelData();
         if (Constant.isMyself(userId)) {
             resetSeat(channelData.indexOfSeatArray(userId), new ResultCallback<Void>() {
@@ -75,20 +87,7 @@ public abstract class SeatManager {
                 }
             });
         } else {
-            getMessageManager().sendOrder(userId, Message.ORDER_TYPE_AUDIENCE, null, new ResultCallback<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-                    if (callback != null)
-                        callback.onSuccess(aVoid);
-                }
-
-                @Override
-                public void onFailure(ErrorInfo errorInfo) {
-                    if (callback != null) {
-                        callback.onFailure(errorInfo);
-                    }
-                }
-            });
+            getMessageManager().sendOrder(userId, Message.ORDER_TYPE_AUDIENCE, null, callback);
         }
     }
 

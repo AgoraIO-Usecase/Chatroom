@@ -11,15 +11,8 @@ import UIKit
 class NavigationController: UINavigationController {
     
     override func viewWillAppear(_ animated: Bool) {
-//        navigationBar.isTranslucent = true
         navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationBar.shadowImage = UIImage()
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
 
 }

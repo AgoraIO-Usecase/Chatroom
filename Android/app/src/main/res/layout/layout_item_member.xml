@@ -5,8 +5,8 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/iv_avatar"
-        android:layout_width="@dimen/item_member_header_size"
-        android:layout_height="@dimen/item_member_header_size"
+        android:layout_width="@dimen/item_member_avatar_size"
+        android:layout_height="@dimen/item_member_avatar_size"
         android:layout_centerVertical="true" />
 
     <androidx.appcompat.widget.AppCompatImageView

@@ -6,9 +6,6 @@ import io.agora.chatroom.util.MemberUtil;
 
 public class Constant {
 
-    /**
-     * Here give a random userId, You can use your business userId
-     */
     public static final int sUserId = MemberUtil.getUserId();
 
     public static boolean isMyself(String userId) {

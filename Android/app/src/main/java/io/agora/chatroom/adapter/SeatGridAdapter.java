@@ -57,12 +57,11 @@ public class SeatGridAdapter extends RecyclerView.Adapter<SeatGridAdapter.ViewHo
         Seat seat = mChannelData.getSeatArray()[position];
 
         if (seat != null) {
-            String userId = seat.getUserId();
-
             if (seat.isClosed()) {
                 holder.iv_seat.setImageResource(R.mipmap.ic_ban);
                 holder.iv_mute.setVisibility(View.GONE);
             } else {
+                String userId = seat.getUserId();
                 if (mChannelData.isUserOnline(userId)) {
                     holder.iv_seat.setImageResource(mChannelData.getMemberAvatar(userId));
                     holder.iv_mute.setVisibility(mChannelData.isUserMuted(userId) ? View.VISIBLE : View.GONE);

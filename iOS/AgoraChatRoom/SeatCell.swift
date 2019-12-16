@@ -12,43 +12,25 @@ class SeatCell: UICollectionViewCell {
     @IBOutlet weak var container: UIView!
     @IBOutlet weak var seat: UIImageView!
     @IBOutlet weak var mute: UIImageView!
-    
-    private var frameSize: CGFloat = 0
-    private var size: CGFloat = 0
-    private var x: CGFloat = 0
-    private var y: CGFloat = 0
-    
-    override func prepareForReuse() {
-        frameSize = self.frame.size.width
-        size = frameSize / 2
-        x = (frameSize - size) / 2
-        y = frameSize - size
-    }
-    
-    func update(_ value: Seat?, block: (_ userId: String) -> AudioStatus?) {
-        if let it = value {
-            let userId = it.userId
-            
-            if it.isClosed {
+
+    private var mChannelData: ChannelData?
+    private var mPosition: Int?
+    private var mSeat: Seat?
+
+    func update(_ channelData: ChannelData, _ position: Int) {
+        mChannelData = channelData
+        mPosition = position
+        mSeat = channelData.getSeatArray()[position]
+        if let `mSeat` = mSeat {
+            if mSeat.isClosed {
                 seat.image = #imageLiteral(resourceName: "ic_ban")
+                mute.isHidden = true
             } else {
-                if BaseUtils.isMyself(userId) {
-                    seat.image = #imageLiteral(resourceName: "img_header_1")
+                if let userId = mSeat.userId, channelData.isUserOnline(userId) {
+                    seat.image = channelData.getMemberAvatar(userId)
+                    mute.isHidden = !channelData.isUserMuted(userId)
                 } else {
-                    seat.image = #imageLiteral(resourceName: "img_header_5")
-                }
-            }
-            
-//            if BaseUtils.isAnchor(userId) {
-//                size = frameSize
-//                x = 0
-//                y = 0
-//            }
-            
-            if userId != nil {
-                if let it = block(userId!) {
-                    mute.isHidden = !it.mute
-                } else {
+                    seat.image = #imageLiteral(resourceName: "ic_join")
                     mute.isHidden = true
                 }
             }
@@ -56,7 +38,92 @@ class SeatCell: UICollectionViewCell {
             seat.image = #imageLiteral(resourceName: "ic_join")
             mute.isHidden = true
         }
-        
-//        container.frame = CGRect(x: x, y: y,width: size, height: size)
+    }
+
+    override var canBecomeFirstResponder: Bool {
+        true
+    }
+
+    override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+        guard let menuItems = UIMenuController.shared.menuItems else {
+            return false
+        }
+        if !menuItems.contains(where: { (item) -> Bool in
+            action == item.action
+        }) {
+            return false
+        }
+
+        if let `mChannelData` = mChannelData {
+            let isAnchor = mChannelData.isAnchorMyself()
+            if let `mSeat` = mSeat {
+                if mSeat.isClosed {
+                    if isAnchor {
+                        return action == #selector(openSeat)
+                    }
+                    return false
+                } else {
+                    if let userId = mSeat.userId {
+                        if mChannelData.isUserOnline(userId) {
+                            if isAnchor {
+                                let muted = mChannelData.isUserMuted(userId)
+                                return [#selector(toAudience), muted ? #selector(turnOnMic) : #selector(turnOffMic), #selector(closeSeat)].contains(action)
+                            } else {
+                                if Constant.isMyself(userId) {
+                                    return action == #selector(toAudience)
+                                }
+                            }
+                            return false
+                        }
+                    }
+                }
+            }
+            if isAnchor {
+                return [#selector(toBroadcast), #selector(closeSeat)].contains(action)
+            } else {
+                return action == #selector(toBroadcast)
+            }
+        }
+        return false
+    }
+
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        AlertUtils.showMenu(self, [#selector(toBroadcast), #selector(toAudience), #selector(turnOffMic), #selector(turnOnMic), #selector(closeSeat), #selector(openSeat)])
+    }
+
+    @objc private func toBroadcast() {
+        if let `mPosition` = mPosition {
+            ChatRoomManager.shared.toBroadcaster(String(Constant.sUserId), mPosition)
+        }
+    }
+
+    @objc private func toAudience() {
+        if let `mSeat` = mSeat, let userId = mSeat.userId {
+            ChatRoomManager.shared.toAudience(userId, nil)
+        }
+    }
+
+    @objc private func turnOffMic() {
+        if let `mSeat` = mSeat, let userId = mSeat.userId {
+            ChatRoomManager.shared.muteMic(userId, true)
+        }
+    }
+
+    @objc private func turnOnMic() {
+        if let `mSeat` = mSeat, let userId = mSeat.userId {
+            ChatRoomManager.shared.muteMic(userId, false)
+        }
+    }
+
+    @objc private func closeSeat() {
+        if let `mPosition` = mPosition {
+            ChatRoomManager.shared.closeSeat(mPosition)
+        }
+    }
+
+    @objc private func openSeat() {
+        if let `mPosition` = mPosition {
+            ChatRoomManager.shared.openSeat(mPosition)
+        }
     }
 }

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A45C1599426996E9D473BBD /* SeatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A45C51B14DDE11CF333201B /* SeatManager.swift */; };
+		1A45C3F5188DF25333735354 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A45C89C1D7BE2FB3A0366C0 /* Constant.swift */; };
+		1A45C9ABDDDBBC99E19FBDA7 /* MessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A45C256CEF4A39CFDE167B1 /* MessageManager.swift */; };
+		4DD0C9FD23A4DE0400BC2294 /* VoiceEffectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD0C9FC23A4DE0400BC2294 /* VoiceEffectViewController.swift */; };
 		A7237F482125894600F2F397 /* Sound Horizon - 記憶の水底.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A7237F472125894600F2F397 /* Sound Horizon - 記憶の水底.mp3 */; };
 		A77F45F3212426A600EB578D /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A77F45F2212426A500EB578D /* Accelerate.framework */; };
 		A77F45F5212426AD00EB578D /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A77F45F4212426AD00EB578D /* libc++.tbd */; };
@@ -25,31 +29,33 @@
 		F512BD8D238B7C2600B96E75 /* AgoraRtmKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F512BD8C238B7C2600B96E75 /* AgoraRtmKit.framework */; };
 		F512BD8F238B8A8D00B96E75 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = F512BD8E238B8A8D00B96E75 /* Member.swift */; };
 		F512BD91238B992A00B96E75 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = F512BD90238B992A00B96E75 /* Message.swift */; };
-		F512BD93238B9A2D00B96E75 /* BusinessManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F512BD92238B9A2D00B96E75 /* BusinessManager.swift */; };
+		F512BD93238B9A2D00B96E75 /* ChatRoomManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F512BD92238B9A2D00B96E75 /* ChatRoomManager.swift */; };
 		F512BD95238CCA9100B96E75 /* MemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F512BD94238CCA9100B96E75 /* MemberCell.swift */; };
 		F512BD97238CCC0B00B96E75 /* MemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F512BD96238CCC0B00B96E75 /* MemberViewController.swift */; };
 		F512BD9D238CEE9400B96E75 /* AlertUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F512BD9C238CEE9400B96E75 /* AlertUtils.swift */; };
-		F512BD9F238E428800B96E75 /* VoiceChangerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F512BD9E238E428800B96E75 /* VoiceChangerTableViewController.swift */; };
-		F512BDA1238E462D00B96E75 /* VoiceChangerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F512BDA0238E462D00B96E75 /* VoiceChangerCell.swift */; };
-		F512BDA3238E533B00B96E75 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = F512BDA2238E533B00B96E75 /* Constant.swift */; };
+		F512BDA1238E462D00B96E75 /* VoiceEffectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F512BDA0238E462D00B96E75 /* VoiceEffectCell.swift */; };
+		F523B84B23A75DB60075A548 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F523B84A23A75DB60075A548 /* CustomView.swift */; };
+		F523B85523A7C35C0075A548 /* GiftPopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F523B85423A7C35C0075A548 /* GiftPopView.swift */; };
+		F52EF76D239F51400042817C /* ChannelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52EF76C239F51400042817C /* ChannelData.swift */; };
 		F5616A5E2386594E003FEADA /* ChatRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5616A5D2386594E003FEADA /* ChatRoomViewController.swift */; };
 		F5616A60238780A6003FEADA /* SeatCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5616A5F238780A6003FEADA /* SeatCollectionViewController.swift */; };
 		F5616A62238786C7003FEADA /* SeatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5616A61238786C7003FEADA /* SeatCell.swift */; };
 		F5616A64238789E5003FEADA /* MessageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5616A63238789E5003FEADA /* MessageTableViewController.swift */; };
 		F5616A6623878BDB003FEADA /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5616A6523878BDB003FEADA /* MessageCell.swift */; };
 		F5616A682387B288003FEADA /* Seat.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5616A672387B288003FEADA /* Seat.swift */; };
-		F5616A6A2387B628003FEADA /* AudioStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5616A692387B628003FEADA /* AudioStatus.swift */; };
-		F5616A6D2387C09E003FEADA /* BaseUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5616A6C2387C09E003FEADA /* BaseUtils.swift */; };
 		F568921B2398DEAD0088A16B /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F568921A2398DEAD0088A16B /* NavigationController.swift */; };
 		F568921D2398E3AC0088A16B /* ChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F568921C2398E3AC0088A16B /* ChannelViewController.swift */; };
 		F568921F2398E57C0088A16B /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F568921E2398E57C0088A16B /* Channel.swift */; };
 		F56892212398E7F10088A16B /* ChannelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56892202398E7F10088A16B /* ChannelCell.swift */; };
 		F568922523993D4F0088A16B /* MemberUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F568922423993D4E0088A16B /* MemberUtils.swift */; };
-		F56892272399FC2C0088A16B /* AutoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56892262399FC2C0088A16B /* AutoButton.swift */; };
-		F5689229239A9D290088A16B /* TestVCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5689228239A9D290088A16B /* TestVCViewController.swift */; };
+		F5F6FF1123A0CF6400E4A824 /* AttributeKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F6FF1023A0CF6400E4A824 /* AttributeKey.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1A45C256CEF4A39CFDE167B1 /* MessageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageManager.swift; sourceTree = "<group>"; };
+		1A45C51B14DDE11CF333201B /* SeatManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeatManager.swift; sourceTree = "<group>"; };
+		1A45C89C1D7BE2FB3A0366C0 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		4DD0C9FC23A4DE0400BC2294 /* VoiceEffectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceEffectViewController.swift; sourceTree = "<group>"; };
 		A7237F472125894600F2F397 /* Sound Horizon - 記憶の水底.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Sound Horizon - 記憶の水底.mp3"; sourceTree = "<group>"; };
 		A77F45F2212426A500EB578D /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		A77F45F4212426AD00EB578D /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
@@ -70,28 +76,26 @@
 		F512BD8C238B7C2600B96E75 /* AgoraRtmKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraRtmKit.framework; path = AgoraChatRoom/AgoraRtmKit.framework; sourceTree = "<group>"; };
 		F512BD8E238B8A8D00B96E75 /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
 		F512BD90238B992A00B96E75 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
-		F512BD92238B9A2D00B96E75 /* BusinessManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessManager.swift; sourceTree = "<group>"; };
+		F512BD92238B9A2D00B96E75 /* ChatRoomManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomManager.swift; sourceTree = "<group>"; };
 		F512BD94238CCA9100B96E75 /* MemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberCell.swift; sourceTree = "<group>"; };
 		F512BD96238CCC0B00B96E75 /* MemberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberViewController.swift; sourceTree = "<group>"; };
 		F512BD9C238CEE9400B96E75 /* AlertUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertUtils.swift; sourceTree = "<group>"; };
-		F512BD9E238E428800B96E75 /* VoiceChangerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceChangerTableViewController.swift; sourceTree = "<group>"; };
-		F512BDA0238E462D00B96E75 /* VoiceChangerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceChangerCell.swift; sourceTree = "<group>"; };
-		F512BDA2238E533B00B96E75 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		F512BDA0238E462D00B96E75 /* VoiceEffectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceEffectCell.swift; sourceTree = "<group>"; };
+		F523B84A23A75DB60075A548 /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
+		F523B85423A7C35C0075A548 /* GiftPopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiftPopView.swift; sourceTree = "<group>"; };
+		F52EF76C239F51400042817C /* ChannelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelData.swift; sourceTree = "<group>"; };
 		F5616A5D2386594E003FEADA /* ChatRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomViewController.swift; sourceTree = "<group>"; };
 		F5616A5F238780A6003FEADA /* SeatCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatCollectionViewController.swift; sourceTree = "<group>"; };
 		F5616A61238786C7003FEADA /* SeatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatCell.swift; sourceTree = "<group>"; };
 		F5616A63238789E5003FEADA /* MessageTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewController.swift; sourceTree = "<group>"; };
 		F5616A6523878BDB003FEADA /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		F5616A672387B288003FEADA /* Seat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Seat.swift; sourceTree = "<group>"; };
-		F5616A692387B628003FEADA /* AudioStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioStatus.swift; sourceTree = "<group>"; };
-		F5616A6C2387C09E003FEADA /* BaseUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUtils.swift; sourceTree = "<group>"; };
 		F568921A2398DEAD0088A16B /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		F568921C2398E3AC0088A16B /* ChannelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelViewController.swift; sourceTree = "<group>"; };
 		F568921E2398E57C0088A16B /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		F56892202398E7F10088A16B /* ChannelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCell.swift; sourceTree = "<group>"; };
 		F568922423993D4E0088A16B /* MemberUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberUtils.swift; sourceTree = "<group>"; };
-		F56892262399FC2C0088A16B /* AutoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoButton.swift; sourceTree = "<group>"; };
-		F5689228239A9D290088A16B /* TestVCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestVCViewController.swift; sourceTree = "<group>"; };
+		F5F6FF1023A0CF6400E4A824 /* AttributeKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributeKey.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,10 +125,9 @@
 				F5616A5F238780A6003FEADA /* SeatCollectionViewController.swift */,
 				F5616A63238789E5003FEADA /* MessageTableViewController.swift */,
 				F512BD96238CCC0B00B96E75 /* MemberViewController.swift */,
-				F512BD9E238E428800B96E75 /* VoiceChangerTableViewController.swift */,
 				F568921A2398DEAD0088A16B /* NavigationController.swift */,
+				4DD0C9FC23A4DE0400BC2294 /* VoiceEffectViewController.swift */,
 				F568921C2398E3AC0088A16B /* ChannelViewController.swift */,
-				F5689228239A9D290088A16B /* TestVCViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -183,7 +186,6 @@
 				A7C50F16212414F300774322 /* LaunchScreen.storyboard */,
 				A7237F472125894600F2F397 /* Sound Horizon - 記憶の水底.mp3 */,
 				A7C50F19212414F300774322 /* Info.plist */,
-				F56892262399FC2C0088A16B /* AutoButton.swift */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -192,10 +194,12 @@
 			isa = PBXGroup;
 			children = (
 				F5616A672387B288003FEADA /* Seat.swift */,
-				F5616A692387B628003FEADA /* AudioStatus.swift */,
 				F512BD8E238B8A8D00B96E75 /* Member.swift */,
 				F512BD90238B992A00B96E75 /* Message.swift */,
 				F568921E2398E57C0088A16B /* Channel.swift */,
+				F52EF76C239F51400042817C /* ChannelData.swift */,
+				F5F6FF1023A0CF6400E4A824 /* AttributeKey.swift */,
+				1A45C89C1D7BE2FB3A0366C0 /* Constant.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -203,12 +207,14 @@
 		A7C50F2C2124218000774322 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F523B85423A7C35C0075A548 /* GiftPopView.swift */,
 				A7C50F11212414F200774322 /* Main.storyboard */,
 				F5616A61238786C7003FEADA /* SeatCell.swift */,
 				F5616A6523878BDB003FEADA /* MessageCell.swift */,
 				F512BD94238CCA9100B96E75 /* MemberCell.swift */,
-				F512BDA0238E462D00B96E75 /* VoiceChangerCell.swift */,
+				F512BDA0238E462D00B96E75 /* VoiceEffectCell.swift */,
 				F56892202398E7F10088A16B /* ChannelCell.swift */,
+				F523B84A23A75DB60075A548 /* CustomView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -218,7 +224,9 @@
 			children = (
 				F512BD88238B73AA00B96E75 /* RtcManager.swift */,
 				F512BD8A238B7BB300B96E75 /* RtmManager.swift */,
-				F512BD92238B9A2D00B96E75 /* BusinessManager.swift */,
+				F512BD92238B9A2D00B96E75 /* ChatRoomManager.swift */,
+				1A45C51B14DDE11CF333201B /* SeatManager.swift */,
+				1A45C256CEF4A39CFDE167B1 /* MessageManager.swift */,
 			);
 			name = Manager;
 			sourceTree = "<group>";
@@ -226,8 +234,6 @@
 		F5616A6B2387C087003FEADA /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				F512BDA2238E533B00B96E75 /* Constant.swift */,
-				F5616A6C2387C09E003FEADA /* BaseUtils.swift */,
 				F512BD9C238CEE9400B96E75 /* AlertUtils.swift */,
 				F568922423993D4E0088A16B /* MemberUtils.swift */,
 			);
@@ -312,33 +318,35 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F5616A6A2387B628003FEADA /* AudioStatus.swift in Sources */,
 				A7C50F0E212414F200774322 /* AppDelegate.swift in Sources */,
-				F56892272399FC2C0088A16B /* AutoButton.swift in Sources */,
-				F5616A6D2387C09E003FEADA /* BaseUtils.swift in Sources */,
 				F512BD95238CCA9100B96E75 /* MemberCell.swift in Sources */,
 				F512BD91238B992A00B96E75 /* Message.swift in Sources */,
 				F5616A64238789E5003FEADA /* MessageTableViewController.swift in Sources */,
+				F523B84B23A75DB60075A548 /* CustomView.swift in Sources */,
+				F5F6FF1123A0CF6400E4A824 /* AttributeKey.swift in Sources */,
 				F5616A682387B288003FEADA /* Seat.swift in Sources */,
-				F512BDA3238E533B00B96E75 /* Constant.swift in Sources */,
 				F512BD97238CCC0B00B96E75 /* MemberViewController.swift in Sources */,
 				F5616A5E2386594E003FEADA /* ChatRoomViewController.swift in Sources */,
 				F568922523993D4F0088A16B /* MemberUtils.swift in Sources */,
+				F523B85523A7C35C0075A548 /* GiftPopView.swift in Sources */,
 				F568921D2398E3AC0088A16B /* ChannelViewController.swift in Sources */,
 				F5616A60238780A6003FEADA /* SeatCollectionViewController.swift in Sources */,
-				F5689229239A9D290088A16B /* TestVCViewController.swift in Sources */,
 				F512BD8B238B7BB300B96E75 /* RtmManager.swift in Sources */,
 				F56892212398E7F10088A16B /* ChannelCell.swift in Sources */,
 				F5616A62238786C7003FEADA /* SeatCell.swift in Sources */,
-				F512BD93238B9A2D00B96E75 /* BusinessManager.swift in Sources */,
+				F512BD93238B9A2D00B96E75 /* ChatRoomManager.swift in Sources */,
 				F512BD9D238CEE9400B96E75 /* AlertUtils.swift in Sources */,
-				F512BD9F238E428800B96E75 /* VoiceChangerTableViewController.swift in Sources */,
+				4DD0C9FD23A4DE0400BC2294 /* VoiceEffectViewController.swift in Sources */,
 				F5616A6623878BDB003FEADA /* MessageCell.swift in Sources */,
 				F512BD89238B73AA00B96E75 /* RtcManager.swift in Sources */,
 				F568921F2398E57C0088A16B /* Channel.swift in Sources */,
 				F512BD8F238B8A8D00B96E75 /* Member.swift in Sources */,
+				F52EF76D239F51400042817C /* ChannelData.swift in Sources */,
 				F568921B2398DEAD0088A16B /* NavigationController.swift in Sources */,
-				F512BDA1238E462D00B96E75 /* VoiceChangerCell.swift in Sources */,
+				F512BDA1238E462D00B96E75 /* VoiceEffectCell.swift in Sources */,
+				1A45C3F5188DF25333735354 /* Constant.swift in Sources */,
+				1A45C1599426996E9D473BBD /* SeatManager.swift in Sources */,
+				1A45C9ABDDDBBC99E19FBDA7 /* MessageManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -482,7 +490,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -508,7 +516,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
