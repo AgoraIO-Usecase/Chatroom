@@ -11,11 +11,11 @@ import Foundation
 struct Seat: Codable {
     var userId: String?
     var isClosed: Bool = false
-    
+
     init(userId: String) {
         self.userId = userId
     }
-    
+
     init(isClosed: Bool) {
         self.isClosed = isClosed
     }

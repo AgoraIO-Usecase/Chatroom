@@ -10,7 +10,7 @@ import UIKit
 
 class VoiceEffectCell: UICollectionViewCell {
     @IBOutlet weak var effect: UIButton!
-    
+
     func update(_ isEffect: Bool, _ effectSelectedIndex: Int, _ beautifySelectedIndex: Int, _ position: Int) {
         var name: String
         var selectedIndex: Int

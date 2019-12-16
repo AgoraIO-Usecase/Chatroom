@@ -14,7 +14,7 @@ class AlertUtils: NSObject {
         vc.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
         root.present(vc, animated: true, completion: nil)
     }
-    
+
     static func showMenu(_ root: UIView, _ selectors: [Selector]) {
         root.becomeFirstResponder()
         let menu = UIMenuController.shared

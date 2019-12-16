@@ -13,13 +13,13 @@ extension UIView {
         get {
             layer.cornerRadius
         }
-        
+
         set {
             layer.cornerRadius = newValue
             layer.masksToBounds = newValue > 0
         }
     }
-    
+
     @IBInspectable var borderWidth: CGFloat {
         get {
             layer.borderWidth
@@ -28,7 +28,7 @@ extension UIView {
             layer.borderWidth = newValue > 0 ? newValue : 0
         }
     }
-    
+
     @IBInspectable var borderColor: UIColor {
         get {
             UIColor(cgColor: layer.borderColor!)

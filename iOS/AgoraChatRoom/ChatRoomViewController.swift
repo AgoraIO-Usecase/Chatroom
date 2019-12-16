@@ -17,7 +17,7 @@ class ChatRoomViewController: UIViewController {
     @IBOutlet weak var mixing: UIButton!
     @IBOutlet weak var mic: UIButton!
     @IBOutlet weak var gift: GiftPopView!
-    
+
     private lazy var mManager: ChatRoomManager = {
         let manager = ChatRoomManager.shared
         manager.delegate = self
@@ -51,11 +51,11 @@ class ChatRoomViewController: UIViewController {
             sender.text = nil
         }
     }
-    
+
     @IBAction func onExit(_ sender: Any) {
         navigationController?.popViewController(animated: true)
     }
-    
+
     @IBAction func onClick(_ sender: UIButton) {
         switch sender.tag {
         case 101:

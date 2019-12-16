@@ -11,7 +11,7 @@ import UIKit
 class ChannelCell: UICollectionViewCell {
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var name: UILabel!
-    
+
     func update(_ channel: Channel) {
         self.image.image = channel.drawableRes
         self.name.text = channel.name

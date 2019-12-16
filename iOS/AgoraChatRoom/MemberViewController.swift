@@ -13,7 +13,7 @@ class MemberViewController: UIViewController {
     @IBOutlet weak var listMember: UITableView!
 
     private var mChannelData = ChatRoomManager.shared.getChannelData()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         refreshTitle()
@@ -22,19 +22,19 @@ class MemberViewController: UIViewController {
     func refreshTitle() {
         num.text = "房间成员列表（\(mChannelData.getMemberArray().count)人）"
     }
-    
+
     func reloadData() {
         refreshTitle()
         listMember.reloadData()
     }
-    
+
     func reloadRowsByUserId(_ userId: String) {
         let index = mChannelData.indexOfMemberArray(userId)
         if index != NSNotFound {
             listMember.reloadRows(at: [IndexPath(row: index, section: 0)], with: .none)
         }
     }
-    
+
     @IBAction func onClick(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }

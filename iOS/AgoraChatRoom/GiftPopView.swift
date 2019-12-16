@@ -24,7 +24,7 @@ class GiftPopView: UIView {
         isHidden = false
         perform(#selector(hide), with: nil, afterDelay: 2.5)
     }
-    
+
     @objc private func hide() {
         isHidden = true
     }

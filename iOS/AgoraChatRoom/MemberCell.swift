@@ -14,13 +14,13 @@ class MemberCell: UITableViewCell {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var role: UIButton!
     @IBOutlet weak var btnMute: UIButton!
-    
-    func update(_ channelData: ChannelData,_ position: Int) {
+
+    func update(_ channelData: ChannelData, _ position: Int) {
         let member = channelData.getMemberArray()[position]
         let userId = member.userId
-        
+
         self.avatar.image = channelData.getMemberAvatar(userId)
-        
+
         if channelData.isUserOnline(userId) {
             let muted = channelData.isUserMuted(userId)
             self.ivMute.isHidden = false
@@ -33,12 +33,12 @@ class MemberCell: UITableViewCell {
             self.role.setTitle("上麦", for: .normal)
             self.btnMute.isHidden = true
         }
-        
+
         if !channelData.isAnchorMyself() {
             self.role.isHidden = true
             self.btnMute.isHidden = true
         }
-        
+
         var name = member.name
         if channelData.isAnchor(userId) {
             name = "\(name ?? userId)（主播）"
