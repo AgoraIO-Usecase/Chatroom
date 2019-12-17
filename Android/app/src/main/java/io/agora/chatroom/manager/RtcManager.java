@@ -5,6 +5,7 @@ import android.util.Log;
 
 import java.util.Locale;
 
+import io.agora.chatroom.R;
 import io.agora.rtc.Constants;
 import io.agora.rtc.IRtcEngineEventHandler;
 import io.agora.rtc.RtcEngine;
@@ -50,10 +51,10 @@ public final class RtcManager {
         mListener = listener;
     }
 
-    public void init(String appId) {
+    public void init() {
         if (mRtcEngine == null) {
             try {
-                mRtcEngine = RtcEngine.create(mContext, appId, mEventHandler);
+                mRtcEngine = RtcEngine.create(mContext, mContext.getString(R.string.agora_app_id), mEventHandler);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -67,7 +68,7 @@ public final class RtcManager {
 
     void joinChannel(String channelId, int userId) {
         if (mRtcEngine != null)
-            mRtcEngine.joinChannel(null, channelId, null, userId);
+            mRtcEngine.joinChannel(mContext.getString(R.string.agora_rtc_token), channelId, null, userId);
     }
 
     void setClientRole(int role) {

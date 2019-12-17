@@ -16,9 +16,8 @@ public class ChatRoomApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        String appId = getString(R.string.private_app_id);
-        RtcManager.instance(this).init(appId);
-        RtmManager.instance(this).init(appId);
+        RtcManager.instance(this).init();
+        RtmManager.instance(this).init();
     }
 
 }

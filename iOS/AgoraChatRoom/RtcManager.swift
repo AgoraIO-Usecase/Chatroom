@@ -45,7 +45,7 @@ class RtcManager: NSObject {
     }
 
     func joinChannel(_ channelId: String, _ userId: UInt) {
-        mRtcEngine?.joinChannel(byToken: nil, channelId: channelId, info: nil, uid: userId, joinSuccess: { [weak self] (channel, uid, elapsed) in
+        mRtcEngine?.joinChannel(byToken: Constant.sRtcToken, channelId: channelId, info: nil, uid: userId, joinSuccess: { [weak self] (channel, uid, elapsed) in
             print("rtc join success \(channel) \(uid)")
 
             guard let `self` = self else {

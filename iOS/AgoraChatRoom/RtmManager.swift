@@ -49,7 +49,7 @@ class RtmManager: NSObject {
             return
         }
 
-        mRtmKit?.login(byToken: nil, user: String(userId), completion: { [weak self] (code) in
+        mRtmKit?.login(byToken: Constant.sRtmToken, user: String(userId), completion: { [weak self] (code) in
             print("rtm login \(code.rawValue)")
 
             self?.mIsLogin = code == .ok

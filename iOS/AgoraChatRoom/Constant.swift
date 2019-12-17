@@ -9,7 +9,9 @@
 import Foundation
 
 class Constant: NSObject {
-    static let sAppId = "2b4b76e458cf439aa7cd313b9504f0a4"
+    static let sAppId = <#Agora App Id#>
+    static let sRtcToken = <#Agora Rtc Token#>
+    static let sRtmToken = <#Agora Rtm Token#>
 
     static let sUserId: UInt = UInt(UInt32(bitPattern: MemberUtils.getUserId()))
 

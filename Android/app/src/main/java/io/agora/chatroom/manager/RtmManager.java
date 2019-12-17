@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import io.agora.chatroom.R;
 import io.agora.rtm.ChannelAttributeOptions;
 import io.agora.rtm.ErrorInfo;
 import io.agora.rtm.ResultCallback;
@@ -66,10 +67,10 @@ public final class RtmManager {
         mListener = listener;
     }
 
-    public void init(String appId) {
+    public void init() {
         if (mRtmClient == null) {
             try {
-                mRtmClient = RtmClient.createInstance(mContext, appId, mClientListener);
+                mRtmClient = RtmClient.createInstance(mContext, mContext.getString(R.string.agora_app_id), mClientListener);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -83,7 +84,7 @@ public final class RtmManager {
                     callback.onSuccess(null);
                 return;
             }
-            mRtmClient.login(null, String.valueOf(userId), new ResultCallback<Void>() {
+            mRtmClient.login(mContext.getString(R.string.agora_rtm_token), String.valueOf(userId), new ResultCallback<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
                     Log.d(TAG, "rtm login success");
