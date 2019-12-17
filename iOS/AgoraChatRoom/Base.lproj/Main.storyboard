@@ -293,7 +293,7 @@
                     <navigationItem key="navigationItem" title="语聊房" id="lqB-1a-WGr">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="3Aw-1B-0hD">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="QQh-xP-cnJ">
-                                <rect key="frame" x="16" y="0.0" width="30" height="30"/>
+                                <rect key="frame" x="16" y="0.0" width="45" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.61568627450980395" green="0.61176470588235299" blue="0.59607843137254901" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <state key="normal" image="ic_exit"/>
@@ -309,7 +309,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="SKs-ho-qoP">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="q2g-NQ-eEd">
-                                <rect key="frame" x="297" y="0.0" width="62" height="34"/>
+                                <rect key="frame" x="297" y="0.0" width="62" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.61568627450980395" green="0.61176470588235299" blue="0.59607843137254901" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -719,10 +719,10 @@
             </objects>
             <point key="canvasLocation" x="192.80000000000001" y="-487.10644677661173"/>
         </scene>
-        <!--Voice Changer View Controller-->
+        <!--Voice Effect View Controller-->
         <scene sceneID="ahP-1P-o0O">
             <objects>
-                <viewController id="gwc-4U-HKO" customClass="VoiceChangerViewController" customModule="AgoraChatRoom" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="gwc-4U-HKO" customClass="VoiceEffectViewController" customModule="AgoraChatRoom" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YCG-U4-9G5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="405"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -754,7 +754,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="onEffectClick:" destination="gwc-4U-HKO" eventType="touchUpInside" id="1sE-m8-R64"/>
+                                                    <action selector="onEffectClick:" destination="gwc-4U-HKO" eventType="touchUpInside" id="Jxv-kl-8fH"/>
                                                 </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4EY-7I-OIm">
@@ -779,7 +779,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="onBeautifyClick:" destination="gwc-4U-HKO" eventType="touchUpInside" id="2Bh-9j-Cas"/>
+                                                    <action selector="onBeautifyClick:" destination="gwc-4U-HKO" eventType="touchUpInside" id="kKU-hT-boV"/>
                                                 </connections>
                                             </button>
                                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kfV-Gk-4Bf">
@@ -820,7 +820,7 @@
                                             <inset key="sectionInset" minX="19" minY="19" maxX="19" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="VoiceChangerCell" id="MNG-IZ-dWb" customClass="VoiceChangerCell" customModule="AgoraChatRoom" customModuleProvider="target">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="VoiceEffectCell" id="MNG-IZ-dWb" customClass="VoiceEffectCell" customModule="AgoraChatRoom" customModuleProvider="target">
                                                 <rect key="frame" x="19" y="19" width="100" height="44"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="GU3-eI-GZ3">
@@ -859,8 +859,8 @@
                                             </collectionViewCell>
                                         </cells>
                                         <connections>
-                                            <outlet property="dataSource" destination="gwc-4U-HKO" id="boy-PT-BSX"/>
-                                            <outlet property="delegate" destination="gwc-4U-HKO" id="HYm-kB-jyt"/>
+                                            <outlet property="dataSource" destination="gwc-4U-HKO" id="Xpz-hT-Cr5"/>
+                                            <outlet property="delegate" destination="gwc-4U-HKO" id="CeQ-cd-8Y9"/>
                                         </connections>
                                     </collectionView>
                                 </subviews>
@@ -893,11 +893,11 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <size key="freeformSize" width="375" height="405"/>
                     <connections>
-                        <outlet property="beautify" destination="uSM-uv-z2i" id="qnH-yh-Cr1"/>
-                        <outlet property="effect" destination="eoi-KU-MBF" id="alB-XE-LsU"/>
-                        <outlet property="gridVoiceEffect" destination="oR1-t9-6qp" id="glX-Zj-X2C"/>
-                        <outlet property="lineBeautify" destination="kfV-Gk-4Bf" id="wp1-3j-7xP"/>
-                        <outlet property="lineEffect" destination="4EY-7I-OIm" id="s3V-nh-xF3"/>
+                        <outlet property="beautify" destination="uSM-uv-z2i" id="C5a-3H-8yD"/>
+                        <outlet property="effect" destination="eoi-KU-MBF" id="cYL-ax-tV4"/>
+                        <outlet property="gridVoiceEffect" destination="oR1-t9-6qp" id="Ajc-G8-xTd"/>
+                        <outlet property="lineBeautify" destination="kfV-Gk-4Bf" id="dLz-Mq-SMw"/>
+                        <outlet property="lineEffect" destination="4EY-7I-OIm" id="5ta-6E-6cn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QWI-It-7rf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

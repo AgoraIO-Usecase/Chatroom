@@ -113,6 +113,11 @@ class VoiceEffectViewController: UIViewController {
         lineBeautify.isHidden = isEffect
     }
 
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
+        dismiss(animated: true)
+    }
+
     @IBAction func onEffectClick(_ sender: UIButton) {
         showEffect(mEffectSelectedIndex)
         resetViews()
@@ -155,7 +160,7 @@ extension VoiceEffectViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VoiceChangerCell", for: indexPath) as! VoiceEffectCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VoiceEffectCell", for: indexPath) as! VoiceEffectCell
 
         cell.update(isEffect, mEffectSelectedIndex, mBeautifySelectedIndex, indexPath.item)
 
