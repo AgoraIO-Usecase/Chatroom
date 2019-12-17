@@ -56,9 +56,11 @@ class ChannelData {
     }
 
     func updateSeat(_ position: Int, _ seat: Seat?) -> Bool {
-        if let `seat` = seat, let temp = mSeatArray[position] {
-            if seat.userId == temp.userId {
-                return false
+        if let `seat` = seat {
+            if let temp = mSeatArray[position] {
+                if seat.userId == temp.userId {
+                    return false
+                }
             }
         } else {
             if mSeatArray[position] == nil {
