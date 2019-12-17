@@ -18,7 +18,6 @@ protocol SeatManager: class {
 }
 
 extension SeatManager {
-
     func toBroadcaster(_ userId: String, _ position: Int) {
         print("toBroadcaster \(userId) \(position)")
 
@@ -129,5 +128,4 @@ extension SeatManager {
         }
         return false
     }
-
 }

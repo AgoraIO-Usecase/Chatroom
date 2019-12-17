@@ -135,6 +135,9 @@ extension VoiceEffectViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let position = indexPath.item
         if isEffect {
+            if position == mEffectSelectedIndex {
+                return
+            }
             let oldPosition = mEffectSelectedIndex
             mEffectSelectedIndex = position
             gridVoiceEffect.reloadItems(at: [IndexPath(item: oldPosition, section: 0), indexPath])
@@ -142,6 +145,9 @@ extension VoiceEffectViewController: UICollectionViewDelegate {
             let type = VoiceEffect.allCases[position].rawValue
             ChatRoomManager.shared.getRtcManager().setReverbPreset(type)
         } else {
+            if position == mBeautifySelectedIndex {
+                return
+            }
             let oldPosition = mBeautifySelectedIndex
             mBeautifySelectedIndex = position
             gridVoiceEffect.reloadItems(at: [IndexPath(item: oldPosition, section: 0), indexPath])
