@@ -39,7 +39,7 @@ def main():
     token = ""
 
     # if need reset
-    f = open("./" + SCHEME + "/Constant.swift", 'r+')
+    f = open("./" + SCHEME + "/KeyCenter.swift", 'r+')
     content = f.read()
 
     # if need reset
