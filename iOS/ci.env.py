@@ -45,9 +45,9 @@ def main():
     # if need reset
     agoraAppString = "\"" + appId + "\""
     agoraTokenString = "\"" + token + "\""
-    contentNew = re.sub(r'<#Agora App Id#>', agoraAppString, content)
-    contentNew = re.sub(r'<#Agora Rtc Token#>', agoraTokenString, contentNew)
-    contentNew = re.sub(r'<#Agora Rtm Token#>', agoraTokenString, contentNew)
+    contentNew = re.sub(r'<#Your App Id#>', agoraAppString, content)
+    contentNew = re.sub(r'<#Temp Access Token#>', agoraTokenString, contentNew)
+    contentNew = re.sub(r'<#Temp Rtm Access Token#>', agoraTokenString, contentNew)
 
     f.seek(0)
     f.write(contentNew)

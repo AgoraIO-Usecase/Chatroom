@@ -1,0 +1,63 @@
+/* 
+  Localizable.strings
+  AgoraChatRoom
+
+  Created by LXH on 2019/12/18.
+  Copyright © 2019 CavanSu. All rights reserved.
+*/
+
+"Zhao" = "Zhao";
+"Qian" = "Qian";
+"Sun" = "Sun";
+"Li" = "Li";
+"Zhou" = "Zhou";
+"Wu" = "Wu";
+"Zheng" = "Zheng";
+"Wang" = "Wang";
+"Feng" = "Feng";
+"Chen" = "Chen";
+"Chu" = "Chu";
+"Wei" = "Wei";
+
+"Fuqiang" = "Fuqiang";
+"Minzhu" = "Minzhu";
+"Wenming" = "WenMing";
+"Hexie" = "Hexie";
+"Ziyou" = "Ziyou";
+"Pingdeng" = "Pingdeng";
+"Gongzheng" = "Gongzheng";
+"Fazhi" = "Fazhi";
+"Aiguo" = "Aiguo";
+"Jingye" = "Jingye";
+"Chengxin" = "Chengxin";
+"Youshan" = "Youshan";
+
+"KTV" = "KTV";
+"Live" = "Live";
+"Uncle" = "Uncle";
+"Girl" = "Girl";
+"Studio" = "Studio";
+"Pop" = "Pop";
+"R&B" = "R&B";
+"Phonograph" = "Phonograph";
+
+"Default" = "Default";
+"Thick" = "Thick";
+"Low" = "Low";
+"Round" = "Round";
+"Falsetto" = "Falsetto";
+"Full" = "Full";
+"Clear" = "Clear";
+"Resounding" = "Resounding";
+"Loud" = "Loud";
+"OpenAir" = "OpenAir";
+
+"to_broadcast" = "toBroadcast";
+"to_audience" = "toAudience";
+"channel_member_list" = "Channel member list";
+"people" = "people";
+"turn_off_mic" = "Turn off mic";
+"turn_on_mic" = "Turn on mic";
+"open_seat" = "Open";
+"close_seat" = "Close";
+"anchor" = "（Anchor）";

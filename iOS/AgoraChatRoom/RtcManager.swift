@@ -35,7 +35,7 @@ class RtcManager: NSObject {
 
     func initialize() {
         if mRtcEngine == nil {
-            mRtcEngine = AgoraRtcEngineKit.sharedEngine(withAppId: Constant.sAppId, delegate: self)
+            mRtcEngine = AgoraRtcEngineKit.sharedEngine(withAppId: KeyCenter.AppId, delegate: self)
         }
         if let `mRtcEngine` = mRtcEngine {
             mRtcEngine.setChannelProfile(.liveBroadcasting)
@@ -45,7 +45,7 @@ class RtcManager: NSObject {
     }
 
     func joinChannel(_ channelId: String, _ userId: UInt) {
-        mRtcEngine?.joinChannel(byToken: Constant.sRtcToken, channelId: channelId, info: nil, uid: userId, joinSuccess: { [weak self] (channel, uid, elapsed) in
+        mRtcEngine?.joinChannel(byToken: KeyCenter.Token, channelId: channelId, info: nil, uid: userId, joinSuccess: { [weak self] (channel, uid, elapsed) in
             print("rtc join success \(channel) \(uid)")
 
             guard let `self` = self else {

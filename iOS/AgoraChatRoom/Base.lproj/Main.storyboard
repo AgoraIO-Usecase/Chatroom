@@ -29,7 +29,7 @@
             </objects>
             <point key="canvasLocation" x="-2313" y="-619"/>
         </scene>
-        <!--语聊房-->
+        <!--ChatRoom-->
         <scene sceneID="mSD-Im-Lk0">
             <objects>
                 <viewController id="UKh-M4-iF3" customClass="ChatRoomViewController" customModule="AgoraChatRoom" customModuleProvider="target" sceneMemberID="viewController">
@@ -37,7 +37,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_channel_list" translatesAutoresizingMaskIntoConstraints="NO" id="4Mv-Ks-nDy">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_channel_list" translatesAutoresizingMaskIntoConstraints="NO" id="4Mv-Ks-nDy">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l31-kY-Bl4">
@@ -61,7 +61,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4nk-Nc-h9l">
                                         <rect key="frame" x="15" y="15" width="345" height="38"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="说点什么..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Pp-tn-Ieq">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Say something..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Pp-tn-Ieq">
                                                 <rect key="frame" x="12" y="0.0" width="321" height="38"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
@@ -96,11 +96,12 @@
                                         <color key="backgroundColor" red="0.61568627450980395" green="0.61176470588235299" blue="0.59607843137254901" alpha="0.1033550941780822" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="38" id="6Fn-n4-LXN"/>
-                                            <constraint firstAttribute="width" constant="90" id="Oky-jp-Vbp"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="90" id="Oky-jp-Vbp"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="伴奏" image="ic_mixing_off">
+                                        <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="6" maxY="0.0"/>
+                                        <state key="normal" title="Mixing" image="ic_mixing_off">
                                             <color key="titleColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <state key="selected" image="ic_mixing_on"/>
@@ -114,11 +115,15 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MlU-WI-fjV">
-                                        <rect key="frame" x="117" y="67" width="90" height="38"/>
+                                        <rect key="frame" x="117" y="67" width="100.5" height="38"/>
                                         <color key="backgroundColor" red="0.61568627450000002" green="0.61176470589999998" blue="0.59607843140000005" alpha="0.1033550942" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="90" id="kwp-rx-imB"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="变声" image="ic_effect">
+                                        <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="6" maxY="0.0"/>
+                                        <state key="normal" title="Changer" image="ic_effect">
                                             <color key="titleColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -128,13 +133,13 @@
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="onClick:" destination="UKh-M4-iF3" eventType="touchUpInside" id="COm-4a-1Yw"/>
-                                            <segue destination="gwc-4U-HKO" kind="popoverPresentation" identifier="effect" popoverAnchorView="MlU-WI-fjV" id="rzu-IT-kvp">
+                                            <segue destination="gwc-4U-HKO" kind="popoverPresentation" identifier="changer" popoverAnchorView="MlU-WI-fjV" id="rzu-IT-kvp">
                                                 <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                             </segue>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="103" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wO2-ep-CcE">
-                                        <rect key="frame" x="219" y="67" width="38" height="38"/>
+                                        <rect key="frame" x="229.5" y="67" width="38" height="38"/>
                                         <color key="backgroundColor" red="0.61568627450000002" green="0.61176470589999998" blue="0.59607843140000005" alpha="0.1033550942" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" image="ic_mic_off"/>
@@ -149,7 +154,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="104" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p97-hU-CU9">
-                                        <rect key="frame" x="269" y="67" width="38" height="38"/>
+                                        <rect key="frame" x="279.5" y="67" width="38" height="38"/>
                                         <color key="backgroundColor" red="0.61568627450000002" green="0.61176470589999998" blue="0.59607843140000005" alpha="0.1033550942" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" image="ic_speaker_off"/>
@@ -180,7 +185,6 @@
                                     <constraint firstItem="MlU-WI-fjV" firstAttribute="centerY" secondItem="jMg-Wz-Zfe" secondAttribute="centerY" id="02l-aJ-Xgg"/>
                                     <constraint firstItem="Dsm-bv-I37" firstAttribute="centerY" secondItem="jMg-Wz-Zfe" secondAttribute="centerY" id="2R9-Y6-Gf7"/>
                                     <constraint firstItem="4nk-Nc-h9l" firstAttribute="top" secondItem="i92-Es-Juc" secondAttribute="top" constant="15" id="2Xw-FV-XLz"/>
-                                    <constraint firstItem="MlU-WI-fjV" firstAttribute="width" secondItem="jMg-Wz-Zfe" secondAttribute="width" id="4dg-TD-EIM"/>
                                     <constraint firstItem="p97-hU-CU9" firstAttribute="height" secondItem="wO2-ep-CcE" secondAttribute="height" id="Geo-Ag-nTG"/>
                                     <constraint firstAttribute="trailing" secondItem="Dsm-bv-I37" secondAttribute="trailing" constant="15" id="NCI-8x-xbw"/>
                                     <constraint firstItem="p97-hU-CU9" firstAttribute="leading" secondItem="wO2-ep-CcE" secondAttribute="trailing" constant="12" id="Pdb-uI-a5l"/>
@@ -226,14 +230,14 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eNP-ID-jbD">
-                                        <rect key="frame" x="63" y="11" width="36" height="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eNP-ID-jbD">
+                                        <rect key="frame" x="63" y="11" width="0.0" height="0.0"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="向主播赠送了礼物" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QhM-zl-GUN">
-                                        <rect key="frame" x="63" y="32" width="98.5" height="15"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Give gift to anchor" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QhM-zl-GUN">
+                                        <rect key="frame" x="63" y="32" width="105" height="15"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -290,43 +294,57 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lsP-20-Y2P"/>
                     </view>
-                    <navigationItem key="navigationItem" title="语聊房" id="lqB-1a-WGr">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="3Aw-1B-0hD">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="QQh-xP-cnJ">
-                                <rect key="frame" x="16" y="0.0" width="30" height="30"/>
+                    <navigationItem key="navigationItem" title="ChatRoom" id="lqB-1a-WGr">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="IcT-AD-PMm">
+                            <view key="customView" contentMode="scaleToFill" id="3ep-DW-s3Q">
+                                <rect key="frame" x="16" y="0.0" width="44" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.61568627450980395" green="0.61176470588235299" blue="0.59607843137254901" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                <state key="normal" image="ic_exit"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="15"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="onExit:" destination="UKh-M4-iF3" eventType="touchUpInside" id="Qz0-2d-xVJ"/>
-                                </connections>
-                            </button>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="93P-UM-s4W">
+                                        <rect key="frame" x="7" y="7" width="30" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.61568627450000002" green="0.61176470589999998" blue="0.59607843140000005" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <state key="normal" image="ic_exit"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="15"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="onExit:" destination="UKh-M4-iF3" eventType="touchUpInside" id="leY-cE-EX3"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="SKs-ho-qoP">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="q2g-NQ-eEd">
-                                <rect key="frame" x="297" y="0.0" width="62" height="34"/>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="gfV-KM-WYz">
+                            <view key="customView" contentMode="scaleToFill" id="XxC-ZA-iVN">
+                                <rect key="frame" x="297" y="0.0" width="62" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.61568627450980395" green="0.61176470588235299" blue="0.59607843137254901" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" title="0" image="ic_audience">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="17"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <segue destination="zyo-gK-lxJ" kind="popoverPresentation" identifier="member" popoverAnchorView="q2g-NQ-eEd" id="2uv-df-EZz">
-                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                    </segue>
-                                </connections>
-                            </button>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="2vo-qr-Mlf">
+                                        <rect key="frame" x="0.0" y="5" width="62" height="34"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.61568627450000002" green="0.61176470589999998" blue="0.59607843140000005" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <state key="normal" title="0" image="ic_audience">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="17"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <segue destination="zyo-gK-lxJ" kind="popoverPresentation" identifier="member" popoverAnchorView="2vo-qr-Mlf" id="Qfn-A8-nFL">
+                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                            </segue>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -334,7 +352,7 @@
                         <outlet property="gift" destination="VPa-NN-s4T" id="HBm-4Z-pfW"/>
                         <outlet property="mic" destination="wO2-ep-CcE" id="Dzi-7d-b4j"/>
                         <outlet property="mixing" destination="jMg-Wz-Zfe" id="svd-r4-Rvk"/>
-                        <outlet property="num" destination="q2g-NQ-eEd" id="pUR-hg-6uD"/>
+                        <outlet property="num" destination="2vo-qr-Mlf" id="ncI-rJ-UT3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nHF-o0-lwY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -355,8 +373,8 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mPi-AJ-EEm">
                                         <rect key="frame" x="0.0" y="0.0" width="325" height="54"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="房间成员列表（10人）" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rf1-gE-km5">
-                                                <rect key="frame" x="19" y="18.5" width="144" height="17"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rf1-gE-km5">
+                                                <rect key="frame" x="19" y="27" width="0.0" height="0.0"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -430,8 +448,8 @@
                                                                 <constraint firstAttribute="trailing" secondItem="c4T-qC-OYq" secondAttribute="trailing" id="o5e-f7-yld"/>
                                                             </constraints>
                                                         </view>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lLG-eZ-BvB">
-                                                            <rect key="frame" x="67" y="17.5" width="123" height="17"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lLG-eZ-BvB">
+                                                            <rect key="frame" x="67" y="26" width="123" height="0.0"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -443,7 +461,7 @@
                                                                 <constraint firstAttribute="height" constant="32" id="ldc-3O-lHD"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                            <state key="normal" title="下麦">
+                                                            <state key="normal">
                                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </state>
                                                             <userDefinedRuntimeAttributes>
@@ -465,7 +483,7 @@
                                                                 <constraint firstAttribute="height" constant="32" id="kkr-sy-saL"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                            <state key="normal" title="禁麦">
+                                                            <state key="normal">
                                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </state>
                                                             <userDefinedRuntimeAttributes>
@@ -669,10 +687,10 @@
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HX1-s9-osa">
-                                            <rect key="frame" x="53" y="8" width="65.5" height="40"/>
+                                            <rect key="frame" x="53" y="8" width="30" height="40"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DCU-az-xNh">
-                                                    <rect key="frame" x="15" y="9" width="35.5" height="22"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DCU-az-xNh">
+                                                    <rect key="frame" x="15" y="9" width="0.0" height="22"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -719,10 +737,10 @@
             </objects>
             <point key="canvasLocation" x="192.80000000000001" y="-487.10644677661173"/>
         </scene>
-        <!--Voice Effect View Controller-->
+        <!--Voice Changer View Controller-->
         <scene sceneID="ahP-1P-o0O">
             <objects>
-                <viewController id="gwc-4U-HKO" customClass="VoiceEffectViewController" customModule="AgoraChatRoom" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="gwc-4U-HKO" customClass="VoiceChangerViewController" customModule="AgoraChatRoom" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YCG-U4-9G5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="405"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -747,14 +765,14 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" title="音效">
+                                                <state key="normal" title="Voice Effect">
                                                     <color key="titleColor" white="1" alpha="0.60059931506849318" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <state key="selected">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="onEffectClick:" destination="gwc-4U-HKO" eventType="touchUpInside" id="Jxv-kl-8fH"/>
+                                                    <action selector="onEffectClick:" destination="gwc-4U-HKO" eventType="touchUpInside" id="ggC-Sw-8CC"/>
                                                 </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4EY-7I-OIm">
@@ -772,14 +790,14 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" title="美声">
+                                                <state key="normal" title="Voice Beautify">
                                                     <color key="titleColor" white="1" alpha="0.60046553940000003" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <state key="selected">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="onBeautifyClick:" destination="gwc-4U-HKO" eventType="touchUpInside" id="kKU-hT-boV"/>
+                                                    <action selector="onBeautifyClick:" destination="gwc-4U-HKO" eventType="touchUpInside" id="9ER-Vj-acZ"/>
                                                 </connections>
                                             </button>
                                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kfV-Gk-4Bf">
@@ -820,7 +838,7 @@
                                             <inset key="sectionInset" minX="19" minY="19" maxX="19" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="VoiceEffectCell" id="MNG-IZ-dWb" customClass="VoiceEffectCell" customModule="AgoraChatRoom" customModuleProvider="target">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="VoiceChangerCell" id="MNG-IZ-dWb" customClass="VoiceChangerCell" customModule="AgoraChatRoom" customModuleProvider="target">
                                                 <rect key="frame" x="19" y="19" width="100" height="44"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="GU3-eI-GZ3">
@@ -829,7 +847,7 @@
                                                     <subviews>
                                                         <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jlt-d0-8aW">
                                                             <rect key="frame" x="0.0" y="0.0" width="100" height="44"/>
-                                                            <state key="normal" title="Button">
+                                                            <state key="normal">
                                                                 <color key="titleColor" white="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </state>
                                                             <userDefinedRuntimeAttributes>
@@ -854,13 +872,13 @@
                                                 </collectionViewCellContentView>
                                                 <size key="customSize" width="100" height="44"/>
                                                 <connections>
-                                                    <outlet property="effect" destination="jlt-d0-8aW" id="Ksh-Fc-Xwa"/>
+                                                    <outlet property="effect" destination="jlt-d0-8aW" id="oUe-hf-ov2"/>
                                                 </connections>
                                             </collectionViewCell>
                                         </cells>
                                         <connections>
-                                            <outlet property="dataSource" destination="gwc-4U-HKO" id="Xpz-hT-Cr5"/>
-                                            <outlet property="delegate" destination="gwc-4U-HKO" id="CeQ-cd-8Y9"/>
+                                            <outlet property="dataSource" destination="gwc-4U-HKO" id="4OS-nK-8gJ"/>
+                                            <outlet property="delegate" destination="gwc-4U-HKO" id="xl4-s3-vHL"/>
                                         </connections>
                                     </collectionView>
                                 </subviews>
@@ -893,18 +911,18 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <size key="freeformSize" width="375" height="405"/>
                     <connections>
-                        <outlet property="beautify" destination="uSM-uv-z2i" id="C5a-3H-8yD"/>
-                        <outlet property="effect" destination="eoi-KU-MBF" id="cYL-ax-tV4"/>
-                        <outlet property="gridVoiceEffect" destination="oR1-t9-6qp" id="Ajc-G8-xTd"/>
-                        <outlet property="lineBeautify" destination="kfV-Gk-4Bf" id="dLz-Mq-SMw"/>
-                        <outlet property="lineEffect" destination="4EY-7I-OIm" id="5ta-6E-6cn"/>
+                        <outlet property="beautify" destination="uSM-uv-z2i" id="Yp5-KL-WbS"/>
+                        <outlet property="effect" destination="eoi-KU-MBF" id="ZwP-Go-son"/>
+                        <outlet property="gridVoiceEffect" destination="oR1-t9-6qp" id="ech-Kg-OUw"/>
+                        <outlet property="lineBeautify" destination="kfV-Gk-4Bf" id="Tkv-Ge-V6I"/>
+                        <outlet property="lineEffect" destination="4EY-7I-OIm" id="gjs-d1-E1v"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QWI-It-7rf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="63" y="34"/>
         </scene>
-        <!--房间列表-->
+        <!--ChannelList-->
         <scene sceneID="PrE-x9-OmB">
             <objects>
                 <viewController id="vlS-vc-ljw" customClass="ChannelViewController" customModule="AgoraChatRoom" customModuleProvider="target" sceneMemberID="viewController">
@@ -916,7 +934,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.24953981159999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </imageView>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="QFq-it-SVe">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="QFq-it-SVe">
                                 <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="agh-SS-oay">
@@ -939,8 +957,8 @@
                                                         <constraint firstAttribute="width" secondItem="8bW-jc-MWu" secondAttribute="height" multiplier="85:93" id="Wjd-a1-J6v"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fbf-v6-3of">
-                                                    <rect key="frame" x="15" y="198" width="36" height="14"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fbf-v6-3of">
+                                                    <rect key="frame" x="15" y="198" width="0.0" height="14"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -986,7 +1004,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Mb2-HZ-VsZ"/>
                     </view>
-                    <navigationItem key="navigationItem" title="房间列表" id="Fe3-uR-aXQ"/>
+                    <navigationItem key="navigationItem" title="ChannelList" id="Fe3-uR-aXQ"/>
                     <connections>
                         <segue destination="UKh-M4-iF3" kind="show" identifier="chatRoom" id="83K-uG-vIK"/>
                     </connections>

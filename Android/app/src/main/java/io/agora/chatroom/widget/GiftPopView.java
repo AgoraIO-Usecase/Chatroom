@@ -4,6 +4,9 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.AnimationSet;
+import android.view.animation.TranslateAnimation;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,9 +16,9 @@ import androidx.annotation.Nullable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.agora.chatroom.R;
+import io.agora.chatroom.manager.ChatRoomManager;
 import io.agora.chatroom.model.ChannelData;
 import io.agora.chatroom.model.Member;
-import io.agora.chatroom.manager.ChatRoomManager;
 
 public class GiftPopView extends FrameLayout {
 
@@ -52,8 +55,19 @@ public class GiftPopView extends FrameLayout {
         else
             tv_name.setText(userId);
         iv_avatar.setImageResource(channelData.getMemberAvatar(userId));
+
         setVisibility(View.VISIBLE);
+        animation();
         postDelayed(() -> setVisibility(View.GONE), 2500);
+    }
+
+    private void animation() {
+        AnimationSet animationSet = new AnimationSet(true);
+        measure(0, 0);
+        animationSet.addAnimation(new TranslateAnimation(0, 0, getMeasuredHeight(), 0));
+        animationSet.addAnimation(new AlphaAnimation(0, 1));
+        animationSet.setDuration(1000);
+        startAnimation(animationSet);
     }
 
 }

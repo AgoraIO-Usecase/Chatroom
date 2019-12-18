@@ -39,7 +39,7 @@ class RtmManager: NSObject {
 
     func initialize() {
         if mRtmKit == nil {
-            mRtmKit = AgoraRtmKit.init(appId: Constant.sAppId, delegate: self)
+            mRtmKit = AgoraRtmKit.init(appId: KeyCenter.AppId, delegate: self)
         }
     }
 
@@ -49,7 +49,7 @@ class RtmManager: NSObject {
             return
         }
 
-        mRtmKit?.login(byToken: Constant.sRtmToken, user: String(userId), completion: { [weak self] (code) in
+        mRtmKit?.login(byToken: KeyCenter.RtmToken, user: String(userId), completion: { [weak self] (code) in
             print("rtm login \(code.rawValue)")
 
             self?.mIsLogin = code == .ok

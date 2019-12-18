@@ -14,16 +14,16 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.agora.chatroom.R;
 
-public class VoiceEffectGridAdapter extends RecyclerView.Adapter<VoiceEffectGridAdapter.ViewHolder> {
+public class VoiceChangerGridAdapter extends RecyclerView.Adapter<VoiceChangerGridAdapter.ViewHolder> {
 
     private LayoutInflater mInflater;
-    private VoiceEffectGridAdapter.OnItemClickListener mListener;
+    private VoiceChangerGridAdapter.OnItemClickListener mListener;
     private int mSelectedIndex;
 
     private String[] mKeys;
     private int[] mValues;
 
-    public VoiceEffectGridAdapter(Context context, @ArrayRes int keysId, @ArrayRes int valuesId) {
+    public VoiceChangerGridAdapter(Context context, @ArrayRes int keysId, @ArrayRes int valuesId) {
         mInflater = LayoutInflater.from(context);
         mKeys = context.getResources().getStringArray(keysId);
         mValues = context.getResources().getIntArray(valuesId);
@@ -32,7 +32,7 @@ public class VoiceEffectGridAdapter extends RecyclerView.Adapter<VoiceEffectGrid
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.layout_item_effect, parent, false);
+        View view = mInflater.inflate(R.layout.layout_item_changer, parent, false);
         return new ViewHolder(view);
     }
 
@@ -40,10 +40,10 @@ public class VoiceEffectGridAdapter extends RecyclerView.Adapter<VoiceEffectGrid
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         String key = mKeys[position];
 
-        holder.tv_effect.setText(key);
-        holder.tv_effect.setBackgroundResource(mSelectedIndex == position ? R.drawable.bg_effect_item_selected : R.drawable.bg_effect_item_normal);
+        holder.tv_changer.setText(key);
+        holder.tv_changer.setBackgroundResource(mSelectedIndex == position ? R.drawable.bg_changer_item_selected : R.drawable.bg_changer_item_normal);
 
-        holder.tv_effect.setOnClickListener((view) -> {
+        holder.tv_changer.setOnClickListener((view) -> {
             setSelectedIndex(position);
             if (mListener != null)
                 mListener.onItemClick(position, mValues[position]);
@@ -62,13 +62,13 @@ public class VoiceEffectGridAdapter extends RecyclerView.Adapter<VoiceEffectGrid
         notifyItemChanged(index);
     }
 
-    public void setOnItemClickListener(VoiceEffectGridAdapter.OnItemClickListener listener) {
+    public void setOnItemClickListener(VoiceChangerGridAdapter.OnItemClickListener listener) {
         mListener = listener;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.tv_effect)
-        TextView tv_effect;
+        @BindView(R.id.tv_changer)
+        TextView tv_changer;
 
         ViewHolder(View view) {
             super(view);

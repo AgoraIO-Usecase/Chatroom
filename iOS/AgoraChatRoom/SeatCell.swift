@@ -88,7 +88,7 @@ class SeatCell: UICollectionViewCell {
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        AlertUtils.showMenu(self, [#selector(toBroadcast), #selector(toAudience), #selector(turnOffMic), #selector(turnOnMic), #selector(closeSeat), #selector(openSeat)])
+        AlertUtil.showMenu(self, [#selector(toBroadcast), #selector(toAudience), #selector(turnOffMic), #selector(turnOnMic), #selector(closeSeat), #selector(openSeat)])
     }
 
     @objc private func toBroadcast() {

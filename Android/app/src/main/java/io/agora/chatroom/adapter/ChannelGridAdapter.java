@@ -36,9 +36,9 @@ public class ChannelGridAdapter extends RecyclerView.Adapter<ChannelGridAdapter.
         mChannelList = new ArrayList<>();
 
         Resources resources = context.getResources();
-        TypedArray drawables = resources.obtainTypedArray(R.array.room_list_drawable);
-        TypedArray backgrounds = resources.obtainTypedArray(R.array.room_list_background);
-        String[] titles = resources.getStringArray(R.array.room_list_title);
+        TypedArray drawables = resources.obtainTypedArray(R.array.channel_list_drawable);
+        TypedArray backgrounds = resources.obtainTypedArray(R.array.channel_list_background);
+        String[] titles = resources.getStringArray(R.array.channel_list_title);
 
         for (int i = 0; i < titles.length; i++) {
             mChannelList.add(new Channel(

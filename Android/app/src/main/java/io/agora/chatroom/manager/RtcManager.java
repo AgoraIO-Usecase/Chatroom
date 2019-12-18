@@ -54,7 +54,7 @@ public final class RtcManager {
     public void init() {
         if (mRtcEngine == null) {
             try {
-                mRtcEngine = RtcEngine.create(mContext, mContext.getString(R.string.agora_app_id), mEventHandler);
+                mRtcEngine = RtcEngine.create(mContext, mContext.getString(R.string.app_id), mEventHandler);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -68,7 +68,7 @@ public final class RtcManager {
 
     void joinChannel(String channelId, int userId) {
         if (mRtcEngine != null)
-            mRtcEngine.joinChannel(mContext.getString(R.string.agora_rtc_token), channelId, null, userId);
+            mRtcEngine.joinChannel(mContext.getString(R.string.token), channelId, null, userId);
     }
 
     void setClientRole(int role) {

@@ -16,8 +16,8 @@
         android:paddingTop="@dimen/bottom_input_padding_vertical"
         android:paddingEnd="@dimen/bottom_spacing"
         android:paddingBottom="@dimen/bottom_input_padding_vertical"
-        android:textColor="@android:color/white"
-        android:textColorHint="@android:color/white"
+        android:textColor="@color/edit_text_color"
+        android:textColorHint="@color/white_alpha40"
         android:textSize="@dimen/bottom_input_text_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,7 +41,7 @@
         app:layout_constraintTop_toBottomOf="@+id/et_input" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_effect"
+        android:id="@+id/btn_changer"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/bottom_btn_size"
         android:layout_marginStart="@dimen/bottom_spacing"
@@ -63,7 +63,7 @@
         android:background="@drawable/bg_radius_container"
         android:src="@mipmap/ic_mic_on"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/btn_effect" />
+        app:layout_constraintStart_toEndOf="@id/btn_changer" />
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/btn_speaker"

@@ -40,7 +40,7 @@ import io.agora.chatroom.model.Seat;
 import io.agora.chatroom.util.AlertUtil;
 import io.agora.chatroom.widget.GiftPopView;
 import io.agora.chatroom.widget.MemberListDialog;
-import io.agora.chatroom.widget.VoiceEffectDialog;
+import io.agora.chatroom.widget.VoiceChangerDialog;
 
 import static android.Manifest.permission.RECORD_AUDIO;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
@@ -59,7 +59,7 @@ public class ChatRoomActivity extends AppCompatActivity implements ChatRoomEvent
     }
 
     private MemberListDialog mMemberDialog = new MemberListDialog();
-    private VoiceEffectDialog mEffectDialog = new VoiceEffectDialog();
+    private VoiceChangerDialog mChangerDialog = new VoiceChangerDialog();
     private SeatGridAdapter mSeatAdapter;
     private MessageListAdapter mMessageAdapter;
     private String mChannelId;
@@ -190,7 +190,7 @@ public class ChatRoomActivity extends AppCompatActivity implements ChatRoomEvent
         }
     }
 
-    @OnClick({R.id.btn_exit, R.id.btn_num, R.id.btn_effect, R.id.btn_mic, R.id.btn_speaker})
+    @OnClick({R.id.btn_exit, R.id.btn_num, R.id.btn_changer, R.id.btn_mic, R.id.btn_speaker})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_exit:
@@ -199,8 +199,8 @@ public class ChatRoomActivity extends AppCompatActivity implements ChatRoomEvent
             case R.id.btn_num:
                 mMemberDialog.show(getSupportFragmentManager(), null);
                 break;
-            case R.id.btn_effect:
-                mEffectDialog.show(getSupportFragmentManager(), null);
+            case R.id.btn_changer:
+                mChangerDialog.show(getSupportFragmentManager(), null);
                 break;
             case R.id.btn_mic:
                 String myUserId = String.valueOf(Constant.sUserId);

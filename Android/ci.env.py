@@ -39,9 +39,9 @@ def main():
     content = f.read()
 
     # if need reset
-    contentNew = re.sub(r'<#YOUR APP ID#>', appId, content)
-    contentNew = re.sub(r'<#YOUR RTC TOKEN#>', token, contentNew)
-    contentNew = re.sub(r'<#YOUR RTM TOKEN#>', token, contentNew)
+    contentNew = re.sub(r'<#Your App Id#>', appId, content)
+    contentNew = re.sub(r'<#Temp Access Token#>', token, contentNew)
+    contentNew = re.sub(r'<#Temp Rtm Access Token#>', token, contentNew)
 
     f.seek(0)
     f.write(contentNew)

@@ -3,9 +3,9 @@
     <solid android:color="@android:color/transparent" />
     <stroke
         android:width="@dimen/divider_height"
-        android:color="@color/blue" />
-    <corners android:radius="@dimen/dialog_effect_item_radius" />
+        android:color="@color/white_alpha60" />
+    <corners android:radius="@dimen/dialog_changer_item_radius" />
     <size
-        android:width="@dimen/dialog_effect_item_width"
-        android:height="@dimen/dialog_effect_item_height" />
+        android:width="@dimen/dialog_changer_item_width"
+        android:height="@dimen/dialog_changer_item_height" />
 </shape>

@@ -1,5 +1,5 @@
 //
-//  VoiceEffectViewController.swift
+//  VoiceChangerViewController.swift
 //  AgoraChatRoom
 //
 //  Created by LXH on 2019/11/27.
@@ -10,80 +10,7 @@ import UIKit
 
 import AgoraAudioKit
 
-enum VoiceBeautify: Int, CaseIterable {
-    case DEFAULT = 0
-    case THICK = 7
-    case LOW
-    case ROUND
-    case FALSETTO
-    case FULL
-    case CLEAR
-    case RESOUNDING
-    case LOUD
-    case OPEN_AIR
-
-    func description() -> String {
-        switch self {
-        case .DEFAULT:
-            return "原声"
-        case .THICK:
-            return "浑厚"
-        case .LOW:
-            return "低沉"
-        case .ROUND:
-            return "圆润"
-        case .FALSETTO:
-            return "假音"
-        case .FULL:
-            return "饱满"
-        case .CLEAR:
-            return "清澈"
-        case .RESOUNDING:
-            return "高亢"
-        case .LOUD:
-            return "嘹亮"
-        case .OPEN_AIR:
-            return "空旷"
-        }
-    }
-}
-
-enum VoiceEffect: Int, CaseIterable {
-    case DEFAULT = 0
-    case KTV
-    case LIVE
-    case UNCLE
-    case GIRL
-    case STUDIO
-    case POP = 7
-    case RNB
-    case PHONOGRAPH
-
-    func description() -> String {
-        switch self {
-        case .DEFAULT:
-            return "原声"
-        case .KTV:
-            return "KTV"
-        case .LIVE:
-            return "演唱会"
-        case .UNCLE:
-            return "大叔"
-        case .GIRL:
-            return "小姐姐"
-        case .STUDIO:
-            return "录音棚"
-        case .POP:
-            return "流行"
-        case .RNB:
-            return "R&B"
-        case .PHONOGRAPH:
-            return "留声机"
-        }
-    }
-}
-
-class VoiceEffectViewController: UIViewController {
+class VoiceChangerViewController: UIViewController {
     @IBOutlet weak var gridVoiceEffect: UICollectionView!
     @IBOutlet weak var effect: UIButton!
     @IBOutlet weak var lineEffect: UIView!
@@ -129,7 +56,7 @@ class VoiceEffectViewController: UIViewController {
     }
 }
 
-extension VoiceEffectViewController: UICollectionViewDelegate {
+extension VoiceChangerViewController: UICollectionViewDelegate {
     // MARK: - UICollectionViewDelegate
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -158,7 +85,7 @@ extension VoiceEffectViewController: UICollectionViewDelegate {
     }
 }
 
-extension VoiceEffectViewController: UICollectionViewDataSource {
+extension VoiceChangerViewController: UICollectionViewDataSource {
     // MARK: - UICollectionViewDataSource
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -166,7 +93,7 @@ extension VoiceEffectViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VoiceEffectCell", for: indexPath) as! VoiceEffectCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VoiceChangerCell", for: indexPath) as! VoiceChangerCell
 
         cell.update(isEffect, mEffectSelectedIndex, mBeautifySelectedIndex, indexPath.item)
 
@@ -174,7 +101,7 @@ extension VoiceEffectViewController: UICollectionViewDataSource {
     }
 }
 
-extension VoiceEffectViewController: UICollectionViewDelegateFlowLayout {
+extension VoiceChangerViewController: UICollectionViewDelegateFlowLayout {
     // MARK: - UICollectionViewDelegateFlowLayout
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

@@ -20,7 +20,7 @@ class MemberViewController: UIViewController {
     }
 
     func refreshTitle() {
-        num.text = "房间成员列表（\(mChannelData.getMemberArray().count)人）"
+        num.text = "\(NSLocalizedString("channel_member_list", comment: ""))（\(mChannelData.getMemberArray().count)\(NSLocalizedString("people", comment: ""))）"
     }
 
     func reloadData() {

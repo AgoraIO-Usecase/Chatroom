@@ -18,6 +18,10 @@ class ChannelViewController: UIViewController {
         Channel(drawableRes: #imageLiteral(resourceName: "img_channel_4"), backgroundRes: #imageLiteral(resourceName: "bg_channel_4"), name: "005"),
     ]
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        .lightContent
+    }
+
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {

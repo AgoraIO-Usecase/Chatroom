@@ -11,24 +11,24 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import io.agora.chatroom.R;
-import io.agora.chatroom.adapter.VoiceEffectGridAdapter;
+import io.agora.chatroom.adapter.VoiceChangerGridAdapter;
 
-public class VoiceEffectGridRecyclerView extends RecyclerView {
+public class VoiceChangerGridRecyclerView extends RecyclerView {
 
-    private VoiceEffectGridAdapter mEffectAdapter;
-    private VoiceEffectGridAdapter mBeautifyAdapter;
+    private VoiceChangerGridAdapter mEffectAdapter;
+    private VoiceChangerGridAdapter mBeautifyAdapter;
 
-    public VoiceEffectGridRecyclerView(@NonNull Context context) {
+    public VoiceChangerGridRecyclerView(@NonNull Context context) {
         super(context);
         init(context);
     }
 
-    public VoiceEffectGridRecyclerView(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public VoiceChangerGridRecyclerView(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         init(context);
     }
 
-    public VoiceEffectGridRecyclerView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public VoiceChangerGridRecyclerView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context);
     }
@@ -36,8 +36,8 @@ public class VoiceEffectGridRecyclerView extends RecyclerView {
     private void init(Context context) {
         setHasFixedSize(true);
 
-        mEffectAdapter = new VoiceEffectGridAdapter(context, R.array.voice_effect_keys, R.array.voice_effect_values);
-        mBeautifyAdapter = new VoiceEffectGridAdapter(context, R.array.voice_beautify_keys, R.array.voice_beautify_values);
+        mEffectAdapter = new VoiceChangerGridAdapter(context, R.array.voice_effect_keys, R.array.voice_effect_values);
+        mBeautifyAdapter = new VoiceChangerGridAdapter(context, R.array.voice_beautify_keys, R.array.voice_beautify_values);
 
         setLayoutManager(new GridLayoutManager(context, 3));
 
@@ -61,7 +61,7 @@ public class VoiceEffectGridRecyclerView extends RecyclerView {
         mBeautifyAdapter.setSelectedIndex(selectedIndex);
     }
 
-    public void setOnItemClickListener(VoiceEffectGridAdapter.OnItemClickListener listener) {
+    public void setOnItemClickListener(VoiceChangerGridAdapter.OnItemClickListener listener) {
         mEffectAdapter.setOnItemClickListener(listener);
         mBeautifyAdapter.setOnItemClickListener(listener);
     }

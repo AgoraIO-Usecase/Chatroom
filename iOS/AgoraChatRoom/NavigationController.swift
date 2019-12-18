@@ -13,4 +13,8 @@ class NavigationController: UINavigationController {
         navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationBar.shadowImage = UIImage()
     }
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        topViewController?.preferredStatusBarStyle ?? super.preferredStatusBarStyle
+    }
 }

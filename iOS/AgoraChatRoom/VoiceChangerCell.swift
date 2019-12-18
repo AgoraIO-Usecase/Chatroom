@@ -1,5 +1,5 @@
 //
-//  VoiceEffectCell.swift
+//  VoiceChangerCell.swift
 //  AgoraChatRoom
 //
 //  Created by LXH on 2019/11/27.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class VoiceEffectCell: UICollectionViewCell {
+class VoiceChangerCell: UICollectionViewCell {
     @IBOutlet weak var effect: UIButton!
 
     func update(_ isEffect: Bool, _ effectSelectedIndex: Int, _ beautifySelectedIndex: Int, _ position: Int) {

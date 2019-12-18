@@ -78,6 +78,10 @@ class ChatRoomViewController: UIViewController {
         }
     }
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        .lightContent
+    }
+
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
@@ -91,8 +95,8 @@ class ChatRoomViewController: UIViewController {
             mMemberVC = segue.destination as? MemberViewController
             mMemberVC?.popoverPresentationController?.delegate = self
             break
-        case "effect":
-            if let it = segue.destination as? VoiceEffectViewController {
+        case "changer":
+            if let it = segue.destination as? VoiceChangerViewController {
                 it.popoverPresentationController?.delegate = self
             }
             break

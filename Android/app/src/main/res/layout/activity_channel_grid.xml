@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:gravity="center"
-        android:text="@string/title_activity_room_list"
+        android:text="@string/title_activity_channel_list"
         android:textColor="@color/title_text_color"
         android:textSize="@dimen/activity_title_text_size"
         app:layout_constraintTop_toTopOf="parent" />

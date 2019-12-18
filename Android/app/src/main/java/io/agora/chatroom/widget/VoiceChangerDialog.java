@@ -15,16 +15,16 @@ import androidx.fragment.app.DialogFragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.agora.chatroom.R;
-import io.agora.chatroom.adapter.VoiceEffectGridAdapter;
+import io.agora.chatroom.adapter.VoiceChangerGridAdapter;
 import io.agora.chatroom.manager.ChatRoomManager;
 import io.agora.chatroom.manager.RtcManager;
 
-public class VoiceEffectDialog extends DialogFragment implements VoiceEffectGridAdapter.OnItemClickListener, RadioGroup.OnCheckedChangeListener {
+public class VoiceChangerDialog extends DialogFragment implements VoiceChangerGridAdapter.OnItemClickListener, RadioGroup.OnCheckedChangeListener {
 
     @BindView(R.id.rg_title)
     RadioGroup rg_title;
-    @BindView(R.id.rv_effect_grid)
-    VoiceEffectGridRecyclerView rv_effect_grid;
+    @BindView(R.id.rv_changer_grid)
+    VoiceChangerGridRecyclerView rv_changer_grid;
 
     private Context mContext;
 
@@ -41,7 +41,7 @@ public class VoiceEffectDialog extends DialogFragment implements VoiceEffectGrid
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         Dialog dialog = new Dialog(mContext);
-        dialog.setContentView(R.layout.dialog_effect_grid);
+        dialog.setContentView(R.layout.dialog_changer_grid);
 
         ButterKnife.bind(this, dialog);
 
@@ -74,17 +74,17 @@ public class VoiceEffectDialog extends DialogFragment implements VoiceEffectGrid
 
     private void initView() {
         rg_title.setOnCheckedChangeListener(this);
-        rv_effect_grid.setOnItemClickListener(this);
+        rv_changer_grid.setOnItemClickListener(this);
     }
 
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         switch (checkedId) {
             case R.id.rb_effect:
-                rv_effect_grid.showEffect(mEffectSelectedIndex);
+                rv_changer_grid.showEffect(mEffectSelectedIndex);
                 break;
             case R.id.rb_beautify:
-                rv_effect_grid.showBeautify(mBeautifySelectedIndex);
+                rv_changer_grid.showBeautify(mBeautifySelectedIndex);
                 break;
         }
     }

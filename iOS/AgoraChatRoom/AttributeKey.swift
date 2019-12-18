@@ -8,7 +8,7 @@
 
 import Foundation
 
-class AttributeKey {
+struct AttributeKey {
     static let KEY_ANCHOR_ID = "anchorId"
     static let KEY_SEAT_ARRAY = initSeatKeys()
     static let KEY_USER_INFO = "userInfo"

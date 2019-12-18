@@ -158,7 +158,7 @@ class ChannelData {
         guard let member = getMember(userId), let avatarIndex = member.avatarIndex else {
             return #imageLiteral(resourceName: "ic_unkown")
         }
-        return MemberUtils.getAvatarRes(avatarIndex)
+        return MemberUtil.getAvatarRes(avatarIndex)
     }
 
     func indexOfMemberArray(_ userId: String) -> Int {

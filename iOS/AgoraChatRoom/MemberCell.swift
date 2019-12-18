@@ -25,12 +25,12 @@ class MemberCell: UITableViewCell {
             let muted = channelData.isUserMuted(userId)
             self.ivMute.isHidden = false
             self.ivMute.image = muted ? #imageLiteral(resourceName: "ic_mic_off_little") : #imageLiteral(resourceName: "ic_mic_on_little")
-            self.role.setTitle("下麦", for: .normal)
+            self.role.setTitle(NSLocalizedString("to_audience", comment: ""), for: .normal)
             self.btnMute.isHidden = false
-            self.btnMute.setTitle(muted ? "解麦" : "禁麦", for: .normal)
+            self.btnMute.setTitle(muted ? NSLocalizedString("turn_on_mic", comment: "") : NSLocalizedString("turn_off_mic", comment: ""), for: .normal)
         } else {
             self.ivMute.isHidden = true
-            self.role.setTitle("上麦", for: .normal)
+            self.role.setTitle(NSLocalizedString("to_broadcast", comment: ""), for: .normal)
             self.btnMute.isHidden = true
         }
 
@@ -41,7 +41,7 @@ class MemberCell: UITableViewCell {
 
         var name = member.name
         if channelData.isAnchor(userId) {
-            name = "\(name ?? userId)（主播）"
+            name = "\(name ?? userId)\(NSLocalizedString("anchor", comment: ""))"
         }
         self.name.text = name
     }

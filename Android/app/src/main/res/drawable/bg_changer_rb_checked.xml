@@ -2,8 +2,8 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <inset
-            android:insetLeft="@dimen/dialog_effect_rb_inset"
-            android:insetRight="@dimen/dialog_effect_rb_inset">
+            android:insetLeft="@dimen/dialog_changer_rb_inset"
+            android:insetRight="@dimen/dialog_changer_rb_inset">
             <shape>
                 <solid android:color="@color/blue" />
             </shape>

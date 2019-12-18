@@ -49,14 +49,14 @@
     <dimen name="gift_name_text_size">14sp</dimen>
     <dimen name="gift_tips_text_size">12sp</dimen>
 
-    <dimen name="dialog_effect_height">350dp</dimen>
-    <dimen name="dialog_effect_title_inset">15dp</dimen>
-    <dimen name="dialog_effect_title_height">55dp</dimen>
-    <dimen name="dialog_effect_rb_inset">28dp</dimen>
-    <dimen name="dialog_effect_item_text_size">17sp</dimen>
-    <dimen name="dialog_effect_item_width">100dp</dimen>
-    <dimen name="dialog_effect_item_height">44dp</dimen>
-    <dimen name="dialog_effect_item_radius">22dp</dimen>
+    <dimen name="dialog_changer_height">350dp</dimen>
+    <dimen name="dialog_changer_title_inset">15dp</dimen>
+    <dimen name="dialog_changer_title_height">55dp</dimen>
+    <dimen name="dialog_changer_rb_inset">28dp</dimen>
+    <dimen name="dialog_changer_item_text_size">17sp</dimen>
+    <dimen name="dialog_changer_item_width">100dp</dimen>
+    <dimen name="dialog_changer_item_height">44dp</dimen>
+    <dimen name="dialog_changer_item_radius">22dp</dimen>
 
     <!-- MemberListDialog -->
     <dimen name="dialog_member_width">325dp</dimen>
