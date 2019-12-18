@@ -1,4 +1,4 @@
 *.DS_Store
 *.xcuserdatad
 *.xcscmblueprint
-*.framework
+libs/

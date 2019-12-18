@@ -1,0 +1,42 @@
+parameters:
+  displayName: ''
+  workingDirectory: ''
+  rtcSdkUrl: ''
+  rtmSdkUrl: ''
+
+jobs:
+  - job: ${{ parameters.displayName }}_Build
+    displayName: ${{ parameters.displayName }}
+
+    pool:
+      vmImage: 'macOS-latest'
+
+    variables:
+      - group: AgoraKeys
+
+    steps:
+      - script: cd ${{ parameters.workingDirectory }} && ls && python ci.env.py
+        env:
+          RTC_SDK_URL: ${{ parameters.rtcSdkUrl }}
+          RTM_SDK_URL: ${{ parameters.rtmSdkUrl }}
+          AGORA_APP_ID: $(agora.appId)
+
+      - script: ls ${{ parameters.workingDirectory }}/app/libs
+
+      - task: Gradle@2
+        inputs:
+          gradleWrapperFile: ${{ parameters.workingDirectory }}/gradlew
+          workingDirectory: ${{ parameters.workingDirectory }}
+          tasks: 'assembleDebug'
+          publishJUnitResults: false
+          gradleOptions: '-Xmx3072m'
+
+      - task: CopyFiles@2
+        inputs:
+          contents: '**/*.apk'
+          targetFolder: '$(build.artifactStagingDirectory)'
+
+      - task: PublishBuildArtifacts@1
+        inputs:
+          pathtoPublish: '$(build.artifactStagingDirectory)'
+          artifactName: ${{ parameters.displayName }}

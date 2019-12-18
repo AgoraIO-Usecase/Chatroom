@@ -19,14 +19,12 @@
 		A77F45FB212426C600EB578D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A77F45FA212426C600EB578D /* AudioToolbox.framework */; };
 		A77F45FD212426CD00EB578D /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A77F45FC212426CD00EB578D /* CoreTelephony.framework */; };
 		A77F45FF212426D900EB578D /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A77F45FE212426D900EB578D /* libresolv.tbd */; };
-		A77F4601212426E400EB578D /* AgoraAudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A77F4600212426E400EB578D /* AgoraAudioKit.framework */; };
 		A7C50F0E212414F200774322 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C50F0D212414F200774322 /* AppDelegate.swift */; };
 		A7C50F13212414F200774322 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7C50F11212414F200774322 /* Main.storyboard */; };
 		A7C50F15212414F300774322 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7C50F14212414F300774322 /* Assets.xcassets */; };
 		A7C50F18212414F300774322 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7C50F16212414F300774322 /* LaunchScreen.storyboard */; };
 		F512BD89238B73AA00B96E75 /* RtcManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F512BD88238B73AA00B96E75 /* RtcManager.swift */; };
 		F512BD8B238B7BB300B96E75 /* RtmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F512BD8A238B7BB300B96E75 /* RtmManager.swift */; };
-		F512BD8D238B7C2600B96E75 /* AgoraRtmKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F512BD8C238B7C2600B96E75 /* AgoraRtmKit.framework */; };
 		F512BD8F238B8A8D00B96E75 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = F512BD8E238B8A8D00B96E75 /* Member.swift */; };
 		F512BD91238B992A00B96E75 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = F512BD90238B992A00B96E75 /* Message.swift */; };
 		F512BD93238B9A2D00B96E75 /* ChatRoomManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F512BD92238B9A2D00B96E75 /* ChatRoomManager.swift */; };
@@ -48,6 +46,8 @@
 		F568921F2398E57C0088A16B /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F568921E2398E57C0088A16B /* Channel.swift */; };
 		F56892212398E7F10088A16B /* ChannelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56892202398E7F10088A16B /* ChannelCell.swift */; };
 		F568922523993D4F0088A16B /* MemberUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F568922423993D4E0088A16B /* MemberUtils.swift */; };
+		F5DEB10923A8C72B008ED7F6 /* AgoraAudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5DEB10723A8C72B008ED7F6 /* AgoraAudioKit.framework */; };
+		F5DEB10A23A8C72B008ED7F6 /* AgoraRtmKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5DEB10823A8C72B008ED7F6 /* AgoraRtmKit.framework */; };
 		F5F6FF1123A0CF6400E4A824 /* AttributeKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F6FF1023A0CF6400E4A824 /* AttributeKey.swift */; };
 /* End PBXBuildFile section */
 
@@ -64,7 +64,6 @@
 		A77F45FA212426C600EB578D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		A77F45FC212426CD00EB578D /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		A77F45FE212426D900EB578D /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
-		A77F4600212426E400EB578D /* AgoraAudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraAudioKit.framework; path = AgoraChatRoom/AgoraAudioKit.framework; sourceTree = "<group>"; };
 		A7C50F0A212414F200774322 /* AgoraChatRoom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AgoraChatRoom.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7C50F0D212414F200774322 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A7C50F12212414F200774322 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -73,7 +72,6 @@
 		A7C50F19212414F300774322 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F512BD88238B73AA00B96E75 /* RtcManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RtcManager.swift; sourceTree = "<group>"; };
 		F512BD8A238B7BB300B96E75 /* RtmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RtmManager.swift; sourceTree = "<group>"; };
-		F512BD8C238B7C2600B96E75 /* AgoraRtmKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraRtmKit.framework; path = AgoraChatRoom/AgoraRtmKit.framework; sourceTree = "<group>"; };
 		F512BD8E238B8A8D00B96E75 /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
 		F512BD90238B992A00B96E75 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		F512BD92238B9A2D00B96E75 /* ChatRoomManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomManager.swift; sourceTree = "<group>"; };
@@ -95,6 +93,8 @@
 		F568921E2398E57C0088A16B /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		F56892202398E7F10088A16B /* ChannelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCell.swift; sourceTree = "<group>"; };
 		F568922423993D4E0088A16B /* MemberUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberUtils.swift; sourceTree = "<group>"; };
+		F5DEB10723A8C72B008ED7F6 /* AgoraAudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraAudioKit.framework; path = AgoraChatRoom/libs/AgoraAudioKit.framework; sourceTree = "<group>"; };
+		F5DEB10823A8C72B008ED7F6 /* AgoraRtmKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraRtmKit.framework; path = AgoraChatRoom/libs/AgoraRtmKit.framework; sourceTree = "<group>"; };
 		F5F6FF1023A0CF6400E4A824 /* AttributeKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributeKey.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -103,8 +103,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F512BD8D238B7C2600B96E75 /* AgoraRtmKit.framework in Frameworks */,
-				A77F4601212426E400EB578D /* AgoraAudioKit.framework in Frameworks */,
+				F5DEB10923A8C72B008ED7F6 /* AgoraAudioKit.framework in Frameworks */,
+				F5DEB10A23A8C72B008ED7F6 /* AgoraRtmKit.framework in Frameworks */,
 				A77F45FF212426D900EB578D /* libresolv.tbd in Frameworks */,
 				A77F45FD212426CD00EB578D /* CoreTelephony.framework in Frameworks */,
 				A77F45FB212426C600EB578D /* AudioToolbox.framework in Frameworks */,
@@ -135,8 +135,8 @@
 		A77F45F1212426A500EB578D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F512BD8C238B7C2600B96E75 /* AgoraRtmKit.framework */,
-				A77F4600212426E400EB578D /* AgoraAudioKit.framework */,
+				F5DEB10723A8C72B008ED7F6 /* AgoraAudioKit.framework */,
+				F5DEB10823A8C72B008ED7F6 /* AgoraRtmKit.framework */,
 				A77F45FE212426D900EB578D /* libresolv.tbd */,
 				A77F45FC212426CD00EB578D /* CoreTelephony.framework */,
 				A77F45FA212426C600EB578D /* AudioToolbox.framework */,
@@ -490,12 +490,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = SW3CA7M752;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/AgoraChatRoom",
+					"$(PROJECT_DIR)/AgoraChatRoom/libs",
 				);
 				INFOPLIST_FILE = AgoraChatRoom/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -506,7 +507,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.agora.AgoraChatRoom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = AgoraAppsDevProfile;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -516,12 +517,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = SW3CA7M752;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/AgoraChatRoom",
+					"$(PROJECT_DIR)/AgoraChatRoom/libs",
 				);
 				INFOPLIST_FILE = AgoraChatRoom/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -532,7 +534,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.agora.AgoraChatRoom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = AgoraAppsDevProfile;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
