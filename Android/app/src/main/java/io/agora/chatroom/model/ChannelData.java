@@ -94,11 +94,11 @@ public class ChannelData {
         return false;
     }
 
-    public void addUser(int uid, boolean muted) {
+    public void addOrUpdateUserStatus(int uid, boolean muted) {
         mUserStatus.put(String.valueOf(uid), muted);
     }
 
-    public void removeUser(int uid) {
+    public void removeUserStatus(int uid) {
         mUserStatus.remove(String.valueOf(uid));
     }
 

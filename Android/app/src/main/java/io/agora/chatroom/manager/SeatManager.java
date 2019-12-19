@@ -113,6 +113,16 @@ public abstract class SeatManager {
         });
     }
 
+    public void muteMic(String userId, boolean muted) {
+        if (Constant.isMyself(userId)) {
+            if (!getChannelData().isUserOnline(userId)) return;
+            getRtcManager().muteLocalAudioStream(muted);
+        } else {
+            if (!getChannelData().isAnchorMyself()) return;
+            getMessageManager().sendOrder(userId, Message.ORDER_TYPE_MUTE, String.valueOf(muted), null);
+        }
+    }
+
     public final void closeSeat(int position) {
         ChannelData channelData = getChannelData();
 

@@ -110,11 +110,11 @@ class ChannelData {
         return muted
     }
 
-    func addUser(_ uid: UInt, _ muted: Bool) {
+    func addOrUpdateUserStatus(_ uid: UInt, _ muted: Bool) {
         mUserStatus[String(uid)] = muted
     }
 
-    func removeUser(_ uid: UInt) {
+    func removeUserStatus(_ uid: UInt) {
         mUserStatus.removeValue(forKey: String(uid))
     }
 

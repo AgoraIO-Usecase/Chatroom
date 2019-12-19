@@ -3,8 +3,6 @@ package io.agora.chatroom.manager;
 import android.content.Context;
 import android.util.Log;
 
-import com.google.gson.Gson;
-
 import java.util.List;
 import java.util.Map;
 
@@ -92,16 +90,6 @@ public final class ChatRoomManager extends SeatManager implements MessageManager
         mRtcManager.leaveChannel();
         mRtmManager.leaveChannel();
         mChannelData.release();
-    }
-
-    public void muteMic(String userId, boolean muted) {
-        if (Constant.isMyself(userId)) {
-            if (!mChannelData.isUserOnline(userId)) return;
-            mRtcManager.muteLocalAudioStream(muted);
-        } else {
-            if (!mChannelData.isAnchorMyself()) return;
-            sendOrder(userId, Message.ORDER_TYPE_MUTE, String.valueOf(muted), null);
-        }
     }
 
     private void checkAndBeAnchor() {
@@ -213,12 +201,12 @@ public final class ChatRoomManager extends SeatManager implements MessageManager
         @Override
         public void onUserOnlineStateChanged(int uid, boolean isOnline) {
             if (isOnline) {
-                mChannelData.addUser(uid, false);
+                mChannelData.addOrUpdateUserStatus(uid, false);
 
                 if (mListener != null)
                     mListener.onUserStatusChanged(String.valueOf(uid), false);
             } else {
-                mChannelData.removeUser(uid);
+                mChannelData.removeUserStatus(uid);
 
                 if (mListener != null)
                     mListener.onUserStatusChanged(String.valueOf(uid), null);
@@ -227,7 +215,7 @@ public final class ChatRoomManager extends SeatManager implements MessageManager
 
         @Override
         public void onUserMuteAudio(int uid, boolean muted) {
-            mChannelData.addUser(uid, muted);
+            mChannelData.addOrUpdateUserStatus(uid, muted);
 
             if (mListener != null)
                 mListener.onUserStatusChanged(String.valueOf(uid), muted);

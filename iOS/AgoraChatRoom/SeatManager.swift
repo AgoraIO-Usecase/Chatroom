@@ -65,20 +65,34 @@ extension SeatManager {
         }
     }
 
-    func occupySeat(_ userId: String, _ position: Int, _ callback: AgoraRtmAddOrUpdateChannelAttributesBlock?) {
+    private func occupySeat(_ userId: String, _ position: Int, _ callback: AgoraRtmAddOrUpdateChannelAttributesBlock?) {
         modifySeat(position, Seat(userId: userId), callback)
     }
 
-    func resetSeat(_ position: Int, _ callback: AgoraRtmAddOrUpdateChannelAttributesBlock?) {
+    private func resetSeat(_ position: Int, _ callback: AgoraRtmAddOrUpdateChannelAttributesBlock?) {
         modifySeat(position, nil, callback)
     }
 
-    func changeSeat(_ userId: String, _ oldPosition: Int, _ newPosition: Int, _ callback: AgoraRtmAddOrUpdateChannelAttributesBlock?) {
+    private func changeSeat(_ userId: String, _ oldPosition: Int, _ newPosition: Int, _ callback: AgoraRtmAddOrUpdateChannelAttributesBlock?) {
         resetSeat(oldPosition, { [weak self] (code) in
             if code == .attributeOperationErrorOk {
                 self?.occupySeat(userId, newPosition, callback)
             }
         })
+    }
+
+    func muteMic(_ userId: String, _ muted: Bool) {
+        if Constant.isMyself(userId) {
+            if !getChannelData().isUserOnline(userId) {
+                return
+            }
+            getRtcManager().muteLocalAudioStream(muted)
+        } else {
+            if !getChannelData().isAnchorMyself() {
+                return
+            }
+            getMessageManager().sendOrder(userId: userId, orderType: Message.ORDER_TYPE_MUTE, content: String(muted), callback: nil)
+        }
     }
 
     func closeSeat(_ position: Int) {
@@ -109,7 +123,7 @@ extension SeatManager {
         resetSeat(position, nil)
     }
 
-    func modifySeat(_ position: Int, _ seat: Seat?, _ callback: AgoraRtmAddOrUpdateChannelAttributesBlock?) {
+    private func modifySeat(_ position: Int, _ seat: Seat?, _ callback: AgoraRtmAddOrUpdateChannelAttributesBlock?) {
         if position >= 0 && position < AttributeKey.KEY_SEAT_ARRAY.count {
             var json = "null"
             if let data = try? JSONEncoder().encode(seat) {

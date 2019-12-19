@@ -85,20 +85,6 @@ class ChatRoomManager: SeatManager {
         mChannelData.release()
     }
 
-    func muteMic(_ userId: String, _ muted: Bool) {
-        if Constant.isMyself(userId) {
-            if !mChannelData.isUserOnline(userId) {
-                return
-            }
-            mRtcManager.muteLocalAudioStream(muted)
-        } else {
-            if !mChannelData.isAnchorMyself() {
-                return
-            }
-            sendOrder(userId: userId, orderType: Message.ORDER_TYPE_MUTE, content: String(muted), callback: nil)
-        }
-    }
-
     private func checkAndBeAnchor() {
         let myUserId = String(Constant.sUserId)
 
@@ -191,18 +177,18 @@ extension ChatRoomManager: RtcDelegate {
 
     func onUserOnlineStateChanged(uid: UInt, isOnline: Bool) {
         if isOnline {
-            mChannelData.addUser(uid, false)
+            mChannelData.addOrUpdateUserStatus(uid, false)
 
             delegate?.onUserStatusChanged(userId: String(uid), muted: false)
         } else {
-            mChannelData.removeUser(uid)
+            mChannelData.removeUserStatus(uid)
 
             delegate?.onUserStatusChanged(userId: String(uid), muted: nil)
         }
     }
 
     func onUserMuteAudio(uid: UInt, muted: Bool) {
-        mChannelData.addUser(uid, muted)
+        mChannelData.addOrUpdateUserStatus(uid, muted)
 
         delegate?.onUserStatusChanged(userId: String(uid), muted: muted)
     }
