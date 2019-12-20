@@ -1,0 +1,27 @@
+
+/* Class = "UITextField"; placeholder = "说点什么..."; ObjectID = "5Pp-tn-Ieq"; */
+"5Pp-tn-Ieq.placeholder" = "说点什么...";
+
+/* Class = "UINavigationItem"; title = "房间列表"; ObjectID = "Fe3-uR-aXQ"; */
+"Fe3-uR-aXQ.title" = "房间列表";
+
+/* Class = "UIButton"; normalTitle = "变声"; ObjectID = "MlU-WI-fjV"; */
+"MlU-WI-fjV.normalTitle" = "变声";
+
+/* Class = "UILabel"; text = "向主播赠送了礼物"; ObjectID = "QhM-zl-GUN"; */
+"QhM-zl-GUN.text" = "向主播赠送了礼物";
+
+/* Class = "UIButton"; normalTitle = "音效"; ObjectID = "eoi-KU-MBF"; */
+"eoi-KU-MBF.normalTitle" = "音效";
+
+/* Class = "UIButton"; normalTitle = "伴奏"; ObjectID = "jMg-Wz-Zfe"; */
+"jMg-Wz-Zfe.normalTitle" = "伴奏";
+
+/* Class = "UINavigationItem"; title = "语聊房"; ObjectID = "lqB-1a-WGr"; */
+"lqB-1a-WGr.title" = "语聊房";
+
+/* Class = "UIButton"; normalTitle = "0"; ObjectID = "q2g-NQ-eEd"; */
+"q2g-NQ-eEd.normalTitle" = "0";
+
+/* Class = "UIButton"; normalTitle = "美声"; ObjectID = "uSM-uv-z2i"; */
+"uSM-uv-z2i.normalTitle" = "美声";

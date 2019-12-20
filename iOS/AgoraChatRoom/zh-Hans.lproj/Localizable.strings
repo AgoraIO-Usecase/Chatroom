@@ -1,0 +1,63 @@
+/* 
+  Localizable.strings
+  AgoraChatRoom
+
+  Created by LXH on 2019/12/18.
+  Copyright © 2019 CavanSu. All rights reserved.
+*/
+
+"Zhao" = "赵";
+"Qian" = "钱";
+"Sun" = "孙";
+"Li" = "李";
+"Zhou" = "周";
+"Wu" = "吴";
+"Zheng" = "郑";
+"Wang" = "王";
+"Feng" = "冯";
+"Chen" = "陈";
+"Chu" = "褚";
+"Wei" = "卫";
+
+"Fuqiang" = "富强";
+"Minzhu" = "民主";
+"Wenming" = "文明";
+"Hexie" = "和谐";
+"Ziyou" = "自由";
+"Pingdeng" = "平等";
+"Gongzheng" = "公正";
+"Fazhi" = "法治";
+"Aiguo" = "爱国";
+"Jingye" = "敬业";
+"Chengxin" = "诚信";
+"Youshan" = "友善";
+
+"KTV" = "KTV";
+"Live" = "演唱会";
+"Uncle" = "大叔";
+"Girl" = "小姐姐";
+"Studio" = "录音棚";
+"Pop" = "流行";
+"R&B" = "R&B";
+"Phonograph" = "留声机";
+
+"Default" = "原声";
+"Thick" = "浑厚";
+"Low" = "低沉";
+"Round" = "圆润";
+"Falsetto" = "假音";
+"Full" = "饱满";
+"Clear" = "清澈";
+"Resounding" = "高亢";
+"Loud" = "嘹亮";
+"OpenAir" = "空旷";
+
+"to_broadcast" = "上麦";
+"to_audience" = "下麦";
+"channel_member_list" = "房间成员列表";
+"people" = "人";
+"turn_off_mic" = "禁麦";
+"turn_on_mic" = "解麦";
+"open_seat" = "解封";
+"close_seat" = "封麦";
+"anchor" = "（主播）";

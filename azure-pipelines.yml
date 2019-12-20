@@ -1,20 +1,14 @@
-# Android
-# Build your Android project with Gradle.
-# Add steps that test, sign, and distribute the APK, save build artifacts, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/android
+jobs:
+  - template: cicd/templates/build-android.yml
+    parameters:
+      displayName: 'ChatRoomAndroid'
+      workingDirectory: 'Android'
+      rtcSdkUrl: 'https://download.agora.io/sdk/release/Agora_Native_SDK_for_Android_v2_9_2_VOICE.zip'
+      rtmSdkUrl: 'https://download.agora.io/rtmsdk/release/Agora_RTM_SDK_for_Android_v1_2_2.zip'
 
-trigger:
-- master
-
-pool:
-  vmImage: 'macos-latest'
-
-steps:
-- task: Gradle@2
-  inputs:
-    workingDirectory: ''
-    gradleWrapperFile: 'gradlew'
-    gradleOptions: '-Xmx3072m'
-    publishJUnitResults: false
-    testResultsFiles: '**/TEST-*.xml'
-    tasks: 'assembleDebug'
+  - template: cicd/templates/build-ios.yml
+    parameters:
+      displayName: 'ChatRoomIos'
+      workingDirectory: 'iOS'
+      rtcSdkUrl: 'https://download.agora.io/sdk/release/Agora_Native_SDK_for_iOS_v2_9_1_VOICE.zip'
+      rtmSdkUrl: 'https://download.agora.io/rtmsdk/release/Agora_RTM_SDK_for_iOS_v1_2_2.zip'

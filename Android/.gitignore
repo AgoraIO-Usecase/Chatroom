@@ -37,6 +37,7 @@ proguard/
 /local.properties
 /.idea/workspace.xml
 obj/
+libs/
 
 .externalNativeBuild
 
