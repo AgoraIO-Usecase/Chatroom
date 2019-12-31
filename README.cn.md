@@ -66,7 +66,7 @@ Agora 可以在你的项目中根据场景需要，实现如下功能。
    static let RtmToken: String? = <#Temp Rtm Access Token#>
    ```
 
-2. 解压 SDK 压缩包，将文件夹 `libs` 复制到本项目的 `iOS/ChatRoom` 文件夹下。
+2. 解压 SDK 压缩包，将文件夹 `libs` 复制到本项目的 `iOS/AgoraChatRoom` 文件夹下。
 
 3. 使用 XCode 打开 iOS/AgoraChatRoom.xcodeproj，连接 iOS 测试设备，设置有效的开发者签名后即可运行。
 

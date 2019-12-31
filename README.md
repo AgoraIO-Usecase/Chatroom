@@ -47,7 +47,7 @@ Use the Agora SDK to implement the following features in your project:
    <string name="rtm_token" translatable="false"><#Temp Rtm Access Token#></string>
    ```
 
-2. Unpack the SDK and do the following:
+2. Unpack the SDKs and do the following:
 
    - Copy the `libs` folder to the `Android/app` folder.
 
@@ -67,7 +67,7 @@ Use the Agora SDK to implement the following features in your project:
    static let RtmToken: String? = <#Temp Rtm Access Token#>
    ```
 
-2. Unpack the SDK and copy the `libs` folder to the `iOS/ChatRoom` folder of your project.
+2. Unpack the SDKs and copy the `libs` folder to the `iOS/AgoraChatRoom` folder of your project.
 
 3. Open the `iOS/AgoraChatRoom.xcodeproj` file with XCode. Connect to an iOS test device and fill in a valid developer signature.
 
