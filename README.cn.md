@@ -4,14 +4,24 @@
 
 ## 场景描述
 
-**语音聊天室** 是一种纯音频的使用场景。用户作为主播或者听众加入房间进行语音聊天，也可以在房间内任意切换自己的主播/听众身份。
+**语音聊天室** 一个典型的语聊房里，有一个房主，N 个观众。房间里所有观众都能听到房主的声音，也可以自由上麦、下麦。房主可以邀请观众上麦，或进行下麦、禁麦、解麦、封麦、解封等操作。同时，所有用户都能看到麦位的实时变动。该场景在语音社交行业内应用广泛，尤其适用于在线 KTV、语音电台等场景。
 
-这个示例程序展示了对音频设置有不同的需求的四种常见语音聊天室类型：
+该场景中：
+- 有且仅有一个房主。
+- 可以有多个观众。
+- 观众成功上麦后，成为连麦主播。其余观众则还是普通观众。
+- Agora 目前仅支持最多一个房主+十六个连麦主播实时互动。
 
-- **开黑聊天室**: 频道内用户需要频繁上下麦，用户不想花费过多流量
-- **娱乐房间**: 频道内用户需要频繁上下麦，用户对流量使用不敏感，对音质有要求
-- **K 歌房**: 满足唱歌场景需求，还原KTV效果
-- **FM 超高音质房间**: 超高音质，声音还原度高，语音电台主播首选
+## 功能列表
+Agora 可以在你的项目中根据场景需要，实现如下功能。
+
+- 实时音频：超低延时下，观众实时接收房主的音频流，保证语聊房的社交氛围；
+- 互动连麦：房主邀请或观众请求上麦，连麦后，频道所有用户都能听到房主和连麦主播的声音；
+- 麦位控制：房主对观众进行上麦、下麦、禁麦、解麦、封麦、解封等操作，观众可以实时看到每个麦位及各麦位上观众的状态；
+- 实时消息：房间内的主播和观众使用文字消息实时交流；观众还可以通过实时消息给主播送礼物，增加互动气氛；
+- 用户管理：维护房间成员列表、用户昵称等；
+- 混音：房主在说话的同时播放背景音乐，语聊房内所有观众都能听到，可以烘托主题氛围；
+- 变声：通过变声，主播和连麦观众可以让自己的声音更有特色、符合人设、增加互动趣味。
 
 ## 体验 Demo
 
@@ -19,24 +29,26 @@
 
 成功运行 Demo 后，在界面上创建房间，输入频道名称，并选择一种房间类型。使用另一台设备进入房间，即为观众观看。观众可以申请上麦从而实现和房主的实时互动。
 
-*本开源示例项目简化了业务相关的逻辑，在体验 Demo 中出现的申请上麦、抱麦等业务逻辑并不包含在开源示例项目中*
+*本开源示例项目简化了业务相关的逻辑*
 
 ## 运行示例程序
 
 1. 在 [Agora.io 用户注册页](https://dashboard.agora.io/cn/signup/) 注册账号，并创建自己的测试项目，获取到 AppID。
 ![](Image/appid.jpg)
 
-2. 下载 Agora [语音通话／语音直播 SDK](https://docs.agora.io/cn/Agora%20Platform/downloads)。
-![](Image/sdk.jpg)
+2. 下载 Agora [语音通话／音频互动直播 SDK 和 实时消息 SDK](https://docs.agora.io/cn/Agora%20Platform/downloads)。
+![](Image/sdk.png)
 
 #### Android
-1. 将有效的 AppID 填写进 "Android/app/src/main/res/values/strings_config.xml"
+1. 将有效的 AppID 和 Token 填写进 "Android/app/src/main/res/values/strings_config.xml"
 
   ```
-  <string name="private_app_id"><#YOUR APP ID#></string>
+  <string name="app_id" translatable="false"><#Your App Id#></string>
+  <string name="token" translatable="false"><#Temp Access Token#></string>
+  <string name="rtm_token" translatable="false"><#Temp Rtm Access Token#></string>
   ```
 
-2. 解压 SDK 压缩包，将其中的 **libs** 文件夹下的 ***.jar** 复制到本项目的 **app/libs** 下，其中的 **libs** 文件夹下的 **arm64-v8a**/**x86**/**armeabi-v7a** 复制到本项目的 **app/src/main/jniLibs** 下。
+2. 解压 SDK 压缩包，将其中的 `libs` 文件夹复制到本项目的 `Android/app` 下。
 
 3. 使用 Android Studio 打开该项目，连接 Android 测试设备，编译并运行。
 
@@ -46,15 +58,15 @@
     * Android 4.1 或以上支持语音和视频功能的真机设备
 
 #### iOS
-1. 将有效的 AppID 填写进 KeyCenter.swift
+1. 将有效的 AppID 和 Token 填写进 KeyCenter.swift
 
-	```
-	static func appId() -> String {
-	    return <#YOUR APPID#>
-	}
-	```
+   ```
+   static let AppId: String = <#Your App Id#>
+   static let Token: String? = <#Temp Access Token#>
+   static let RtmToken: String? = <#Temp Rtm Access Token#>
+   ```
 
-2. 解压 SDK 压缩包，将文件 **AgoraAudioKit.framework** 复制到本项目的 iOS/ChatRoom 文件夹下。
+2. 解压 SDK 压缩包，将文件夹 `libs` 复制到本项目的 `iOS/ChatRoom` 文件夹下。
 
 3. 使用 XCode 打开 iOS/AgoraChatRoom.xcodeproj，连接 iOS 测试设备，设置有效的开发者签名后即可运行。
 
@@ -66,24 +78,21 @@
 
 Agora SDK 关键 API 列表：
 
-iOS|Android
----|---
-[sharedEngineWithAppId:delegate:](https://docs.agora.io/cn/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/sharedEngineWithAppId:delegate:)|[create](https://docs.agora.io/cn/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a35466f690d0a9332f24ea8280021d5ed)
-[setChannelProfile](https://docs.agora.io/cn/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setChannelProfile:)|[setChannelProfile](https://docs.agora.io/cn/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a1bfb76eb4365b8b97648c3d1b69f2bd6)
-[setClientRole](https://docs.agora.io/cn/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setClientRole:)|[setClientRole](https://docs.agora.io/cn/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#aa2affa28a23d44d18b6889fba03f47ec)
-[setAudioProfile](https://docs.agora.io/cn/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setAudioProfile:scenario:)|[setAudioProfile](https://docs.agora.io/cn/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a34175b5e04c88d9dc6608b1f38c0275d)
-[joinChannel](https://docs.agora.io/cn/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/joinChannelByToken:channelId:info:uid:joinSuccess:)|[joinChannel](https://docs.agora.io/cn/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a8b308c9102c08cb8dafb4672af1a3b4c)
-
-## 功能列表
-这个示例程序演示了如何使用 声网 Agora 的音频SDK，实现不同类型语音聊天室的音频聊天功能。
-
-- 加入房间：选择一个房间类型，使用主播或听众的身份加入房间，和房间内的其他用户进行语音交流；
-- 主播/听众切换：在房间内可以随时使用“上麦”按钮来切换自己的主播/听众身份；
-- 听筒/外放切换：可以使用“外放”按钮切换听筒或外放；
-- 停止发送音频：主播可以使用“静音自己”按钮停止发送音频；
-- 停止接收音频：可以使用“不收音频”按钮停止接收房间内其他人的音频；
-- 音乐伴奏：主播可以使用“伴奏”按钮播放伴奏音乐并发送给房间内其他人；
-- 变声效果：主播可以使用“变声”按钮选择自己的变声效果。
+||iOS|Android
+---|---|---
+RTC|[sharedEngineWithAppId:delegate:](https://docs.agora.io/cn/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/sharedEngineWithAppId:delegate:)|[create](https://docs.agora.io/cn/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a35466f690d0a9332f24ea8280021d5ed)
+||[setChannelProfile](https://docs.agora.io/cn/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setChannelProfile:)|[setChannelProfile](https://docs.agora.io/cn/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a1bfb76eb4365b8b97648c3d1b69f2bd6)
+||[setClientRole](https://docs.agora.io/cn/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setClientRole:)|[setClientRole](https://docs.agora.io/cn/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#aa2affa28a23d44d18b6889fba03f47ec)
+||[setAudioProfile](https://docs.agora.io/cn/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setAudioProfile:scenario:)|[setAudioProfile](https://docs.agora.io/cn/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a34175b5e04c88d9dc6608b1f38c0275d)
+||[joinChannel](https://docs.agora.io/cn/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/joinChannelByToken:channelId:info:uid:joinSuccess:)|[joinChannel](https://docs.agora.io/cn/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a8b308c9102c08cb8dafb4672af1a3b4c)
+||[muteLocalAudioStream](https://docs.agora.io/cn/Interactive%20Broadcast/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/muteLocalAudioStream:)|[muteLocalAudioStream](https://docs.agora.io/cn/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a838a04b744e6fb53bd1548d30bff1302)
+RTM|[initWithAppId:delegate:](https://docs.agora.io/cn/Real-time-Messaging/API%20Reference/RTM_oc/Classes/AgoraRtmKit.html#//api/name/initWithAppId:delegate:)|[createInstance](https://docs.agora.io/cn/Real-time-Messaging/API%20Reference/RTM_java/classio_1_1agora_1_1rtm_1_1_rtm_client.html#a6411640143c4d0d0cd9481937b754dbf)
+||[loginByToken:user:completion:](https://docs.agora.io/cn/Real-time-Messaging/API%20Reference/RTM_oc/Classes/AgoraRtmKit.html#//api/name/loginByToken:user:completion:)|[login](https://docs.agora.io/cn/Real-time-Messaging/API%20Reference/RTM_java/classio_1_1agora_1_1rtm_1_1_rtm_client.html#a995bb1b1bbfc169ee4248bd37e67b24a)
+||[createChannelWithId:delegate:](https://docs.agora.io/cn/Real-time-Messaging/API%20Reference/RTM_oc/Classes/AgoraRtmKit.html#//api/name/createChannelWithId:delegate:)|[createChannel](https://docs.agora.io/cn/Real-time-Messaging/API%20Reference/RTM_java/classio_1_1agora_1_1rtm_1_1_rtm_client.html#a95ebbd1a1d902572b444fef7853f335a)
+||[joinWithCompletion:](https://docs.agora.io/cn/Real-time-Messaging/API%20Reference/RTM_oc/Classes/AgoraRtmChannel.html#//api/name/joinWithCompletion:)|[join](https://docs.agora.io/cn/Real-time-Messaging/API%20Reference/RTM_java/classio_1_1agora_1_1rtm_1_1_rtm_channel.html#ad7b321869aac2822b3f88f8c01ce0d40)
+||[getChannelAttributes:ByKeys:completion:](https://docs.agora.io/cn/Real-time-Messaging/API%20Reference/RTM_oc/Classes/AgoraRtmKit.html#//api/name/getChannelAttributes:ByKeys:completion:)|[getChannelAttributes](https://docs.agora.io/cn/Real-time-Messaging/API%20Reference/RTM_java/classio_1_1agora_1_1rtm_1_1_rtm_client.html#a81f14a747a4012815ab4ba8d9e480fb6)
+||[sendMessage:toPeer:completion:](https://docs.agora.io/cn/Real-time-Messaging/API%20Reference/RTM_oc/Classes/AgoraRtmKit.html#//api/name/sendMessage:toPeer:completion:)|[sendMessageToPeer](https://docs.agora.io/cn/Real-time-Messaging/API%20Reference/RTM_java/classio_1_1agora_1_1rtm_1_1_rtm_client.html#a729079805644b3307297fb2e902ab4c9)
+||[addOrUpdateLocalUserAttributes:completion:](https://docs.agora.io/cn/Real-time-Messaging/API%20Reference/RTM_oc/Classes/AgoraRtmKit.html#//api/name/addOrUpdateLocalUserAttributes:completion:)|[addOrUpdateChannelAttributes](https://docs.agora.io/cn/Real-time-Messaging/API%20Reference/RTM_java/classio_1_1agora_1_1rtm_1_1_rtm_client.html#a997a31e6bfe1edc9b6ef58a931ef3f23)
 
 ## 常见问题
 1. 当 audioProfile 的 scenario 被设为 Default，ShowRoom，Education，GameStreaming 且为单主播时不开启降噪如果在这种情况下，觉得噪声过大，可以通过私有接口`agoraKit.setParameters("{\"che.audio.enable.ns\":true}")`来开启降噪
