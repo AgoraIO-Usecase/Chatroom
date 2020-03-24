@@ -103,6 +103,10 @@ public abstract class SeatManager {
         resetSeat(oldPosition, new ResultCallback<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
+                if (getChannelData().updateSeat(oldPosition, null)) {
+                    // don't wait onChannelAttributesUpdated, refresh now
+                    onSeatUpdated(oldPosition);
+                }
                 occupySeat(userId, newPosition, callback);
             }
 
@@ -163,6 +167,8 @@ public abstract class SeatManager {
                     callback
             );
     }
+
+    abstract void onSeatUpdated(int position);
 
     final boolean updateSeatArray(int position, String value) {
         Seat seat = new Gson().fromJson(value, Seat.class);

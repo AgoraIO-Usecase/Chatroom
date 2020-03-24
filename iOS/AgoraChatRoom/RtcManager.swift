@@ -8,7 +8,7 @@
 
 import Foundation
 
-import AgoraAudioKit
+import AgoraRtcKit
 
 protocol RtcDelegate: class {
     func onJoinChannelSuccess(channelId: String)

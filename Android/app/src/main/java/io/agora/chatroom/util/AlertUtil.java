@@ -2,6 +2,8 @@ package io.agora.chatroom.util;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.widget.PopupWindow;
 import android.widget.Toast;
@@ -11,6 +13,7 @@ import androidx.appcompat.app.AlertDialog;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.agora.chatroom.ChatRoomApplication;
 import io.agora.chatroom.R;
 import me.kareluo.ui.OptionMenu;
 import me.kareluo.ui.OptionMenuView;
@@ -19,8 +22,8 @@ import me.kareluo.ui.PopupView;
 
 public class AlertUtil {
 
-    public static void showToast(Context context, String format, Object... args) {
-        Toast.makeText(context, String.format(format, args), Toast.LENGTH_SHORT).show();
+    public static void showToast(String format, Object... args) {
+        new Handler(Looper.getMainLooper()).post(() -> Toast.makeText(ChatRoomApplication.instance, String.format(format, args), Toast.LENGTH_SHORT).show());
     }
 
     public static void showPop(Context context, View view, int[] ids, OptionMenuView.OnOptionMenuClickListener clickListener, PopupWindow.OnDismissListener dismissListener) {

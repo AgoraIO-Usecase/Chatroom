@@ -8,7 +8,7 @@
 
 import Foundation
 
-import AgoraAudioKit
+import AgoraRtcKit
 import AgoraRtmKit
 
 protocol ChatRoomDelegate: class {
@@ -61,6 +61,10 @@ class ChatRoomManager: SeatManager {
 
     func getRtmManager() -> RtmManager {
         mRtmManager
+    }
+
+    func onSeatUpdated(position: Int) {
+        delegate?.onSeatUpdated(position: position)
     }
 
     func joinChannel(channelId: String) {

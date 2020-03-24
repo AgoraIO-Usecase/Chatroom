@@ -15,6 +15,8 @@ protocol SeatManager: class {
     func getRtcManager() -> RtcManager
 
     func getRtmManager() -> RtmManager
+
+    func onSeatUpdated(position: Int)
 }
 
 extension SeatManager {
@@ -76,7 +78,15 @@ extension SeatManager {
     private func changeSeat(_ userId: String, _ oldPosition: Int, _ newPosition: Int, _ callback: AgoraRtmAddOrUpdateChannelAttributesBlock?) {
         resetSeat(oldPosition, { [weak self] (code) in
             if code == .attributeOperationErrorOk {
-                self?.occupySeat(userId, newPosition, callback)
+                guard let `self` = self else {
+                    return
+                }
+
+                if (self.getChannelData().updateSeat(oldPosition, nil)) {
+                    // don't wait onChannelAttributesUpdated, refresh now
+                    self.onSeatUpdated(position: oldPosition)
+                }
+                self.occupySeat(userId, newPosition, callback)
             }
         })
     }

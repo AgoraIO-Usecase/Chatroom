@@ -8,7 +8,7 @@
 
 import UIKit
 
-import AgoraAudioKit
+import AgoraRtcKit
 
 class VoiceChangerViewController: UIViewController {
     @IBOutlet weak var gridVoiceEffect: UICollectionView!
