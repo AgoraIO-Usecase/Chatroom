@@ -48,6 +48,13 @@ public final class ChatRoomManager extends SeatManager implements MessageManager
         return mRtmManager;
     }
 
+    @Override
+    void onSeatUpdated(int position) {
+        if (mListener != null) {
+            mListener.onSeatUpdated(position);
+        }
+    }
+
     private ChatRoomManager(Context context) {
         mRtcManager = RtcManager.instance(context);
         mRtcManager.setListener(mRtcListener);

@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import io.agora.chatroom.R;
+import io.agora.chatroom.util.AlertUtil;
 import io.agora.rtm.ChannelAttributeOptions;
 import io.agora.rtm.ErrorInfo;
 import io.agora.rtm.ResultCallback;
@@ -47,7 +48,6 @@ public final class RtmManager {
     private RtmClient mRtmClient;
     private RtmChannel mRtmChannel;
     private boolean mIsLogin;
-    private String mChannelId;
 
     private RtmManager(Context context) {
         mContext = context.getApplicationContext();
@@ -107,34 +107,41 @@ public final class RtmManager {
     }
 
     void joinChannel(String channelId, ResultCallback<Void> callback) {
-        mChannelId = channelId;
+        if (mRtmClient != null) {
+            leaveChannel();
 
-        if (mRtmChannel == null) {
-            if (mRtmClient != null)
-                mRtmChannel = mRtmClient.createChannel(mChannelId, mChannelListener);
-        }
+            Log.w(TAG, String.format("joinChannel %s", channelId));
 
-        if (mRtmChannel != null) {
-            mRtmChannel.join(new ResultCallback<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-                    Log.d(TAG, "rtm join success");
+            try {
+                RtmChannel rtmChannel = mRtmClient.createChannel(channelId, mChannelListener);
+                if (rtmChannel == null) return;
+                rtmChannel.join(new ResultCallback<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "rtm join success");
+                        mRtmChannel = rtmChannel;
 
-                    getChannelAttributes(mChannelId);
-                    getMembers();
+                        getChannelAttributes(channelId);
+                        getMembers();
 
-                    if (callback != null)
-                        callback.onSuccess(aVoid);
-                }
+                        if (callback != null)
+                            callback.onSuccess(aVoid);
+                    }
 
-                @Override
-                public void onFailure(ErrorInfo errorInfo) {
-                    Log.e(TAG, String.format("rtm join %s", errorInfo.getErrorDescription()));
+                    @Override
+                    public void onFailure(ErrorInfo errorInfo) {
+                        Log.e(TAG, String.format("rtm join %s", errorInfo.getErrorDescription()));
+                        AlertUtil.showToast("RTM login failed, see the log to get more info");
 
-                    if (callback != null)
-                        callback.onFailure(errorInfo);
-                }
-            });
+                        mRtmChannel = rtmChannel;
+
+                        if (callback != null)
+                            callback.onFailure(errorInfo);
+                    }
+                });
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
         }
     }
 
@@ -229,8 +236,13 @@ public final class RtmManager {
 
     void addOrUpdateChannelAttributes(String key, String value, ResultCallback<Void> callback) {
         if (mRtmClient != null) {
+            if (mRtmChannel == null) {
+                AlertUtil.showToast("RTM not login, see the log to get more info");
+                return;
+            }
+
             RtmChannelAttribute attribute = new RtmChannelAttribute(key, value);
-            mRtmClient.addOrUpdateChannelAttributes(mChannelId, Collections.singletonList(attribute), options(), new ResultCallback<Void>() {
+            mRtmClient.addOrUpdateChannelAttributes(mRtmChannel.getId(), Collections.singletonList(attribute), options(), new ResultCallback<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
                     Log.d(TAG, String.format("addOrUpdateChannelAttributes %s %s", key, value));
@@ -255,8 +267,14 @@ public final class RtmManager {
     }
 
     void deleteChannelAttributesByKey(String key) {
-        if (mRtmClient != null)
-            mRtmClient.deleteChannelAttributesByKeys(mChannelId, Collections.singletonList(key), options(), null);
+        if (mRtmClient != null) {
+            if (mRtmChannel == null) {
+                AlertUtil.showToast("RTM not login, see the log to get more info");
+                return;
+            }
+
+            mRtmClient.deleteChannelAttributesByKeys(mRtmChannel.getId(), Collections.singletonList(key), options(), null);
+        }
     }
 
     void sendMessage(String content, ResultCallback<Void> callback) {
@@ -311,6 +329,8 @@ public final class RtmManager {
 
     void leaveChannel() {
         if (mRtmChannel != null) {
+            Log.w(TAG, String.format("leaveChannel %s", mRtmChannel.getId()));
+
             mRtmChannel.leave(null);
             mRtmChannel.release();
             mRtmChannel = null;

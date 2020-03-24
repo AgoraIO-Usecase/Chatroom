@@ -24,6 +24,21 @@ protocol RtmDelegate: class {
     func onMessageReceived(message: AgoraRtmMessage)
 }
 
+struct Key {
+    static var key = "channelId"
+}
+
+extension AgoraRtmChannel {
+    var channelId: String {
+        get {
+            return objc_getAssociatedObject(self, &Key.key) as! String
+        }
+        set {
+            objc_setAssociatedObject(self, &Key.key, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
+    }
+}
+
 class RtmManager: NSObject {
     static let shared = RtmManager()
 
@@ -31,7 +46,6 @@ class RtmManager: NSObject {
     private var mRtmKit: AgoraRtmKit?
     private var mRtmChannel: AgoraRtmChannel?
     private var mIsLogin: Bool = false
-    private var mChannelId: String?
 
     private override init() {
         super.init()
@@ -58,26 +72,32 @@ class RtmManager: NSObject {
     }
 
     func joinChannel(_ channelId: String, _ block: AgoraRtmJoinChannelBlock?) {
-        mChannelId = channelId
+        if let `mRtmKit` = mRtmKit {
+            leaveChannel()
 
-        if mRtmChannel == nil {
-            mRtmChannel = mRtmKit?.createChannel(withId: mChannelId!, delegate: self)
-        }
+            print("joinChannel \(channelId)")
 
-        mRtmChannel?.join(completion: { [weak self] (code) in
-            print("rtm join \(code.rawValue)")
-
-            guard let `self` = self else {
+            guard let `rtmChannel` = mRtmKit.createChannel(withId: channelId, delegate: self) else {
                 return
             }
+            rtmChannel.channelId = channelId
+            rtmChannel.join(completion: { [weak self] (code) in
+                print("rtm join \(code.rawValue)")
 
-            if code == .channelErrorOk {
-                self.getChannelAllAttributes(self.mChannelId!)
-                self.getMembers()
-            }
+                guard let `self` = self else {
+                    return
+                }
 
-            block?(code)
-        })
+                self.mRtmChannel = rtmChannel
+
+                if code == .channelErrorOk {
+                    self.getChannelAllAttributes(channelId)
+                    self.getMembers()
+                }
+
+                block?(code)
+            })
+        }
     }
 
     private func getChannelAllAttributes(_ channelId: String) {
@@ -152,11 +172,11 @@ class RtmManager: NSObject {
     }
 
     func addOrUpdateChannelAttributes(_ key: String, _ value: String, _ block: AgoraRtmAddOrUpdateChannelAttributesBlock?) {
-        if let `mRtmKit` = mRtmKit {
+        if let `mRtmKit` = mRtmKit, let `mRtmChannel` = mRtmChannel {
             let attribute = AgoraRtmChannelAttribute()
             attribute.key = key
             attribute.value = value
-            mRtmKit.addOrUpdateChannel(mChannelId!, attributes: [attribute], options: options(), completion: { (code) in
+            mRtmKit.addOrUpdateChannel(mRtmChannel.channelId, attributes: [attribute], options: options(), completion: { (code) in
                 print("addOrUpdateChannelAttributes \(key) \(value) \(code.rawValue)")
 
                 block?(code)
@@ -171,7 +191,9 @@ class RtmManager: NSObject {
     }
 
     func deleteChannelAttributesByKey(_ key: String) {
-        mRtmKit?.deleteChannel(mChannelId!, attributesByKeys: [key], options: options(), completion: nil)
+        if let `mRtmKit` = mRtmKit, let `mRtmChannel` = mRtmChannel {
+            mRtmKit.deleteChannel(mRtmChannel.channelId, attributesByKeys: [key], options: options(), completion: nil)
+        }
     }
 
     func sendMessage(_ content: String?, _ block: AgoraRtmSendChannelMessageBlock?) {
@@ -197,6 +219,8 @@ class RtmManager: NSObject {
     }
 
     func leaveChannel() {
+        print("leaveChannel \(mRtmChannel?.channelId)")
+
         mRtmChannel?.leave(completion: nil)
         mRtmChannel = nil
     }

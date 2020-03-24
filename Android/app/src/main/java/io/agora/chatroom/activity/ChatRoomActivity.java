@@ -64,6 +64,7 @@ public class ChatRoomActivity extends AppCompatActivity implements ChatRoomEvent
     private MessageListAdapter mMessageAdapter;
     private String mChannelId;
     private boolean mMuteRemote;
+    private boolean isDestroyed;
 
     @BindView(R.id.container)
     ConstraintLayout container;
@@ -93,9 +94,25 @@ public class ChatRoomActivity extends AppCompatActivity implements ChatRoomEvent
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        if (isFinishing()) {
+            destroy();
+        }
+    }
+
+    @Override
     protected void onDestroy() {
+        destroy();
         super.onDestroy();
+    }
+
+    private void destroy() {
+        if (isDestroyed) return;
+
         mManager.leaveChannel();
+
+        isDestroyed = true;
     }
 
     @Override
