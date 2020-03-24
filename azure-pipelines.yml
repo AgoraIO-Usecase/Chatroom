@@ -3,12 +3,12 @@ jobs:
     parameters:
       displayName: 'ChatRoomAndroid'
       workingDirectory: 'Android'
-      rtcSdkUrl: 'https://download.agora.io/sdk/release/Agora_Native_SDK_for_Android_v3_0_0_VOICE.zip'
+      rtcSdkUrl: 'https://download.agora.io/sdk/release/Agora_Native_SDK_for_Android_v3_0_0_1_VOICE.zip'
       rtmSdkUrl: 'https://download.agora.io/rtmsdk/release/Agora_RTM_SDK_for_Android_v1_2_2.zip'
 
   - template: cicd/templates/build-ios.yml
     parameters:
       displayName: 'ChatRoomIos'
       workingDirectory: 'iOS'
-      rtcSdkUrl: 'https://download.agora.io/sdk/release/Agora_Native_SDK_for_iOS_v3_0_0_VOICE.zip'
+      rtcSdkUrl: 'https://download.agora.io/sdk/release/Agora_Native_SDK_for_iOS_v3_0_0_1_VOICE.zip'
       rtmSdkUrl: 'https://download.agora.io/rtmsdk/release/Agora_RTM_SDK_for_iOS_v1_2_2.zip'
