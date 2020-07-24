@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03824D1324CB4ECD00E9C047 /* AgoraRtcKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F52640DD242A039C00566DB5 /* AgoraRtcKit.framework */; };
+		03824D1424CB4ECD00E9C047 /* AgoraRtcKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F52640DD242A039C00566DB5 /* AgoraRtcKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1A45C0EC291FCD311CA6FFF3 /* KeyCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A45C6A290E19E7B611891E1 /* KeyCenter.swift */; };
 		1A45C1599426996E9D473BBD /* SeatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A45C51B14DDE11CF333201B /* SeatManager.swift */; };
 		1A45C3F5188DF25333735354 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A45C89C1D7BE2FB3A0366C0 /* Constant.swift */; };
@@ -34,7 +36,6 @@
 		F512BDA1238E462D00B96E75 /* VoiceChangerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F512BDA0238E462D00B96E75 /* VoiceChangerCell.swift */; };
 		F523B84B23A75DB60075A548 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F523B84A23A75DB60075A548 /* CustomView.swift */; };
 		F523B85523A7C35C0075A548 /* GiftPopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F523B85423A7C35C0075A548 /* GiftPopView.swift */; };
-		F52640DE242A039C00566DB5 /* AgoraRtcKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F52640DD242A039C00566DB5 /* AgoraRtcKit.framework */; };
 		F52EF76D239F51400042817C /* ChannelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52EF76C239F51400042817C /* ChannelData.swift */; };
 		F5616A5E2386594E003FEADA /* ChatRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5616A5D2386594E003FEADA /* ChatRoomViewController.swift */; };
 		F5616A60238780A6003FEADA /* SeatCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5616A5F238780A6003FEADA /* SeatCollectionViewController.swift */; };
@@ -52,6 +53,20 @@
 		F5DEB12B23AA52CB008ED7F6 /* VoiceChanger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DEB12A23AA52CA008ED7F6 /* VoiceChanger.swift */; };
 		F5F6FF1123A0CF6400E4A824 /* AttributeKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F6FF1023A0CF6400E4A824 /* AttributeKey.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		03824D1524CB4ECD00E9C047 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				03824D1424CB4ECD00E9C047 /* AgoraRtcKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1A45C256CEF4A39CFDE167B1 /* MessageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageManager.swift; sourceTree = "<group>"; };
@@ -109,12 +124,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03824D1324CB4ECD00E9C047 /* AgoraRtcKit.framework in Frameworks */,
 				F5DEB10A23A8C72B008ED7F6 /* AgoraRtmKit.framework in Frameworks */,
 				A77F45FF212426D900EB578D /* libresolv.tbd in Frameworks */,
 				A77F45FD212426CD00EB578D /* CoreTelephony.framework in Frameworks */,
 				A77F45FB212426C600EB578D /* AudioToolbox.framework in Frameworks */,
 				A77F45F9212426BA00EB578D /* SystemConfiguration.framework in Frameworks */,
-				F52640DE242A039C00566DB5 /* AgoraRtcKit.framework in Frameworks */,
 				A77F45F7212426B100EB578D /* AVFoundation.framework in Frameworks */,
 				A77F45F5212426AD00EB578D /* libc++.tbd in Frameworks */,
 				A77F45F3212426A600EB578D /* Accelerate.framework in Frameworks */,
@@ -258,6 +273,7 @@
 				A7C50F06212414F200774322 /* Sources */,
 				A7C50F07212414F200774322 /* Frameworks */,
 				A7C50F08212414F200774322 /* Resources */,
+				03824D1524CB4ECD00E9C047 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
