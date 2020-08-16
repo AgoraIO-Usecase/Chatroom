@@ -66,6 +66,9 @@ class SeatCell: UICollectionViewCell {
                     if let userId = mSeat.userId {
                         if mChannelData.isUserOnline(userId) {
                             if isAnchor {
+                                if Constant.isMyself(userId) {
+                                    return false
+                                }
                                 let muted = mChannelData.isUserMuted(userId)
                                 return [#selector(toAudience), muted ? #selector(turnOnMic) : #selector(turnOffMic), #selector(closeSeat)].contains(action)
                             } else {

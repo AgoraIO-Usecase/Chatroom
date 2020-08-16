@@ -254,6 +254,8 @@ public class ChatRoomActivity extends AppCompatActivity implements ChatRoomEvent
                 String userId = seat.getUserId();
                 if (channelData.isUserOnline(userId)) {
                     if (isAnchor) {
+                        if (Constant.isMyself(userId))
+                            return;
                         boolean muted = channelData.isUserMuted(userId);
                         showSeatPop(view, new int[]{
                                 R.id.to_audience,
