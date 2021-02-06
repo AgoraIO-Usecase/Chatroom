@@ -4,11 +4,18 @@ import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import cn.leancloud.AVException;
+import cn.leancloud.AVObject;
+import cn.leancloud.AVQuery;
+import cn.leancloud.livequery.AVLiveQuery;
+import cn.leancloud.livequery.AVLiveQueryEventHandler;
+import cn.leancloud.livequery.AVLiveQuerySubscribeCallback;
 import io.agora.chatroom.R;
 import io.agora.chatroom.util.AlertUtil;
 import io.agora.rtm.ChannelAttributeOptions;
@@ -21,7 +28,12 @@ import io.agora.rtm.RtmChannelListener;
 import io.agora.rtm.RtmChannelMember;
 import io.agora.rtm.RtmClient;
 import io.agora.rtm.RtmClientListener;
+import io.agora.rtm.RtmFileMessage;
+import io.agora.rtm.RtmImageMessage;
+import io.agora.rtm.RtmMediaOperationProgress;
 import io.agora.rtm.RtmMessage;
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
 
 public final class RtmManager {
 
@@ -40,6 +52,7 @@ public final class RtmManager {
     }
 
     private final String TAG = RtmManager.class.getSimpleName();
+    private final String PREFIX = "channel";
 
     private static RtmManager instance;
 
@@ -48,6 +61,7 @@ public final class RtmManager {
     private RtmClient mRtmClient;
     private RtmChannel mRtmChannel;
     private boolean mIsLogin;
+    private String objId;
 
     private RtmManager(Context context) {
         mContext = context.getApplicationContext();
@@ -120,8 +134,8 @@ public final class RtmManager {
                     public void onSuccess(Void aVoid) {
                         Log.d(TAG, "rtm join success");
                         mRtmChannel = rtmChannel;
-
-                        getChannelAttributes(channelId);
+                        initStorageObject();
+//                        getChannelAttributes(channelId);
                         getMembers();
 
                         if (callback != null)
@@ -143,6 +157,29 @@ public final class RtmManager {
                 ex.printStackTrace();
             }
         }
+    }
+
+    private void subscribeStorageChanges() {
+        AVQuery<AVObject> query = new AVQuery<>(PREFIX + mRtmChannel.getId());
+        query.whereEqualTo("objectId", objId);
+        AVLiveQuery liveQuery = AVLiveQuery.initWithQuery(query);
+        liveQuery.setEventHandler(new AVLiveQueryEventHandler() {
+            @Override
+            public void onObjectUpdated(AVObject object, List<String> updatedKeys) {
+                Log.i(TAG, String.format("getChannelAttributes %s", object.toJSONString()));
+                processStorageAttributes(object, updatedKeys);
+            }
+        });
+        liveQuery.subscribeInBackground(new AVLiveQuerySubscribeCallback() {
+            @Override
+            public void done(AVException e) {
+                if (null != e) {
+                    Log.e(TAG, String.format("failed to subscribe livequery. %s", e.getMessage()));
+                } else {
+                    Log.i(TAG, "succeed to subscribe livequery.");
+                }
+            }
+        });
     }
 
     private void getChannelAttributes(String channelId) {
@@ -169,6 +206,18 @@ public final class RtmManager {
             Map<String, String> attributes = new HashMap<>();
             for (RtmChannelAttribute attribute : attributeList) {
                 attributes.put(attribute.getKey(), attribute.getValue());
+            }
+
+            if (mListener != null)
+                mListener.onChannelAttributesUpdated(attributes);
+        }
+    }
+
+    private void processStorageAttributes(AVObject updatedObject, List<String> updatedKeys) {
+        if (updatedKeys != null && updatedObject!=null) {
+            Map<String, String> attributes = new HashMap<>();
+            for (String key : updatedKeys) {
+                attributes.put(key, (String) updatedObject.get(key));
             }
 
             if (mListener != null)
@@ -241,25 +290,71 @@ public final class RtmManager {
                 return;
             }
 
-            RtmChannelAttribute attribute = new RtmChannelAttribute(key, value);
-            mRtmClient.addOrUpdateChannelAttributes(mRtmChannel.getId(), Collections.singletonList(attribute), options(), new ResultCallback<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
+            if(objId == null){
+                initStorageObject();
+            }
+
+            AVObject object = AVObject.createWithoutData(PREFIX + mRtmChannel.getId(), objId);
+            object.put(key, value);
+            object.saveInBackground().subscribe(new Observer<AVObject>() {
+                public void onSubscribe(Disposable disposable) {}
+                public void onNext(AVObject object) {
                     Log.d(TAG, String.format("addOrUpdateChannelAttributes %s %s", key, value));
 
                     if (callback != null)
-                        callback.onSuccess(aVoid);
+                        callback.onSuccess(null);
                 }
-
-                @Override
-                public void onFailure(ErrorInfo errorInfo) {
-                    Log.e(TAG, String.format("addOrUpdateChannelAttributes %s %s %s", key, value, errorInfo.getErrorDescription()));
+                public void onError(Throwable throwable) {
+                    Log.e(TAG, String.format("addOrUpdateChannelAttributes %s %s %s", key, value, throwable));
 
                     if (callback != null)
-                        callback.onFailure(errorInfo);
+                        callback.onFailure(new ErrorInfo(-1, throwable.getMessage()));
                 }
+                public void onComplete() {}
             });
         }
+    }
+
+    private void initStorageObject() {
+        AVQuery<AVObject> query = new AVQuery<>(PREFIX + mRtmChannel.getId());
+        query.findInBackground().subscribe(new Observer<List<AVObject>>() {
+            public void onSubscribe(Disposable disposable) {}
+            public void onNext(List<AVObject> objects) {
+                if(objects.isEmpty()){
+                    createStorageObjectOnCloud();
+                }
+                else{
+                    objId = objects.get(0).getObjectId();
+                    getStorageAttributes(objects.get(0));
+                    subscribeStorageChanges();
+                }
+            }
+            public void onError(Throwable throwable) {
+                Log.e(TAG, "fail to query! "+throwable.toString());
+                createStorageObjectOnCloud();
+            }
+            public void onComplete() {}
+        });
+    }
+
+    private void getStorageAttributes(AVObject object) {
+        List<String> list = new ArrayList<String>();
+        list.addAll(object.getServerData().keySet());
+        processStorageAttributes(object, list);
+    }
+
+    private void createStorageObjectOnCloud() {
+        AVObject object = new AVObject(PREFIX + mRtmChannel.getId());
+        object.saveInBackground().subscribe(new Observer<AVObject>() {
+            public void onSubscribe(Disposable disposable) {}
+            public void onNext(AVObject avObject) {
+                objId = avObject.getObjectId();
+                subscribeStorageChanges();
+            }
+            public void onError(Throwable throwable) {
+            }
+            public void onComplete() {}
+        });
     }
 
     private ChannelAttributeOptions options() {
@@ -351,6 +446,26 @@ public final class RtmManager {
         }
 
         @Override
+        public void onImageMessageReceivedFromPeer(RtmImageMessage rtmImageMessage, String s) {
+
+        }
+
+        @Override
+        public void onFileMessageReceivedFromPeer(RtmFileMessage rtmFileMessage, String s) {
+
+        }
+
+        @Override
+        public void onMediaUploadingProgress(RtmMediaOperationProgress rtmMediaOperationProgress, long l) {
+
+        }
+
+        @Override
+        public void onMediaDownloadingProgress(RtmMediaOperationProgress rtmMediaOperationProgress, long l) {
+
+        }
+
+        @Override
         public void onTokenExpired() {
         }
 
@@ -368,7 +483,7 @@ public final class RtmManager {
         public void onAttributesUpdated(List<RtmChannelAttribute> list) {
             Log.i(TAG, "onAttributesUpdated");
 
-            processChannelAttributes(list);
+//            processChannelAttributes(list);
         }
 
         @Override
@@ -377,6 +492,16 @@ public final class RtmManager {
 
             if (mListener != null)
                 mListener.onMessageReceived(rtmMessage);
+        }
+
+        @Override
+        public void onImageMessageReceived(RtmImageMessage rtmImageMessage, RtmChannelMember rtmChannelMember) {
+
+        }
+
+        @Override
+        public void onFileMessageReceived(RtmFileMessage rtmFileMessage, RtmChannelMember rtmChannelMember) {
+
         }
 
         @Override

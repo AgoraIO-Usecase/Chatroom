@@ -31,6 +31,18 @@
             android:name=".activity.ChatRoomActivity"
             android:label="@string/title_activity_chat_room"
             android:launchMode="singleTop" />
+
+        <!-- 即时通讯和推送 START -->
+        <!-- 即时通讯和推送都需要 PushService -->
+        <service android:name="cn.leancloud.push.PushService"/>
+        <receiver android:name="cn.leancloud.push.AVBroadcastReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.USER_PRESENT"/>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+        <!-- 即时通讯和推送 END -->
     </application>
 
 </manifest>

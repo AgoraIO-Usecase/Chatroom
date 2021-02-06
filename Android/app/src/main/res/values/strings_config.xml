@@ -8,9 +8,12 @@
     <!-- Obtain a temp Access Token at https://dashboard.agora.io -->
     <!-- You will need to deploy your own token server for production release -->
     <!-- Leave this value empty if Security keys/Token is not enabled for your project -->
-    <string name="token" translatable="false"><#Temp Access Token#></string>
+    <string name="token" translatable="false"></string>
     <!-- Obtain a temp Access Token at https://dashboard.agora.io -->
     <!-- You will need to deploy your own token server for production release -->
     <!-- Leave this value empty if Security keys/Token is not enabled for your project -->
-    <string name="rtm_token" translatable="false"><#Temp Rtm Access Token#></string>
+    <string name="rtm_token" translatable="false"></string>
+    <string name="leancloud_app_id" translatable="false"><#Your leancloud App Id#></string>
+    <string name="leancloud_app_key" translatable="false"><#Your leancloud App Key#></string>
+    <string name="leancloud_server_url" translatable="false"><#Your leancloud Server Url#></string>
 </resources>
