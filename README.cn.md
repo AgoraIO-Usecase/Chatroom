@@ -91,7 +91,7 @@ RTM|[initWithAppId:delegate:](https://docs.agora.io/cn/Real-time-Messaging/API%2
 ||[addOrUpdateLocalUserAttributes:completion:](https://docs.agora.io/cn/Real-time-Messaging/API%20Reference/RTM_oc/Classes/AgoraRtmKit.html#//api/name/addOrUpdateLocalUserAttributes:completion:)|[addOrUpdateChannelAttributes](https://docs.agora.io/cn/Real-time-Messaging/API%20Reference/RTM_java/classio_1_1agora_1_1rtm_1_1_rtm_client.html#a997a31e6bfe1edc9b6ef58a931ef3f23)
 
 ## 使用LeanCloud的上麦流程控制简介
-
+![](Image/sequence.png)
 
 ## 常见问题
 1. 当 audioProfile 的 scenario 被设为 Default，ShowRoom，Education，GameStreaming 且为单主播时不开启降噪如果在这种情况下，觉得噪声过大，可以通过私有接口`agoraKit.setParameters("{\"che.audio.enable.ns\":true}")`来开启降噪
