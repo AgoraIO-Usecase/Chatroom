@@ -23,23 +23,12 @@ Agora 可以在你的项目中根据场景需要，实现如下功能。
 - 混音：房主在说话的同时播放背景音乐，语聊房内所有观众都能听到，可以烘托主题氛围；
 - 变声：通过变声，主播和连麦观众可以让自己的声音更有特色、符合人设、增加互动趣味。
 
-## 体验 Demo
-
-你可直接下载安装 [Android apk 安装包](https://github.com/AgoraIO-Usecase/Chatroom/releases/download/2.3.3/Fenbei_for_Android_v2.3.3.18.apk.zip) 或者 [iOS Appstore](https://itunes.apple.com/cn/app//id1417827292?mt=8) 进行体验。
-
-成功运行 Demo 后，在界面上创建房间，输入频道名称，并选择一种房间类型。使用另一台设备进入房间，即为观众观看。观众可以申请上麦从而实现和房主的实时互动。
-
-*本开源示例项目简化了业务相关的逻辑*
-
 ## 运行示例程序
 
 1. 在 [Agora.io 用户注册页](https://dashboard.agora.io/cn/signup/) 注册账号，并创建自己的测试项目，获取到 AppID。
 ![](Image/appid.jpg)
-
-2. 下载 Agora [语音通话／音频互动直播 SDK 和 实时消息 SDK](https://docs.agora.io/cn/Agora%20Platform/downloads)。
-![](Image/sdk.png)
    
-3. 在 [LeanCLoud 用户注册页](https://leancloud.cn/dashboard/login.html#/signin) 注册账号，并创建自己的测试项目，获取到 AppID, AppKey, 和ServerUrl。随后在console控制台 -> 存储 -> 服务设置中勾选启用 LiveQuery
+2. 在 [LeanCLoud 用户注册页](https://leancloud.cn/dashboard/login.html#/signin) 注册账号，并创建自己的测试项目，获取到 AppID, AppKey, 和ServerUrl。随后在console控制台 -> 存储 -> 服务设置中勾选启用 LiveQuery
 
 
 #### Android
@@ -49,6 +38,9 @@ Agora 可以在你的项目中根据场景需要，实现如下功能。
   <string name="app_id" translatable="false"><#Your App Id#></string>
   <string name="token" translatable="false"><#Temp Access Token#></string>
   <string name="rtm_token" translatable="false"><#Temp Rtm Access Token#></string>
+  <string name="leancloud_app_id" translatable="false"><#Your LeanCloud App Id#></string>
+  <string name="leancloud_app_key" translatable="false"><#Your LeanCloud App Key#></string>
+  <string name="leancloud_server_url" translatable="false"><#Your LeanCloud Server Url#></string>
   ```
 
 2. 使用 Android Studio 打开该项目，连接 Android 测试设备，编译并运行。
@@ -65,6 +57,9 @@ Agora 可以在你的项目中根据场景需要，实现如下功能。
    static let AppId: String = <#Your App Id#>
    static let Token: String? = <#Temp Access Token#>
    static let RtmToken: String? = <#Temp Rtm Access Token#>
+   static let LeanCloudAppId: String = <#Your LeanCloud App Id#>
+   static let LeanCloudAppKey: String = <#Your LeanCloud App Key#>
+   static let LeanCloudServerUrl: String = <#Your LeanCloud Server Url#>
    ```
 
 2. 在项目根目录下运行 ``pod install``
