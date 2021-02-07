@@ -9,6 +9,7 @@
 import Foundation
 
 import AgoraRtmKit
+import LeanCloud
 
 protocol RtmDelegate: class {
     func onChannelAttributesLoaded()
@@ -46,6 +47,9 @@ class RtmManager: NSObject {
     private var mRtmKit: AgoraRtmKit?
     private var mRtmChannel: AgoraRtmChannel?
     private var mIsLogin: Bool = false
+    private var objId: String? = nil
+    private static var prefix: String = "channel"
+    private var liveQuery: LiveQuery?
 
     private override init() {
         super.init()
@@ -91,12 +95,89 @@ class RtmManager: NSObject {
                 self.mRtmChannel = rtmChannel
 
                 if code == .channelErrorOk {
-                    self.getChannelAllAttributes(channelId)
+                    self.initStorageObject()
                     self.getMembers()
                 }
 
                 block?(code)
             })
+        }
+    }
+    
+    private func initStorageObject() {
+        guard let `mRtmChannel` = self.mRtmChannel else {
+            return
+        }
+        let query = LCQuery(className: RtmManager.prefix + mRtmChannel.channelId)
+        _ = query.find { result in
+            switch result {
+            case .success(objects: let objects):
+                if objects.isEmpty {
+                    self.createStorageObjectOnCloud()
+                }
+                else {
+                    self.objId = objects[0].objectId?.value
+                    self.getStorageAttributes(objects[0])
+                    self.subscribeStorageChanges()
+                }
+                break
+            case .failure(error: let error):
+                print(error)
+            }
+        }
+    }
+    
+    private func subscribeStorageChanges() {
+        do {
+            guard let `mRtmChannel` = self.mRtmChannel else {
+                return
+            }
+            let query = LCQuery(className: RtmManager.prefix + mRtmChannel.channelId)
+            query.whereKey("objectId", .equalTo(self.objId as! LCValueConvertible))
+            self.liveQuery = try LiveQuery(query: query, eventHandler: { (liveQuery, event) in
+                switch event {
+                case let .update(object: object, updatedKeys: updatedKeys):
+                    self.processStorageAttributes(object, updatedKeys: updatedKeys)
+                default:
+                    break
+                }
+            })
+            self.liveQuery?.subscribe{ (result) in
+                switch result {
+                case .success:
+                    break
+                case .failure(error: let error):
+                    print(error)
+                }
+            }
+        } catch {
+            print(error)
+        }
+    }
+    
+    private func getStorageAttributes(_ object: LCObject ) {
+        var keys = [String]()
+        var it = object.makeIterator()
+        while let (i,s) = it.next() {
+            keys.append(i)
+        }
+        self.processStorageAttributes(object, updatedKeys: keys)
+    }
+    
+    private func createStorageObjectOnCloud() {
+        guard let `mRtmChannel` = self.mRtmChannel else {
+            return
+        }
+        let object = LCObject(className: RtmManager.prefix + mRtmChannel.channelId)
+        _ = object.save { result in
+            switch result {
+            case .success:
+                self.objId = object.objectId?.value
+                self.subscribeStorageChanges()
+                break
+            case .failure(error: let error):
+                print(error)
+            }
         }
     }
 
@@ -113,6 +194,16 @@ class RtmManager: NSObject {
                 self.delegate?.onChannelAttributesLoaded()
             }
         })
+    }
+    
+    private func processStorageAttributes(_ object: LCObject, updatedKeys: [String]) {
+        var attributes = [String: String]()
+        for key in updatedKeys {
+            if object[key] != nil {
+                attributes[key] = object[key]?.stringValue
+            }
+        }
+        delegate?.onChannelAttributesUpdated(attributes: attributes)
     }
 
     private func processChannelAttributes(_ attributeArray: [AgoraRtmChannelAttribute]?) {
@@ -173,14 +264,26 @@ class RtmManager: NSObject {
 
     func addOrUpdateChannelAttributes(_ key: String, _ value: String, _ block: AgoraRtmAddOrUpdateChannelAttributesBlock?) {
         if let `mRtmKit` = mRtmKit, let `mRtmChannel` = mRtmChannel {
-            let attribute = AgoraRtmChannelAttribute()
-            attribute.key = key
-            attribute.value = value
-            mRtmKit.addOrUpdateChannel(mRtmChannel.channelId, attributes: [attribute], options: options(), completion: { (code) in
-                print("addOrUpdateChannelAttributes \(key) \(value) \(code.rawValue)")
-
-                block?(code)
-            })
+            
+            if self.objId == nil {
+                self.initStorageObject()
+            }
+            do {
+                let todo = LCObject(className: RtmManager.prefix + mRtmChannel.channelId, objectId: self.objId?.stringValue! as! LCStringConvertible)
+                try todo.set(key, value: value)
+                todo.save { (result) in
+                    switch result {
+                    case .success:
+                        print("addOrUpdateChannelAttributes \(key) \(value)")
+                        block?(AgoraRtmProcessAttributeErrorCode.attributeOperationErrorOk)
+                        break
+                    case .failure(error: let error):
+                        print(error)
+                    }
+                }
+            } catch {
+                print(error)
+            }
         }
     }
 
@@ -223,6 +326,14 @@ class RtmManager: NSObject {
 
         mRtmChannel?.leave(completion: nil)
         mRtmChannel = nil
+        self.liveQuery?.unsubscribe { (result) in
+            switch result {
+            case .success:
+                break
+            case .failure(error: let error):
+                print(error)
+            }
+        }
     }
 }
 

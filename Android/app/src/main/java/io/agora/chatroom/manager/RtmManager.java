@@ -62,6 +62,7 @@ public final class RtmManager {
     private RtmChannel mRtmChannel;
     private boolean mIsLogin;
     private String objId;
+    private AVLiveQuery avLiveQuery;
 
     private RtmManager(Context context) {
         mContext = context.getApplicationContext();
@@ -162,15 +163,15 @@ public final class RtmManager {
     private void subscribeStorageChanges() {
         AVQuery<AVObject> query = new AVQuery<>(PREFIX + mRtmChannel.getId());
         query.whereEqualTo("objectId", objId);
-        AVLiveQuery liveQuery = AVLiveQuery.initWithQuery(query);
-        liveQuery.setEventHandler(new AVLiveQueryEventHandler() {
+        avLiveQuery = AVLiveQuery.initWithQuery(query);
+        avLiveQuery.setEventHandler(new AVLiveQueryEventHandler() {
             @Override
             public void onObjectUpdated(AVObject object, List<String> updatedKeys) {
                 Log.i(TAG, String.format("getChannelAttributes %s", object.toJSONString()));
                 processStorageAttributes(object, updatedKeys);
             }
         });
-        liveQuery.subscribeInBackground(new AVLiveQuerySubscribeCallback() {
+        avLiveQuery.subscribeInBackground(new AVLiveQuerySubscribeCallback() {
             @Override
             public void done(AVException e) {
                 if (null != e) {
@@ -429,6 +430,16 @@ public final class RtmManager {
             mRtmChannel.leave(null);
             mRtmChannel.release();
             mRtmChannel = null;
+        }
+        if (avLiveQuery != null){
+            avLiveQuery.unsubscribeInBackground(new AVLiveQuerySubscribeCallback() {
+                @Override
+                public void done(AVException e) {
+                    if (e == null) {
+                        Log.w(TAG, "unsubscribe leancloud storage object monitoring!");
+                    }
+                }
+            });
         }
     }
 

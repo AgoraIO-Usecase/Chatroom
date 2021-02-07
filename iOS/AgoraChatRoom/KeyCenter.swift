@@ -19,4 +19,10 @@ struct KeyCenter {
     static let Token: String? = <#Temp Access Token#>
 
     static let RtmToken: String? = <#Temp Rtm Access Token#>
+    
+    static let LeanCloudAppId: String = <#Your LeanCloud App Id#>
+    
+    static let LeanCloudAppKey: String = <#Your LeanCloud App Key#>
+    
+    static let LeanCloudServerUrl: String = <#Your LeanCloud Server Url#>
 }

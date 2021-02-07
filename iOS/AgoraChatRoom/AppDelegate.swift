@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import LeanCloud
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,6 +16,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         RtcManager.shared.initialize()
         RtmManager.shared.initialize()
+        do {
+            try LCApplication.default.set(
+                id: KeyCenter.LeanCloudAppId,
+                key: KeyCenter.LeanCloudAppKey,
+                serverURL: KeyCenter.LeanCloudServerUrl)
+        } catch {
+            print(error)
+        }
         return true
     }
 }
