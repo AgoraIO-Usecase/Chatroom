@@ -38,6 +38,9 @@ Agora 可以在你的项目中根据场景需要，实现如下功能。
 
 2. 下载 Agora [语音通话／音频互动直播 SDK 和 实时消息 SDK](https://docs.agora.io/cn/Agora%20Platform/downloads)。
 ![](Image/sdk.png)
+   
+3. 在 [LeanCLoud 用户注册页](https://leancloud.cn/dashboard/login.html#/signin) 注册账号，并创建自己的测试项目，获取到 AppID, AppKey, 和ServerUrl。随后在console控制台 -> 存储 -> 服务设置中勾选启用 LiveQuery
+
 
 #### Android
 1. 将有效的 AppID 和 Token 填写进 "Android/app/src/main/res/values/strings_config.xml"
@@ -48,9 +51,7 @@ Agora 可以在你的项目中根据场景需要，实现如下功能。
   <string name="rtm_token" translatable="false"><#Temp Rtm Access Token#></string>
   ```
 
-2. 解压 SDK 压缩包，将其中的 `libs` 文件夹复制到本项目的 `Android/app` 下。
-
-3. 使用 Android Studio 打开该项目，连接 Android 测试设备，编译并运行。
+2. 使用 Android Studio 打开该项目，连接 Android 测试设备，编译并运行。
 
    运行环境:
     * Android Studio 3.1 +
@@ -66,9 +67,9 @@ Agora 可以在你的项目中根据场景需要，实现如下功能。
    static let RtmToken: String? = <#Temp Rtm Access Token#>
    ```
 
-2. 解压 SDK 压缩包，将文件夹 `libs` 复制到本项目的 `iOS/AgoraChatRoom` 文件夹下。
+2. 在项目根目录下运行 ``pod install``
 
-3. 使用 XCode 打开 iOS/AgoraChatRoom.xcodeproj，连接 iOS 测试设备，设置有效的开发者签名后即可运行。
+3. 使用 XCode 打开 iOS/AgoraChatRoom.xcworkspace，连接 iOS 测试设备，设置有效的开发者签名后即可运行。
 
 		运行环境:
 		​* XCode 10.0 +
