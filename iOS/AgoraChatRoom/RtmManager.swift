@@ -122,7 +122,8 @@ class RtmManager: NSObject {
                 }
                 break
             case .failure(error: let error):
-                print(error)
+                print("failed to find object on cloud! \(error)")
+                self.createStorageObjectOnCloud()
             }
         }
     }
@@ -147,11 +148,11 @@ class RtmManager: NSObject {
                 case .success:
                     break
                 case .failure(error: let error):
-                    print(error)
+                    print("failed to subscribe object update on cloud! \(error)")
                 }
             }
         } catch {
-            print(error)
+            print("failed to subscribe object update on cloud! \(error)")
         }
     }
     
@@ -176,7 +177,7 @@ class RtmManager: NSObject {
                 self.subscribeStorageChanges()
                 break
             case .failure(error: let error):
-                print(error)
+                print("failed to create object on cloud! \(error)")
             }
         }
     }
@@ -278,11 +279,11 @@ class RtmManager: NSObject {
                         block?(AgoraRtmProcessAttributeErrorCode.attributeOperationErrorOk)
                         break
                     case .failure(error: let error):
-                        print(error)
+                        print("failed to update attribute on cloud! \(error)")
                     }
                 }
             } catch {
-                print(error)
+                print("failed to update attribute on cloud! \(error)")
             }
         }
     }
@@ -331,7 +332,7 @@ class RtmManager: NSObject {
             case .success:
                 break
             case .failure(error: let error):
-                print(error)
+                print("failed to unsubscribe attribute update on cloud! \(error)")
             }
         }
     }
