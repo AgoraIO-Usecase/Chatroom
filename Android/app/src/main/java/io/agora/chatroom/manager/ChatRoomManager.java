@@ -110,7 +110,7 @@ public final class ChatRoomManager extends SeatManager implements MessageManager
             toBroadcaster(myUserId, index);
         } else {
             if (mChannelData.hasAnchor()) return;
-            mRtmManager.addOrUpdateChannelAttributes(AttributeKey.KEY_ANCHOR_ID, myUserId, new ResultCallback<Void>() {
+            mRtmManager.updateAttributOnCloud(AttributeKey.KEY_ANCHOR_ID, myUserId, new ResultCallback<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
                     toBroadcaster(myUserId, mChannelData.firstIndexOfEmptySeat());
@@ -243,26 +243,26 @@ public final class ChatRoomManager extends SeatManager implements MessageManager
 
     private RtmManager.RtmEventListener mRtmListener = new RtmManager.RtmEventListener() {
         @Override
-        public void onChannelAttributesLoaded() {
+        public void onCloudAttributesLoaded() {
             checkAndBeAnchor();
         }
 
         @Override
-        public void onChannelAttributesUpdated(Map<String, String> attributes) {
+        public void onCloudAttributesUpdated(Map<String, String> attributes) {
             for (Map.Entry<String, String> entry : attributes.entrySet()) {
                 String key = entry.getKey();
                 switch (key) {
                     case AttributeKey.KEY_ANCHOR_ID:
                         String userId = entry.getValue();
                         if (mChannelData.setAnchorId(userId))
-                            Log.i(TAG, String.format("onChannelAttributesUpdated %s %s", key, userId));
+                            Log.i(TAG, String.format("onCloudAttributesUpdated %s %s", key, userId));
                         break;
                     default:
                         int index = AttributeKey.indexOfSeatKey(key);
                         if (index >= 0) {
                             String value = entry.getValue();
                             if (updateSeatArray(index, value)) {
-                                Log.i(TAG, String.format("onChannelAttributesUpdated %s %s", key, value));
+                                Log.i(TAG, String.format("onCloudAttributesUpdated %s %s", key, value));
 
                                 if (mListener != null)
                                     mListener.onSeatUpdated(index);

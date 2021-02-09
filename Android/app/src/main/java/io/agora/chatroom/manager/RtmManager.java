@@ -18,7 +18,6 @@ import cn.leancloud.livequery.AVLiveQueryEventHandler;
 import cn.leancloud.livequery.AVLiveQuerySubscribeCallback;
 import io.agora.chatroom.R;
 import io.agora.chatroom.util.AlertUtil;
-import io.agora.rtm.ChannelAttributeOptions;
 import io.agora.rtm.ErrorInfo;
 import io.agora.rtm.ResultCallback;
 import io.agora.rtm.RtmAttribute;
@@ -38,9 +37,9 @@ import io.reactivex.disposables.Disposable;
 public final class RtmManager {
 
     public interface RtmEventListener {
-        void onChannelAttributesLoaded();
+        void onCloudAttributesLoaded();
 
-        void onChannelAttributesUpdated(Map<String, String> attributes);
+        void onCloudAttributesUpdated(Map<String, String> attributes);
 
         void onInitMembers(List<RtmChannelMember> members);
 
@@ -136,7 +135,6 @@ public final class RtmManager {
                         Log.d(TAG, "rtm join success");
                         mRtmChannel = rtmChannel;
                         initStorageObject();
-//                        getChannelAttributes(channelId);
                         getMembers();
 
                         if (callback != null)
@@ -167,7 +165,7 @@ public final class RtmManager {
         avLiveQuery.setEventHandler(new AVLiveQueryEventHandler() {
             @Override
             public void onObjectUpdated(AVObject object, List<String> updatedKeys) {
-                Log.i(TAG, String.format("getChannelAttributes %s", object.toJSONString()));
+                Log.i(TAG, String.format("getCloudAttributes %s", object.toJSONString()));
                 processStorageAttributes(object, updatedKeys);
             }
         });
@@ -183,37 +181,6 @@ public final class RtmManager {
         });
     }
 
-    private void getChannelAttributes(String channelId) {
-        if (mRtmClient != null) {
-            mRtmClient.getChannelAttributes(channelId, new ResultCallback<List<RtmChannelAttribute>>() {
-                @Override
-                public void onSuccess(List<RtmChannelAttribute> attributeList) {
-                    processChannelAttributes(attributeList);
-
-                    if (mListener != null)
-                        mListener.onChannelAttributesLoaded();
-                }
-
-                @Override
-                public void onFailure(ErrorInfo errorInfo) {
-                    Log.e(TAG, String.format("getChannelAttributes %s", errorInfo.getErrorDescription()));
-                }
-            });
-        }
-    }
-
-    private void processChannelAttributes(List<RtmChannelAttribute> attributeList) {
-        if (attributeList != null) {
-            Map<String, String> attributes = new HashMap<>();
-            for (RtmChannelAttribute attribute : attributeList) {
-                attributes.put(attribute.getKey(), attribute.getValue());
-            }
-
-            if (mListener != null)
-                mListener.onChannelAttributesUpdated(attributes);
-        }
-    }
-
     private void processStorageAttributes(AVObject updatedObject, List<String> updatedKeys) {
         if (updatedKeys != null && updatedObject!=null) {
             Map<String, String> attributes = new HashMap<>();
@@ -222,7 +189,7 @@ public final class RtmManager {
             }
 
             if (mListener != null)
-                mListener.onChannelAttributesUpdated(attributes);
+                mListener.onCloudAttributesUpdated(attributes);
         }
     }
 
@@ -284,7 +251,7 @@ public final class RtmManager {
         }
     }
 
-    void addOrUpdateChannelAttributes(String key, String value, ResultCallback<Void> callback) {
+    void updateAttributOnCloud(String key, String value, ResultCallback<Void> callback) {
         if (mRtmClient != null) {
             if (mRtmChannel == null) {
                 AlertUtil.showToast("RTM not login, see the log to get more info");
@@ -300,13 +267,13 @@ public final class RtmManager {
             object.saveInBackground().subscribe(new Observer<AVObject>() {
                 public void onSubscribe(Disposable disposable) {}
                 public void onNext(AVObject object) {
-                    Log.d(TAG, String.format("addOrUpdateChannelAttributes %s %s", key, value));
+                    Log.d(TAG, String.format("addOrUpdateCloudAttributes %s %s", key, value));
 
                     if (callback != null)
                         callback.onSuccess(null);
                 }
                 public void onError(Throwable throwable) {
-                    Log.e(TAG, String.format("addOrUpdateChannelAttributes %s %s %s", key, value, throwable));
+                    Log.e(TAG, String.format("addOrUpdateCloudAttributes %s %s %s", key, value, throwable));
 
                     if (callback != null)
                         callback.onFailure(new ErrorInfo(-1, throwable.getMessage()));
@@ -334,7 +301,11 @@ public final class RtmManager {
                 Log.e(TAG, "fail to query! "+throwable.toString());
                 createStorageObjectOnCloud();
             }
-            public void onComplete() {}
+            public void onComplete() {
+                if(mListener!=null){
+                    mListener.onCloudAttributesLoaded();
+                }
+            }
         });
     }
 
@@ -356,21 +327,6 @@ public final class RtmManager {
             }
             public void onComplete() {}
         });
-    }
-
-    private ChannelAttributeOptions options() {
-        return new ChannelAttributeOptions(true);
-    }
-
-    void deleteChannelAttributesByKey(String key) {
-        if (mRtmClient != null) {
-            if (mRtmChannel == null) {
-                AlertUtil.showToast("RTM not login, see the log to get more info");
-                return;
-            }
-
-            mRtmClient.deleteChannelAttributesByKeys(mRtmChannel.getId(), Collections.singletonList(key), options(), null);
-        }
     }
 
     void sendMessage(String content, ResultCallback<Void> callback) {
@@ -493,8 +449,6 @@ public final class RtmManager {
         @Override
         public void onAttributesUpdated(List<RtmChannelAttribute> list) {
             Log.i(TAG, "onAttributesUpdated");
-
-//            processChannelAttributes(list);
         }
 
         @Override

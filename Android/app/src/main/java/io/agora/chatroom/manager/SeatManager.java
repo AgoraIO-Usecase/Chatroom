@@ -104,7 +104,7 @@ public abstract class SeatManager {
             @Override
             public void onSuccess(Void aVoid) {
                 if (getChannelData().updateSeat(oldPosition, null)) {
-                    // don't wait onChannelAttributesUpdated, refresh now
+                    // don't wait onAttributesUpdated, refresh now
                     onSeatUpdated(oldPosition);
                 }
                 occupySeat(userId, newPosition, callback);
@@ -161,7 +161,7 @@ public abstract class SeatManager {
 
     private void modifySeat(int position, Seat seat, ResultCallback<Void> callback) {
         if (position >= 0 && position < AttributeKey.KEY_SEAT_ARRAY.length)
-            getRtmManager().addOrUpdateChannelAttributes(
+            getRtmManager().updateAttributOnCloud(
                     AttributeKey.KEY_SEAT_ARRAY[position],
                     new Gson().toJson(seat),
                     callback

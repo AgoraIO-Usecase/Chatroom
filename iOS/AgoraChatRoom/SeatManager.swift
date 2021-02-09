@@ -83,7 +83,7 @@ extension SeatManager {
                 }
 
                 if (self.getChannelData().updateSeat(oldPosition, nil)) {
-                    // don't wait onChannelAttributesUpdated, refresh now
+                    // don't wait onCloudAttributesUpdated, refresh now
                     self.onSeatUpdated(position: oldPosition)
                 }
                 self.occupySeat(userId, newPosition, callback)
@@ -141,7 +141,7 @@ extension SeatManager {
                     json = str
                 }
             }
-            getRtmManager().addOrUpdateChannelAttributes(AttributeKey.KEY_SEAT_ARRAY[position], json, callback)
+            getRtmManager().addOrUpdateCloudAttributes(AttributeKey.KEY_SEAT_ARRAY[position], json, callback)
         }
     }
 

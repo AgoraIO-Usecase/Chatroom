@@ -102,7 +102,7 @@ class ChatRoomManager: SeatManager {
             if mChannelData.hasAnchor() {
                 return
             }
-            mRtmManager.addOrUpdateChannelAttributes(AttributeKey.KEY_ANCHOR_ID, myUserId, { [weak self] (code) in
+            mRtmManager.addOrUpdateCloudAttributes(AttributeKey.KEY_ANCHOR_ID, myUserId, { [weak self] (code) in
                 guard let `self` = self else {
                     return
                 }
@@ -207,25 +207,25 @@ extension ChatRoomManager: RtcDelegate {
 }
 
 extension ChatRoomManager: RtmDelegate {
-    func onChannelAttributesLoaded() {
+    func onCloudAttributesLoaded() {
         checkAndBeAnchor()
     }
 
-    func onChannelAttributesUpdated(attributes: [String: String]) {
+    func onCloudAttributesUpdated(attributes: [String: String]) {
         for attribute in attributes {
             let key = attribute.key
             switch key {
             case AttributeKey.KEY_ANCHOR_ID:
                 let userId = attribute.value
                 if mChannelData.setAnchorId(userId) {
-                    print("onChannelAttributesUpdated \(key) \(userId)")
+                    print("onCloudAttributesUpdated \(key) \(userId)")
                 }
             default:
                 let index = AttributeKey.indexOfSeatKey(key)
                 if index != NSNotFound {
                     let value = attribute.value
                     if updateSeatArray(index, value) {
-                        print("onChannelAttributesUpdated \(key) \(value)")
+                        print("onCloudAttributesUpdated \(key) \(value)")
 
                         delegate?.onSeatUpdated(position: index)
                     }
